@@ -1,0 +1,21 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1607354806132'); /* IE9 */
+  src: url('iconfont.eot?t=1607354806132#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPsAAsAAAAAB/QAAAOdAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqDfIMsATYCJAMICwYABCAFhG0HMxvVBlFULWJkPw9jY9mTYQjDjeh1qXQeaqyiYW/wh6Xjfzw8fz/q3PffZFImDkZyJJVN02AUDk2LDujqgq830NLfWss8oFEZ/yxfIbTsF7IHnMsVxtfpKlUhW+E6ZZe7T8V2mUlJs6LuA6hMKtHXH1yOf3mA84Bym2PwmICBpQGNtSmyAgnMA24Yu4nyIA4TqNVjoLayuzxDVwZGBeIi8BR0Uyq5JjtUC5UlC7N4UaE6PaVd4Jl/Pv6ZRZekogDy1o+2FhY/wbjioXywRzUexzNAW0aBKSAT26WmVY0wNKWh1gk1DYB1ZQc/lSVlrfaHRxCVQGY96BJZ58TGnFPNTCCHrV/43qsT6fBOfaZDtjcbkWoaYF56Iw9sPVOpZYm1owKDnfwwE1/YzdU/zteYyGuZkC/o4a6pkac3NNaSyemwe01qHjFCEC9Qc0l6Y283V3U1qEeEQF0d59ip4dypZtdpcNUQZ0quWIUv7xvjBWn1XGnVYByx60a0YOGGzOyBweqZSDqPAKzr45S7S1b11DTw8NTW8jR08K+n6wpbv39cCDk15awqmPRf4UnvuEsFvGosBKzF/OO4bWxZJGM+Tl49qpuYbbzvo91txLHipIMoveOUBC13fw19pIuyfxKxxHqNSgs794wLmigACd3L/95C9GxM6zGu+m8PBqQ0Oa0sCw7sBSOY4m9uqCtpFPQa6KzQP+eITm51hi0ZdxN2j3YGnY6KJJYdMYgoa+t9vWfKYADmEcb3nhym7fSHNSqNqVBuPvmQzOKqN9ULtDTW3OQ2xNjo5mqaCziadhg0W1HNxZJXvDw5Pau29cSY9mABUN4XV42Hf/gdZ/nz/yF95uq6DH4UznBHeZ+1s1B9p+bgj7Fb1mSXC9Qp2+xSS/LVK5BQC72UgK3VX19LB4gNoVpni5BU6YZCtSEkE1NQoc40VKo2D7Um7ZfXacMaItdgwpcAodk3JI2+QaHZD5KJX6jQ6R8qNUcDau1G24Z1RiLoLzMpIYv6EwOTpQ5ppR9kP5JXxYqTXE5+JS4DL06VVbPRPaXEY0wp37yZiEPHWYI74TiK4wxzzkIyMvJF8vlYJbrsRSOTJdC3jBFFEAtpn1DAyKQcbS76ufc/Ip5KTOGagg7jK8JKQftoamTSAtmL0lYF1/JM6Y1nRggHOSyTQDvBQGIYyqC8vF+IGGLE7xHIzY2lRq6taDS/JHmATK0EIE8BZxRqLslWuQo+KgAAAAA=') format('woff2'),
+  url('iconfont.woff?t=1607354806132') format('woff'),
+  url('iconfont.ttf?t=1607354806132') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1607354806132#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-redupaixu:before {
+  content: "\e64a";
+}
+
