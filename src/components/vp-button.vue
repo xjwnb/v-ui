@@ -1,6 +1,8 @@
 <template>
   <!-- <button :class="type ? `vp-button-${type}` : 'vp-button-default'"> -->
-  <button class="vp-button" :class="[typeStyle, roundStyle]" @click="clickHandle">
+  <button class="vp-button" :class="[typeStyle, roundStyle, disabledStyle]"
+    @click="clickHandle"
+    :disabled="disabled">
     <span>
       <span v-if="icon" :class="icon"></span>
       <slot> vp-button </slot>
@@ -23,6 +25,10 @@ export default {
     icon: {
       type: String,
       default: ""
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -39,6 +45,9 @@ export default {
     roundStyle() {
       return this.round ? "vp-button-round" : "";
     },
+    disabledStyle() {
+      return this.disabled ? "vp-button-disabled" : "";
+    }
   },
   created() {},
   mounted() {},
@@ -129,5 +138,11 @@ export default {
 // round
 .vp-button-round {
   border-radius: 25px;
+}
+
+// disabled
+.vp-button-disabled {
+  cursor: not-allowed;
+  filter: grayscale(70%);
 }
 </style>

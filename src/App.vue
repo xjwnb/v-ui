@@ -12,9 +12,14 @@
     <vp-button type="primary" @click="clickHandle">click-primary按钮</vp-button>
     <vp-button type="primary" icon="iconfont icon-redupaixu">icon - primary按钮</vp-button>
     <vp-button type="primary"><span class="iconfont icon-redupaixu"></span></vp-button>
+    <vp-button type="primary" disabled>primary - disabled 按钮 </vp-button>
     <!-- input -->
     <vp-input type="text" placeholder="请输入信息" v-model="username" />
     <vp-input type="password" v-model="password" />
+    <vp-input type="text" placeholder="请输入信息" disabled />
+    <vp-input type="text" placeholder="可清空信息" v-model="text" clearable />
+    <vp-input type="textarea" v-model="textarea" @blur="blur" @focus="focus" />
+    <vp-input @blur="blur" @focus="focus" />
   </div>
 </template>
 
@@ -27,7 +32,9 @@ export default {
   data() {
     return {
       username: "小卡车",
-      password: ""
+      password: "",
+      text: "",
+      textarea: ""
     }
   },
   components: {
@@ -37,7 +44,13 @@ export default {
   methods: {
     clickHandle(e) {
       console.log(e);
-    }
+    },
+    focus(e) {
+      console.log(e);
+    },
+    blur(e) {
+      console.log(e);
+    } 
   }
 }
 </script>
@@ -45,5 +58,6 @@ export default {
 <style scoped>
 .vp-input {
   width: 200px;
+  margin: 0 10px;
 }
 </style>
