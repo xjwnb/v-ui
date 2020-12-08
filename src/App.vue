@@ -20,12 +20,17 @@
     <vp-input type="text" placeholder="可清空信息" v-model="text" clearable />
     <vp-input type="textarea" v-model="textarea" @blur="blur" @focus="focus" />
     <vp-input @blur="blur" @focus="focus" />
+    <!-- radio -->
+    <vp-radio v-model="radio1" label="loll">LOL</vp-radio>
+    <vp-radio v-model="radio1" label="L" disabled>L</vp-radio>
+    <vp-radio v-model="radio1" label="A">A</vp-radio>
   </div>
 </template>
 
 <script>
 import vpButton from './components/vp-button';
 import vpInput from './components/vp-input';
+import vpRadio from './components/vp-radio';
 
 export default {
   name: 'App',
@@ -34,12 +39,14 @@ export default {
       username: "小卡车",
       password: "",
       text: "",
-      textarea: ""
+      textarea: "",
+      radio1: "loll"
     }
   },
   components: {
     vpButton,
-    vpInput
+    vpInput,
+    vpRadio
   },
   methods: {
     clickHandle(e) {
