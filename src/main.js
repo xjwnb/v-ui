@@ -10,11 +10,13 @@ import vpButton from './components/vp-button';
 import vpInput from './components/vp-input';
 import vpRadio from './components/vp-radio';
 import vpRadioGroup from './components/vp-radio-group.vue';
+import vpSwitch from './components/vp-switch.vue';
 
 Vue.component(vpButton.name, vpButton);
 Vue.component(vpInput.name, vpInput);
 Vue.component(vpRadio.name, vpRadio);
 Vue.component(vpRadioGroup.name, vpRadioGroup);
+Vue.component(vpSwitch.name, vpSwitch);
 
 
 

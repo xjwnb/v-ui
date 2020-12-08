@@ -10,8 +10,12 @@
     <vp-button type="danger">danger</vp-button>
     <vp-button type="primary" round>round - primary按钮</vp-button>
     <vp-button type="primary" @click="clickHandle">click-primary按钮</vp-button>
-    <vp-button type="primary" icon="iconfont icon-redupaixu">icon - primary按钮</vp-button>
-    <vp-button type="primary"><span class="iconfont icon-redupaixu"></span></vp-button>
+    <vp-button type="primary" icon="iconfont icon-redupaixu"
+      >icon - primary按钮</vp-button
+    >
+    <vp-button type="primary"
+      ><span class="iconfont icon-redupaixu"></span
+    ></vp-button>
     <vp-button type="primary" disabled>primary - disabled 按钮 </vp-button>
     <!-- input -->
     <vp-input type="text" placeholder="请输入信息" v-model="username" />
@@ -30,13 +34,17 @@
       <vp-radio label="loll">LOL</vp-radio>
       <vp-radio label="L" disabled>L</vp-radio>
       <vp-radio label="A" @change="changeHandle">A</vp-radio>
-      <vp-radio label="B" border>B</vp-radio>  
+      <vp-radio label="B" border>B</vp-radio>
     </vp-radio-group>
+    <!-- switch -->
+    <vp-switch v-model="switchValue" @change="changeHandle" disabled />
+    <vp-switch v-model="switchValue" @change="changeHandle" />
   </div>
 </template>
 
 <script>
 import VpRadioGroup from "./components/vp-radio-group.vue";
+import VpSwitch from "./components/vp-switch.vue";
 
 export default {
   name: "App",
@@ -47,10 +55,12 @@ export default {
       text: "",
       textarea: "",
       radio1: "loll",
+      switchValue: false,
     };
   },
   components: {
     VpRadioGroup,
+    VpSwitch,
     /*     vpButton,
     vpInput,
     vpRadio */
