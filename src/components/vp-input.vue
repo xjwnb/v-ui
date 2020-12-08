@@ -22,7 +22,6 @@
       :rows="rows"
       :value="value"
       @input="textareaInputHandle"
-      @change="textareaChangeHandle"
       :readonly="readonly"
       :maxlength="maxlength"
       @blur="blurHandle"
@@ -114,11 +113,8 @@ export default {
     },
     // textarea input 事件
     textareaInputHandle(e) {
+      // console.log(e.target.value);
       this.$emit("input", e.target.value);
-    },
-    // textarea change 事件
-    textareaChangeHandle(e) {
-      this.$emit("change", e.target.value);
     },
   },
 };
@@ -133,7 +129,7 @@ export default {
   span {
     cursor: pointer;
     position: absolute;
-    top: 5px;
+    top: 9px;
     right: 5px;
   }
   .vp-input-inner {

@@ -18,11 +18,11 @@
     ></vp-button>
     <vp-button type="primary" disabled>primary - disabled 按钮 </vp-button>
     <!-- input -->
-    <vp-input type="text" placeholder="请输入信息" v-model="username" />
+    <vp-input type="text" placeholder="请输入信息" v-model="username" @input="inputHandle" />
     <vp-input type="password" v-model="password" />
     <vp-input type="text" placeholder="请输入信息" disabled />
     <vp-input type="text" placeholder="可清空信息" v-model="text" clearable />
-    <vp-input type="textarea" v-model="textarea" @blur="blur" @focus="focus" />
+    <vp-input type="textarea" v-model="textarea" @blur="blur" @focus="focus" @input="textareaInputHandle" />
     <vp-input @blur="blur" @focus="focus" />
     <!-- radio -->
     <vp-radio v-model="radio1" label="loll">LOL</vp-radio>
@@ -66,6 +66,9 @@ export default {
     vpRadio */
   },
   methods: {
+    inputHandle(e) {
+      console.log(e);
+    },
     clickHandle(e) {
       console.log(e);
     },
@@ -78,6 +81,9 @@ export default {
     changeHandle(e) {
       console.log(e);
     },
+    textareaInputHandle(value) {
+      console.log(value);
+    }
   },
 };
 </script>

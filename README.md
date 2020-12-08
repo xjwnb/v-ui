@@ -33,8 +33,9 @@
 
   | 事件名 | 描述         | 返回值 |
   | ------ | ------------ | ------ |
-  | blur   | 取消焦点事件 | event  |
-  | focus  | 获得焦点事件 | event  |
+  | blur   | 取消焦点触发 | event  |
+  | focus  | 获得焦点触发 | event  |
+  | input  | 输入时触发   | value  |
 
 - 单选框 - vp-radio
 
