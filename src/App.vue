@@ -1,3 +1,4 @@
+
 <template>
   <div id="app">
     <!-- 按钮 -->
@@ -11,16 +12,27 @@
     <vp-button type="primary" @click="clickHandle">click-primary按钮</vp-button>
     <vp-button type="primary" icon="iconfont icon-redupaixu">icon - primary按钮</vp-button>
     <vp-button type="primary"><span class="iconfont icon-redupaixu"></span></vp-button>
+    <!-- input -->
+    <vp-input type="text" placeholder="请输入信息" v-model="username" />
+    <vp-input type="password" v-model="password" />
   </div>
 </template>
 
 <script>
 import vpButton from './components/vp-button';
+import vpInput from './components/vp-input';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      username: "小卡车",
+      password: ""
+    }
+  },
   components: {
-    vpButton
+    vpButton,
+    vpInput
   },
   methods: {
     clickHandle(e) {
@@ -30,5 +42,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.vp-input {
+  width: 200px;
+}
 </style>

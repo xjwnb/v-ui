@@ -11,6 +11,20 @@
       "font_class": "redupaixu",
       "unicode": "e64a",
       "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "1251164",
+      "name": "eye",
+      "font_class": "eye",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "6994848",
+      "name": "eye",
+      "font_class": "eye1",
+      "unicode": "e613",
+      "unicode_decimal": 58899
     }
   ]
 }

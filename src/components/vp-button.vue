@@ -1,6 +1,6 @@
 <template>
   <!-- <button :class="type ? `vp-button-${type}` : 'vp-button-default'"> -->
-  <button :class="[typeStyle, roundStyle]" @click="clickHandle">
+  <button class="vp-button" :class="[typeStyle, roundStyle]" @click="clickHandle">
     <span>
       <span v-if="icon" :class="icon"></span>
       <slot> vp-button </slot>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "vp-button",
+  name: "vpButton",
   props: {
     type: {
       type: String,
@@ -51,7 +51,7 @@ export default {
 </script>
 <style lang="less" scoped>
 /* button 默认样式 */
-button {
+.vp-button {
   outline: none;
   cursor: pointer;
   border: 1px solid #eee;
