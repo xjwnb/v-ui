@@ -23,30 +23,37 @@
     <!-- radio -->
     <vp-radio v-model="radio1" label="loll">LOL</vp-radio>
     <vp-radio v-model="radio1" label="L" disabled>L</vp-radio>
-    <vp-radio v-model="radio1" label="A">A</vp-radio>
+    <vp-radio v-model="radio1" label="A" @change="changeHandle">A</vp-radio>
+    <vp-radio v-model="radio1" label="B" border>B</vp-radio>
+    <!-- radio-group -->
+    <vp-radio-group v-model="radio1">
+      <vp-radio label="loll">LOL</vp-radio>
+      <vp-radio label="L" disabled>L</vp-radio>
+      <vp-radio label="A" @change="changeHandle">A</vp-radio>
+      <vp-radio label="B" border>B</vp-radio>  
+    </vp-radio-group>
   </div>
 </template>
 
 <script>
-import vpButton from './components/vp-button';
-import vpInput from './components/vp-input';
-import vpRadio from './components/vp-radio';
+import VpRadioGroup from "./components/vp-radio-group.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
       username: "小卡车",
       password: "",
       text: "",
       textarea: "",
-      radio1: "loll"
-    }
+      radio1: "loll",
+    };
   },
   components: {
-    vpButton,
+    VpRadioGroup,
+    /*     vpButton,
     vpInput,
-    vpRadio
+    vpRadio */
   },
   methods: {
     clickHandle(e) {
@@ -57,14 +64,16 @@ export default {
     },
     blur(e) {
       console.log(e);
-    } 
-  }
-}
+    },
+    changeHandle(e) {
+      console.log(e);
+    },
+  },
+};
 </script>
 
 <style scoped>
 .vp-input {
-  width: 200px;
-  margin: 0 10px;
+  width: 200px !important;
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
   <div class="vp-input">
-    <input v-if="type !== 'textarea'"
+    <input
+      v-if="type !== 'textarea'"
       class="vp-input-inner"
       :class="disabled ? 'input-disabled' : ''"
-      :type="isShowPWD ? 'text' : (type ? 'text' : type)"
+      :type="isShowPWD ? 'text' : type ? 'text' : type"
       :placeholder="placeholder"
       :value="value"
       @input="inputHandle"
@@ -12,12 +13,12 @@
       @focus="focusHandle"
     />
     <!--  -->
-    <textarea 
-      v-else 
+    <textarea
+      v-else
       class="vp-input-textarea"
-      name="" 
-      id="" 
-      :cols="cols" 
+      name=""
+      id=""
+      :cols="cols"
       :rows="rows"
       :value="value"
       @input="textareaInputHandle"
@@ -26,17 +27,18 @@
       :maxlength="maxlength"
       @blur="blurHandle"
       @focus="focusHandle"
-      ></textarea>
+    ></textarea>
     <span
       v-if="type === 'password' && value"
       class="iconfont"
       :class="isShowPWD ? 'icon-eye' : 'icon-eye1'"
       @click="showPWDHandle"
     ></span>
-    <span v-if="clearable && value" 
+    <span
+      v-if="clearable && value"
       class="iconfont icon-clear_circle_outlined"
       @click="clearHandle"
-      ></span>
+    ></span>
   </div>
 </template>
 
@@ -62,25 +64,25 @@ export default {
     },
     clearable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // textarea 特有
     cols: {
       type: Number,
-      default: 20
+      default: 20,
     },
     rows: {
       type: Number,
-      default: 5
+      default: 5,
     },
     readonly: {
       type: Boolean,
-      default: false
+      default: false,
     },
     maxlength: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   data() {
     return {
@@ -117,7 +119,7 @@ export default {
     // textarea change 事件
     textareaChangeHandle(e) {
       this.$emit("change", e.target.value);
-    }
+    },
   },
 };
 </script>
@@ -135,13 +137,15 @@ export default {
     right: 5px;
   }
   .vp-input-inner {
+    box-sizing: border-box;
     width: 100%;
+    height: 35px;
     border-color: rgb(94, 170, 214);
     outline: none;
     color: rgb(148, 146, 144);
     border-radius: 5px;
     border-width: 1px;
-    padding: 5px 5px;
+    padding: 5px 10px;
   }
 
   .vp-input-textarea {

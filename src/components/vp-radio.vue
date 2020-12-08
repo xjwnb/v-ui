@@ -1,10 +1,10 @@
-
 <template>
   <div class="vp-radio"
     :class="{ 'vp-radio-isChecked': value === label,
-              'vp-radio-isDisabled': disabled }">
+              'vp-radio-isDisabled': disabled,
+              'vp-radio-isBorder': border}">
     <input type="radio"
-    :id="label"
+      :id="label"
       :value="label"
       class="vp-radio-inner"
       v-model="model"
@@ -13,11 +13,11 @@
       @change="changeHandle">
       <label :for="label">
         <span>
-        <slot>radio</slot>
-        <template v-if="!$slots.default"> 
-          {{ label }}
-        </template>
-      </span>
+          <slot>radio</slot>
+          <template v-if="!$slots.default"> 
+            {{ label }}
+          </template>
+        </span>
       </label>
     </input>
   </div>
@@ -26,6 +26,11 @@
 <script>
 export default {
   name: "vpRadio",
+  inject: {
+    vpRadioGroup: {
+      default: ""
+    }
+  },
   props: {
     value: null,
     label: {
@@ -33,6 +38,10 @@ export default {
       default: "",
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    border: {
       type: Boolean,
       default: false
     }
@@ -45,16 +54,16 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value;
+        return this.vpRadioGroup ? this.vpRadioGroup.value : this.value;
       },
       set(value) {
-        this.$emit("input", value);
+        this.vpRadioGroup ? this.vpRadioGroup.$emit("input", value) : this.$emit("input", value);
       },
     },
   },
   methods: {
     changeHandle(e) {
-      this.$emit("change", this.label);
+      this.$emit("change", e);
     },
   },
 };
@@ -65,6 +74,7 @@ export default {
 
   span {
     cursor: pointer;
+    padding-left: 5px;
   }
 }
 .vp-radio-isChecked {
@@ -76,5 +86,12 @@ export default {
   span {
     cursor: not-allowed;
   }
+}
+.vp-radio-isBorder {
+  border-radius: 3px;
+  border: 1px solid rgb(0, 140, 255);
+  outline: none;
+  padding: 3px 7px;
+  cursor: pointer;
 }
 </style>
