@@ -69,11 +69,26 @@ export default {
         propertyNames.forEach((key) => {
           formObj[key] = this.vpForm.model[key];
         });
-        this.$emit("click", formObj);
+        this.$emit("submit", formObj);
       } else {
         this.$emit("click", event);
       }
+      // this.$emit("click", event);
     },
+    /* submitHandle(event) {
+      if (this.vpForm.model) {
+        let propertyNames = Object.getOwnPropertyNames(
+          this.vpForm.model
+        ).filter((item) => item !== "__ob__");
+        let formObj = new Object();
+        propertyNames.forEach((key) => {
+          formObj[key] = this.vpForm.model[key];
+        });
+        this.$emit("submit", formObj);
+      } else {
+        this.$emit("submit", event);
+      }
+    }, */
   },
 };
 </script>

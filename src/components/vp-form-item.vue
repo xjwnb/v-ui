@@ -82,7 +82,11 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.$bus.$on("ruleChange", (rule) => {
-        this.ruleMessage = rule.ruleMessage;
+        if (rule[this.prop]) {
+          this.ruleMessage = rule[this.prop].ruleMessage;
+          return ;
+        }
+        return ;
       });
     });
   },
@@ -102,7 +106,7 @@ export default {
     .rule-message {
       position: absolute;
       font-size: 8px;
-      bottom: -15px;
+      top: 100%;
       color: #ff4949;
     }
   }

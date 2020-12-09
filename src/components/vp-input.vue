@@ -93,7 +93,6 @@ export default {
   },
   watch: {
     rule(newRule) {
-      console.log(newRule);
       newRule.forEach((item) => {
         let trigger = item.trigger;
         if (
@@ -147,13 +146,19 @@ export default {
               if (this.value === "") {
                 this.ruleMessage = rule.message;
                 this.$bus.$emit("ruleChange", {
-                  ruleMessage: this.ruleMessage,
+                  // ruleMessage: this.ruleMessage,
+                  [this.vpFormItem.prop]: {
+                    ruleMessage: this.ruleMessage,
+                  },
                 });
               } else {
                 if (this.ruleMessage !== "") {
                   this.ruleMessage = "";
                   this.$bus.$emit("ruleChange", {
-                    ruleMessage: this.ruleMessage,
+                    // ruleMessage: this.ruleMessage,
+                    [this.vpFormItem.prop]: {
+                      ruleMessage: this.ruleMessage,
+                    },
                   });
                 }
               }
@@ -173,13 +178,19 @@ export default {
               if (this.value === "") {
                 this.ruleMessage = rule.message;
                 this.$bus.$emit("ruleChange", {
-                  ruleMessage: this.ruleMessage,
+                  // ruleMessage: this.ruleMessage,
+                  [this.vpFormItem.prop]: {
+                    ruleMessage: this.ruleMessage,
+                  },
                 });
               } else {
                 if (this.ruleMessage !== "") {
                   this.ruleMessage = "";
                   this.$bus.$emit("ruleChange", {
-                    ruleMessage: this.ruleMessage,
+                    // ruleMessage: this.ruleMessage,
+                    [this.vpFormItem.prop]: {
+                      ruleMessage: this.ruleMessage,
+                    },
                   });
                 }
               }

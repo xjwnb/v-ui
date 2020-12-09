@@ -30,7 +30,16 @@ export default {
 
   },
   mounted() {
-
+    this.validate = function() {
+      console.log("validate");
+    }
+    this.validate();
+    console.log(this);
+  },
+  methods: {
+    checkForm() {
+      // console.log(object);
+    }
   }
 }
 </script>

@@ -44,11 +44,11 @@
       <vp-form-item label="用户名：" prop="name">
         <vp-input placeholder="请输入用户名" v-model="form.name"></vp-input>
       </vp-form-item>
-      <vp-form-item label="密码：">
-        <vp-input type="password" v-model="form.password"></vp-input>
+      <vp-form-item label="爱好：" prop="hobby">
+        <vp-input v-model="form.password"></vp-input>
       </vp-form-item>
       <vp-form-item >
-        <vp-button @click="submitForm">提交</vp-button>
+        <vp-button @submit="submitForm">提交</vp-button>
       </vp-form-item>
     </vp-form>
   </div>
@@ -75,6 +75,9 @@ export default {
       rules: {
         name: [
           { required: true, message: "请输入用户名", trigger: ["input", "blur"] }
+        ],
+        hobby: [
+          { required: true, message: "请输入爱好", trigger: ["input", "blur"] }
         ]
       }
     };
