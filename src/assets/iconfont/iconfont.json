@@ -32,6 +32,13 @@
       "font_class": "clear_circle_outlined",
       "unicode": "e944",
       "unicode_decimal": 59716
+    },
+    {
+      "icon_id": "14918849",
+      "name": "重点",
+      "font_class": "ziyuan1",
+      "unicode": "e628",
+      "unicode_decimal": 58920
     }
   ]
 }

@@ -4,7 +4,7 @@
       v-if="type !== 'textarea'"
       class="vp-input-inner"
       :class="disabled ? 'input-disabled' : ''"
-      :type="isShowPWD ? 'text' : type ? 'text' : type"
+      :type="isShowPWD ? 'text' : type"
       :placeholder="placeholder"
       :value="value"
       @input="inputHandle"
@@ -83,21 +83,110 @@ export default {
       default: 100,
     },
   },
+  inject: {
+    vpFormItem: {
+      default: {},
+    },
+    vpForm: {
+      default: {},
+    },
+  },
+  watch: {
+    rule(newRule) {
+      console.log(newRule);
+      newRule.forEach((item) => {
+        let trigger = item.trigger;
+        if (
+          trigger &&
+          Object.prototype.toString.call(trigger) === "[object String]"
+        ) {
+          if (trigger === "input") {
+            this.inputRule.push(item);
+          } else if (trigger === "blur") {
+            this.blurRule.push(item);
+          }
+        } else if (
+          trigger &&
+          Object.prototype.toString.call(trigger) === "[object Array]"
+        ) {
+          trigger.forEach((it) => {
+            if (it === "input") {
+              this.inputRule.push(item);
+            } else if (it === "blur") {
+              this.blurRule.push(item);
+            }
+          });
+        }
+      });
+    },
+  },
   data() {
     return {
       isShowPWD: false,
+      rule: [],
+      inputRule: [],
+      blurRule: [],
+      ruleMessage: "",
     };
   },
-  created() {},
+  created() {
+    if (this.vpForm.rules && this.vpFormItem.prop) {
+      this.rule = this.vpForm.rules[this.vpFormItem.prop];
+    }
+  },
   mounted() {},
   methods: {
     // 输入input事件
     inputHandle(e) {
       this.$emit("input", e.target.value);
+      this.$nextTick(() => {
+        let inputRule = this.inputRule;
+        if (inputRule) {
+          inputRule.forEach((rule) => {
+            if (rule.required) {
+              if (this.value === "") {
+                this.ruleMessage = rule.message;
+                this.$bus.$emit("ruleChange", {
+                  ruleMessage: this.ruleMessage,
+                });
+              } else {
+                if (this.ruleMessage !== "") {
+                  this.ruleMessage = "";
+                  this.$bus.$emit("ruleChange", {
+                    ruleMessage: this.ruleMessage,
+                  });
+                }
+              }
+            }
+          });
+        }
+      });
     },
     // input blur 事件
     blurHandle(e) {
       this.$emit("blur", e);
+      this.$nextTick(() => {
+        let blurRule = this.blurRule;
+        if (blurRule) {
+          blurRule.forEach((rule) => {
+            if (rule.required) {
+              if (this.value === "") {
+                this.ruleMessage = rule.message;
+                this.$bus.$emit("ruleChange", {
+                  ruleMessage: this.ruleMessage,
+                });
+              } else {
+                if (this.ruleMessage !== "") {
+                  this.ruleMessage = "";
+                  this.$bus.$emit("ruleChange", {
+                    ruleMessage: this.ruleMessage,
+                  });
+                }
+              }
+            }
+          });
+        }
+      });
     },
     // focus 事件
     focusHandle(e) {

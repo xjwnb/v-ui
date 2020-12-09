@@ -1,8 +1,11 @@
 <template>
   <!-- <button :class="type ? `vp-button-${type}` : 'vp-button-default'"> -->
-  <button class="vp-button" :class="[typeStyle, roundStyle, disabledStyle]"
+  <button
+    class="vp-button"
+    :class="[typeStyle, roundStyle, disabledStyle]"
     @click="clickHandle"
-    :disabled="disabled">
+    :disabled="disabled"
+  >
     <span>
       <span v-if="icon" :class="icon"></span>
       <slot> vp-button </slot>
@@ -13,6 +16,11 @@
 <script>
 export default {
   name: "vpButton",
+  inject: {
+    vpForm: {
+      default: {},
+    },
+  },
   props: {
     type: {
       type: String,
@@ -24,12 +32,12 @@ export default {
     },
     icon: {
       type: String,
-      default: ""
+      default: "",
     },
     disabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -47,13 +55,24 @@ export default {
     },
     disabledStyle() {
       return this.disabled ? "vp-button-disabled" : "";
-    }
+    },
   },
   created() {},
   mounted() {},
   methods: {
     clickHandle(event) {
-      this.$emit("click", event);
+      if (this.vpForm.model) {
+        let propertyNames = Object.getOwnPropertyNames(
+          this.vpForm.model
+        ).filter((item) => item !== "__ob__");
+        let formObj = new Object();
+        propertyNames.forEach((key) => {
+          formObj[key] = this.vpForm.model[key];
+        });
+        this.$emit("click", formObj);
+      } else {
+        this.$emit("click", event);
+      }
     },
   },
 };

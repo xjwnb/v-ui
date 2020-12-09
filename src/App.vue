@@ -39,6 +39,18 @@
     <!-- switch -->
     <vp-switch v-model="switchValue" @change="changeHandle" disabled />
     <vp-switch v-model="switchValue" @change="changeHandle" />
+    <!-- form -->
+    <vp-form :model="form" :rules="rules">
+      <vp-form-item label="用户名：" prop="name">
+        <vp-input placeholder="请输入用户名" v-model="form.name"></vp-input>
+      </vp-form-item>
+      <vp-form-item label="密码：">
+        <vp-input type="password" v-model="form.password"></vp-input>
+      </vp-form-item>
+      <vp-form-item >
+        <vp-button @click="submitForm">提交</vp-button>
+      </vp-form-item>
+    </vp-form>
   </div>
 </template>
 
@@ -56,6 +68,15 @@ export default {
       textarea: "",
       radio1: "loll",
       switchValue: false,
+      form: {
+        name: "",
+        password: ""
+      },
+      rules: {
+        name: [
+          { required: true, message: "请输入用户名", trigger: ["input", "blur"] }
+        ]
+      }
     };
   },
   components: {
@@ -83,6 +104,9 @@ export default {
     },
     textareaInputHandle(value) {
       console.log(value);
+    },
+    submitForm(value) {
+      console.log(value);
     }
   },
 };
@@ -90,6 +114,6 @@ export default {
 
 <style scoped>
 .vp-input {
-  width: 200px !important;
+  /* width: 200px !important; */
 }
 </style>
