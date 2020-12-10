@@ -53,7 +53,11 @@
     <!-- form -->
     <vp-form :model="form" :rules="rules" ref="form">
       <vp-form-item label="用户名：" prop="name">
-        <vp-input placeholder="请输入用户名" v-model="form.name"  @input="inputFormHandle"></vp-input>
+        <vp-input
+          placeholder="请输入用户名"
+          v-model="form.name"
+          @input="inputFormHandle"
+        ></vp-input>
       </vp-form-item>
       <vp-form-item label="爱好：" prop="hobby">
         <vp-input v-model="form.hobby"></vp-input>
@@ -62,10 +66,51 @@
         <vp-button @submit="submitForm">提交</vp-button>
       </vp-form-item>
     </vp-form>
+    <!-- container -->
+    <vp-container>
+      <vp-header>Header</vp-header>
+      <vp-container>
+        <vp-aside>Aside</vp-aside>
+        <vp-main>Main</vp-main>
+      </vp-container>
+      <vp-footer>Footer</vp-footer>
+    </vp-container>
+    <br/>
+    <!-- container - 1 -->
+    <vp-container>
+      <vp-header>Header</vp-header>
+      <vp-container>
+        <vp-aside>Aside</vp-aside>
+        <vp-container>
+          <vp-main>Main</vp-main>
+          <vp-footer>Footer</vp-footer>
+        </vp-container>
+      </vp-container>
+    </vp-container>
+    <br/>
+    <!-- container - 2 -->
+    <vp-container>
+      <vp-header>Header</vp-header>
+      <vp-container>
+        <vp-aside>Aside</vp-aside>
+        <vp-main>Main</vp-main>
+      </vp-container>
+    </vp-container>
+    <br/>
+    <!-- container - 3 -->
+    <vp-container>
+      <vp-aside>Aside</vp-aside>
+      <vp-container>
+        <vp-header>Header</vp-header>
+        <vp-main>Main</vp-main>
+        <vp-footer>Footer</vp-footer>
+      </vp-container>
+    </vp-container>
   </div>
 </template>
 
 <script>
+import VpAside from "./components/vp-aside.vue";
 import VpRadioGroup from "./components/vp-radio-group.vue";
 import VpSwitch from "./components/vp-switch.vue";
 
@@ -100,6 +145,7 @@ export default {
   components: {
     VpRadioGroup,
     VpSwitch,
+    VpAside,
     /*     vpButton,
     vpInput,
     vpRadio */
@@ -125,7 +171,6 @@ export default {
       console.log(value);
     },
     submitForm(value, e) {
-      
       let form = this.$refs.form;
       form.validate((valid) => {
         if (valid) {
@@ -136,8 +181,8 @@ export default {
       });
     },
     inputFormHandle(value, event) {
-      console.log(value, event);
-    }
+      console.log(value);
+    },
   },
 };
 </script>
@@ -146,4 +191,22 @@ export default {
 /* .vp-input {
   width: 200px !important;
 } */
+.vp-header {
+  background-color: aqua;
+  text-align: center;
+  line-height: 60px;
+}
+.vp-main {
+  background-color: aquamarine;
+  text-align: center;
+}
+.vp-aside {
+  background-color: cornflowerblue;
+  text-align: center;
+}
+.vp-footer {
+  background-color: cadetblue;
+  text-align: center;
+  line-height: 60px;
+}
 </style>

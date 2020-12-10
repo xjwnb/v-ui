@@ -13,6 +13,11 @@ import vpRadioGroup from './components/vp-radio-group.vue';
 import vpSwitch from './components/vp-switch.vue';
 import vpForm from './components/vp-form.vue';
 import vpFormItem from './components/vp-form-item.vue';
+import vpContainer from './components/vp-container.vue';
+import vpHeader from './components/vp-header.vue';
+import vpFooter from './components/vp-footer.vue';
+import vpMain from './components/vp-main.vue';
+import vpAside from './components/vp-aside.vue';
 
 Vue.component(vpButton.name, vpButton);
 Vue.component(vpInput.name, vpInput);
@@ -21,6 +26,11 @@ Vue.component(vpRadioGroup.name, vpRadioGroup);
 Vue.component(vpSwitch.name, vpSwitch);
 Vue.component(vpForm.name, vpForm);
 Vue.component(vpFormItem.name, vpFormItem);
+Vue.component(vpContainer.name, vpContainer);
+Vue.component(vpHeader.name, vpHeader);
+Vue.component(vpFooter.name, vpFooter);
+Vue.component(vpMain.name, vpMain);
+Vue.component(vpAside.name, vpAside);
 
 Vue.prototype.$bus = new Vue();
 

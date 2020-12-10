@@ -58,5 +58,46 @@
   | ------- | ---- | ------ | -------- | ------ |
   | v-model | any  |        | 双向绑定 | ""     |
 
-  
+- 表单 - vp-form
+
+  | 属性名 | 类型   | 属性值 | 描述                               | 默认值 |
+  | ------ | ------ | ------ | ---------------------------------- | ------ |
+  | model  | object |        | 表单对象默认值                     | {}     |
+  | rules  | object |        | 表单验证规则（目前只支持required） |        |
+
+  vp-form-item
+
+  | 属性名     | 类型   | 属性值                     | 描述         | 默认值  |
+  | ---------- | ------ | -------------------------- | ------------ | ------- |
+  | label      | string |                            | 表单标签     | ""      |
+  | labelWidth | number |                            | 表单标签宽度 | 100     |
+  | labelStyle | string | "right" \| "left" \| "top" | 表单标签位置 | "right" |
+  | prop       | string |                            | 表单验证名称 |         |
+
+  **表单验证方法**：
+
+  validate(callback(isValid))
+
+  在表单（vp-form）添加 ref 属性，并进行表单校验。
+
+  例子:
+
+  ```javascript
+  let form = this.$refs.form;
+  form.validate((valid) => {
+    if (valid) {
+      console.log("校验成功！");
+    } else {
+      console.log("校验失败！");
+    }
+  });
+  ```
+
+- 布局容器：container 
+
+  1. 父容器：vp-container
+  2. 头部容器：vp-header
+  3. 内容容器：vp-main
+  4. 侧边容器：vp-aside
+  5. 底部容器：vp-footer
 
