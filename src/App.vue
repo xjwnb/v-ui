@@ -53,7 +53,7 @@
     <!-- form -->
     <vp-form :model="form" :rules="rules" ref="form">
       <vp-form-item label="用户名：" prop="name">
-        <vp-input placeholder="请输入用户名" v-model="form.name"></vp-input>
+        <vp-input placeholder="请输入用户名" v-model="form.name"  @input="inputFormHandle"></vp-input>
       </vp-form-item>
       <vp-form-item label="爱好：" prop="hobby">
         <vp-input v-model="form.hobby"></vp-input>
@@ -124,8 +124,8 @@ export default {
     textareaInputHandle(value) {
       console.log(value);
     },
-    submitForm(value) {
-      console.log(value);
+    submitForm(value, e) {
+      
       let form = this.$refs.form;
       form.validate((valid) => {
         if (valid) {
@@ -135,6 +135,9 @@ export default {
         }
       });
     },
+    inputFormHandle(value, event) {
+      console.log(value, event);
+    }
   },
 };
 </script>

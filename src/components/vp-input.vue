@@ -137,7 +137,7 @@ export default {
   methods: {
     // 输入input事件
     inputHandle(e) {
-      this.$emit("input", e.target.value);
+      this.$emit("input", e.target.value, e);
       this.$nextTick(() => {
         let inputRule = this.inputRule;
         if (inputRule) {

@@ -70,7 +70,7 @@ export default {
         propertyNames.forEach((key) => {
           formObj[key] = this.vpForm.model[key];
         });
-        this.$emit("submit", formObj);
+        this.$emit("submit", formObj, event);
       } else {
         this.$emit("click", event);
       }
