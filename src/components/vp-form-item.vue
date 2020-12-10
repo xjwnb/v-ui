@@ -70,13 +70,15 @@ export default {
   },
   created() {
     // console.log();
-    let rule = this.vpForm.rules[this.prop];
-    if (rule) {
-      rule.forEach((rule) => {
-        if (rule.required === true) {
-          this.required = true;
-        }
-      });
+    if (this.vpForm.rules) {
+      let rule = this.vpForm.rules[this.prop];
+      if (rule) {
+        rule.forEach((rule) => {
+          if (rule.required === true) {
+            this.required = true;
+          }
+        });
+      }
     }
   },
   mounted() {

@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      valid: false,
+      valid: true,
       hasRule: [],
     };
   },

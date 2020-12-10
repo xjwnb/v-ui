@@ -127,14 +127,13 @@ export default {
     submitForm(value) {
       console.log(value);
       let form = this.$refs.form;
-      // console.log(form);
       form.validate((valid) => {
         if (valid) {
           console.log("校验成功！");
         } else {
           console.log("校验失败！");
         }
-      })
+      });
     },
   },
 };

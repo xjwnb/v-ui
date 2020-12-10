@@ -62,7 +62,7 @@ export default {
   methods: {
     clickHandle(event) {
       if (this.vpForm.model) {
-        this.$bus.$emit("checkForm");
+        this.vpForm.rules ? this.$bus.$emit("checkForm") : null;
         let propertyNames = Object.getOwnPropertyNames(
           this.vpForm.model
         ).filter((item) => item !== "__ob__");
