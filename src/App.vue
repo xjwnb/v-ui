@@ -18,11 +18,22 @@
     ></vp-button>
     <vp-button type="primary" disabled>primary - disabled 按钮 </vp-button>
     <!-- input -->
-    <vp-input type="text" placeholder="请输入信息" v-model="username" @input="inputHandle" />
+    <vp-input
+      type="text"
+      placeholder="请输入信息"
+      v-model="username"
+      @input="inputHandle"
+    />
     <vp-input type="password" v-model="password" />
     <vp-input type="text" placeholder="请输入信息" disabled />
     <vp-input type="text" placeholder="可清空信息" v-model="text" clearable />
-    <vp-input type="textarea" v-model="textarea" @blur="blur" @focus="focus" @input="textareaInputHandle" />
+    <vp-input
+      type="textarea"
+      v-model="textarea"
+      @blur="blur"
+      @focus="focus"
+      @input="textareaInputHandle"
+    />
     <vp-input @blur="blur" @focus="focus" />
     <!-- radio -->
     <vp-radio v-model="radio1" label="loll">LOL</vp-radio>
@@ -40,14 +51,14 @@
     <vp-switch v-model="switchValue" @change="changeHandle" disabled />
     <vp-switch v-model="switchValue" @change="changeHandle" />
     <!-- form -->
-    <vp-form :model="form" :rules="rules">
+    <vp-form :model="form" :rules="rules" ref="form">
       <vp-form-item label="用户名：" prop="name">
         <vp-input placeholder="请输入用户名" v-model="form.name"></vp-input>
       </vp-form-item>
       <vp-form-item label="爱好：" prop="hobby">
-        <vp-input v-model="form.password"></vp-input>
+        <vp-input v-model="form.hobby"></vp-input>
       </vp-form-item>
-      <vp-form-item >
+      <vp-form-item>
         <vp-button @submit="submitForm">提交</vp-button>
       </vp-form-item>
     </vp-form>
@@ -70,16 +81,20 @@ export default {
       switchValue: false,
       form: {
         name: "",
-        password: ""
+        hobby: "",
       },
       rules: {
         name: [
-          { required: true, message: "请输入用户名", trigger: ["input", "blur"] }
+          {
+            required: true,
+            message: "请输入用户名",
+            trigger: ["input", "blur"],
+          },
         ],
         hobby: [
-          { required: true, message: "请输入爱好", trigger: ["input", "blur"] }
-        ]
-      }
+          { required: true, message: "请输入爱好", trigger: ["input", "blur"] },
+        ],
+      },
     };
   },
   components: {
@@ -89,6 +104,7 @@ export default {
     vpInput,
     vpRadio */
   },
+  mounted() {},
   methods: {
     inputHandle(e) {
       console.log(e);
@@ -110,13 +126,22 @@ export default {
     },
     submitForm(value) {
       console.log(value);
-    }
+      let form = this.$refs.form;
+      // console.log(form);
+      form.validate((valid) => {
+        if (valid) {
+          console.log("校验成功！");
+        } else {
+          console.log("校验失败！");
+        }
+      })
+    },
   },
 };
 </script>
 
 <style scoped>
-.vp-input {
-  /* width: 200px !important; */
-}
+/* .vp-input {
+  width: 200px !important;
+} */
 </style>

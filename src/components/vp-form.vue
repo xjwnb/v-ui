@@ -10,39 +10,49 @@ export default {
   props: {
     model: {
       type: Object,
-      required: true
+      required: true,
     },
     rules: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   provide() {
     return {
-      vpForm: this
-    }
+      vpForm: this,
+    };
   },
   data() {
     return {
-
-    }
+      valid: false,
+      hasRule: [],
+    };
   },
-  created() {
-
-  },
+  created() {},
   mounted() {
-    this.validate = function() {
-      console.log("validate");
-    }
-    this.validate();
-    console.log(this);
+    this.validate = function (callback) {
+      this.$nextTick(() => {
+        callback(this.valid);
+      })
+    };
+
+    this.$nextTick(() => {
+      this.$bus.$on("validate", (hasRuleMsg) => {
+        let length = Object.getOwnPropertyNames(this.model).length - 1;
+        if (this.hasRule.length === length) {
+          this.hasRule = [];
+          this.hasRule.push(hasRuleMsg);
+          let isValid = this.hasRule.some((item) => item === true);
+          isValid ? (this.valid = false) : (this.valid = true);
+        } else {
+          this.hasRule.push(hasRuleMsg);
+          let isValid = this.hasRule.some((item) => item === true);
+          isValid ? (this.valid = false) : (this.valid = true);
+        }
+      });
+    });
   },
-  methods: {
-    checkForm() {
-      // console.log(object);
-    }
-  }
-}
+  methods: {},
+};
 </script>
 <style scoped>
-
 </style>

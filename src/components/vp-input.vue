@@ -152,15 +152,13 @@ export default {
                   },
                 });
               } else {
-                if (this.ruleMessage !== "") {
-                  this.ruleMessage = "";
-                  this.$bus.$emit("ruleChange", {
-                    // ruleMessage: this.ruleMessage,
-                    [this.vpFormItem.prop]: {
-                      ruleMessage: this.ruleMessage,
-                    },
-                  });
-                }
+                this.ruleMessage = "";
+                this.$bus.$emit("ruleChange", {
+                  // ruleMessage: this.ruleMessage,
+                  [this.vpFormItem.prop]: {
+                    ruleMessage: this.ruleMessage,
+                  },
+                });
               }
             }
           });

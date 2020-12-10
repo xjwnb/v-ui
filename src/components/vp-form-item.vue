@@ -84,11 +84,38 @@ export default {
       this.$bus.$on("ruleChange", (rule) => {
         if (rule[this.prop]) {
           this.ruleMessage = rule[this.prop].ruleMessage;
-          return ;
+          return;
         }
-        return ;
+        return;
       });
     });
+
+    this.$nextTick(() => {
+      this.$bus.$on("checkForm", this.checkForm);
+    });
+  },
+  methods: {
+    checkForm() {
+      let rules = this.vpForm.rules;
+      let model = this.vpForm.model;
+      let prop = this.prop;
+      if (this.prop) {
+        rules[prop].forEach((rule) => {
+          if (rule.required) {
+            if (model[prop] === "") {
+              this.$bus.$emit("ruleChange", {
+                [prop]: {
+                  ruleMessage: rule.message,
+                },
+              });
+            }
+          }
+        });
+        this.$nextTick(() => {
+          this.$bus.$emit("validate", !!this.ruleMessage);
+        });
+      }
+    },
   },
 };
 </script>
