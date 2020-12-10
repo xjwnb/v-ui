@@ -18,6 +18,8 @@ import vpHeader from './components/vp-header.vue';
 import vpFooter from './components/vp-footer.vue';
 import vpMain from './components/vp-main.vue';
 import vpAside from './components/vp-aside.vue';
+import vpCheckbox from './components/vp-checkbox.vue';
+import vpCheckboxGroup from './components/vp-checkbox-group.vue';
 
 Vue.component(vpButton.name, vpButton);
 Vue.component(vpInput.name, vpInput);
@@ -31,6 +33,8 @@ Vue.component(vpHeader.name, vpHeader);
 Vue.component(vpFooter.name, vpFooter);
 Vue.component(vpMain.name, vpMain);
 Vue.component(vpAside.name, vpAside);
+Vue.component(vpCheckbox.name, vpCheckbox);
+Vue.component(vpCheckboxGroup.name, vpCheckboxGroup);
 
 Vue.prototype.$bus = new Vue();
 

@@ -62,17 +62,17 @@
 
   | 属性名 | 类型   | 属性值 | 描述                               | 默认值 |
   | ------ | ------ | ------ | ---------------------------------- | ------ |
-  | model  | object |        | 表单对象默认值                     | {}     |
-  | rules  | object |        | 表单验证规则（目前只支持required） |        |
+  | model  | Object |        | 表单对象默认值                     | {}     |
+  | rules  | Object |        | 表单验证规则（目前只支持required） |        |
 
   vp-form-item
 
   | 属性名     | 类型   | 属性值                     | 描述         | 默认值  |
   | ---------- | ------ | -------------------------- | ------------ | ------- |
-  | label      | string |                            | 表单标签     | ""      |
-  | labelWidth | number |                            | 表单标签宽度 | 100     |
-  | labelStyle | string | "right" \| "left" \| "top" | 表单标签位置 | "right" |
-  | prop       | string |                            | 表单验证名称 |         |
+  | label      | String |                            | 表单标签     | ""      |
+  | labelWidth | Number |                            | 表单标签宽度 | 100     |
+  | labelStyle | String | "right" \| "left" \| "top" | 表单标签位置 | "right" |
+  | prop       | String |                            | 表单验证名称 |         |
 
   **表单验证方法**：
 
@@ -101,3 +101,20 @@
   4. 侧边容器：vp-aside
   5. 底部容器：vp-footer
 
+- 多选框 
+
+  vp-checkbox-group （要和 vp-checkbox 一起用）
+
+  | 属性名  | 类型  | 属性值 | 描述               | 默认值 |
+  | ------- | ----- | ------ | ------------------ | ------ |
+  | v-model | Array |        | 多选框内容双向绑定 | []     |
+
+  vp-checkbox
+
+  | 属性名   | 类型    | 属性值        | 描述               | 默认值 |
+  | -------- | ------- | ------------- | ------------------ | ------ |
+  | v-model  | Boolean | true \| false | 多选框内容双向绑定 | false  |
+  | label    | String  |               | 多选框标签内容     | ""     |
+  | disabled | Boolean | true \| false | 是否禁用           | false  |
+
+  

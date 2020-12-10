@@ -62,6 +62,15 @@
       <vp-form-item label="爱好：" prop="hobby">
         <vp-input v-model="form.hobby"></vp-input>
       </vp-form-item>
+      <vp-form-item label="性别：">
+        <vp-switch v-model="form.sex"></vp-switch>
+      </vp-form-item>
+      <vp-form-item>
+        <vp-checkbox-group v-model="form.checkboxGroup">
+          <vp-checkbox label="LOL"></vp-checkbox>
+          <vp-checkbox label="使命召唤"></vp-checkbox>
+        </vp-checkbox-group>
+      </vp-form-item>
       <vp-form-item>
         <vp-button @submit="submitForm">提交</vp-button>
       </vp-form-item>
@@ -75,7 +84,7 @@
       </vp-container>
       <vp-footer>Footer</vp-footer>
     </vp-container>
-    <br/>
+    <br />
     <!-- container - 1 -->
     <vp-container>
       <vp-header>Header</vp-header>
@@ -87,7 +96,7 @@
         </vp-container>
       </vp-container>
     </vp-container>
-    <br/>
+    <br />
     <!-- container - 2 -->
     <vp-container>
       <vp-header>Header</vp-header>
@@ -96,7 +105,7 @@
         <vp-main>Main</vp-main>
       </vp-container>
     </vp-container>
-    <br/>
+    <br />
     <!-- container - 3 -->
     <vp-container>
       <vp-aside>Aside</vp-aside>
@@ -106,12 +115,20 @@
         <vp-footer>Footer</vp-footer>
       </vp-container>
     </vp-container>
+    <!-- checkbox - group -->
+    <vp-checkbox-group v-model="checkboxGroup">
+      <vp-checkbox label="LOL"></vp-checkbox>
+      <vp-checkbox label="使命召唤"></vp-checkbox>
+    </vp-checkbox-group>
+    <!-- checkbox -->
+    <vp-checkbox v-model="checkbox" disabled>lol</vp-checkbox>
   </div>
 </template>
 
 <script>
 import VpAside from "./components/vp-aside.vue";
 import VpRadioGroup from "./components/vp-radio-group.vue";
+import VpRadio from "./components/vp-radio.vue";
 import VpSwitch from "./components/vp-switch.vue";
 
 export default {
@@ -127,6 +144,8 @@ export default {
       form: {
         name: "",
         hobby: "",
+        sex: false,
+        checkboxGroup: []
       },
       rules: {
         name: [
@@ -140,12 +159,15 @@ export default {
           { required: true, message: "请输入爱好", trigger: ["input", "blur"] },
         ],
       },
+      checkboxGroup: ["LOL", "使命召唤"],
+      checkbox: false,
     };
   },
   components: {
     VpRadioGroup,
     VpSwitch,
     VpAside,
+    VpRadio,
     /*     vpButton,
     vpInput,
     vpRadio */
@@ -175,13 +197,14 @@ export default {
       form.validate((valid) => {
         if (valid) {
           console.log("校验成功！");
+          console.log(value);
         } else {
           console.log("校验失败！");
         }
       });
     },
     inputFormHandle(value, event) {
-      console.log(value);
+      // console.log(value);
     },
   },
 };

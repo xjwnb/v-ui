@@ -1,22 +1,21 @@
-
 <template>
-  <div class="vp-radio-group">
+  <div class="vp-checkbox-group">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "vpRadioGroup",
-  provide() {
-    return {
-      vpRadioGroup: this
-    }
-  },
+  name: "vpCheckboxGroup",
   props: {
     value: {
-      type: String,
-      default: ""
+      type: Array,
+      default: []
+    }
+  },
+  provide() {
+    return {
+      vpCheckboxGroup: this
     }
   },
   data() {
@@ -25,7 +24,6 @@ export default {
     }
   },
   created() {
-
   },
   mounted() {
   }
