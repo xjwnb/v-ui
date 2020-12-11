@@ -122,6 +122,8 @@
     </vp-checkbox-group>
     <!-- checkbox -->
     <vp-checkbox v-model="checkbox" disabled>lol</vp-checkbox>
+    <div id="loading"></div>
+    <div class="test">testMessage<div class="tt"></div></div>
   </div>
 </template>
 
@@ -164,15 +166,25 @@ export default {
     };
   },
   components: {
-    VpRadioGroup,
+/*     VpRadioGroup,
     VpSwitch,
     VpAside,
-    VpRadio,
+    VpRadio, */
     /*     vpButton,
     vpInput,
     vpRadio */
   },
-  mounted() {},
+  mounted() {
+    let loadObj = this.$loading({
+      // ele: document.getElementsByClassName("test")[0],
+      color: "#00a8ff",
+      iconfont: "icon-redupaixu",
+      // backgroundColor: "#e67e22"
+    });
+    setTimeout(() => {
+      loadObj.close();
+    }, 3000);
+  },
   methods: {
     inputHandle(e) {
       console.log(e);
@@ -232,4 +244,10 @@ export default {
   text-align: center;
   line-height: 60px;
 }
+.test {
+  background-color: royalblue;
+  width: 200px;
+  height: 200px;
+}
+
 </style>

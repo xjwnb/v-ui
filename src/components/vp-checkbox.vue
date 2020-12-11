@@ -1,6 +1,14 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-10 19:58:36
+ * @LastEditTime: 2020-12-11 18:47:47
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \v-ui\src\components\vp-checkbox.vue
+-->
 <template>
   <div class="vp-checkbox"
-    :class="{'vp-checkbox-checked': isChecked , 'vp-checked-disabled': disabled}">
+    :class="{'vp-checked-disabled': disabled}">
     <input
       class="vp-checkbox-inner"
       :id="label || $slots.default[0].text"

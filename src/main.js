@@ -38,7 +38,8 @@ Vue.component(vpCheckboxGroup.name, vpCheckboxGroup);
 
 Vue.prototype.$bus = new Vue();
 
-
+import vploading from  './components/loading';
+Vue.use(vploading);
 
 Vue.config.productionTip = false
 
