@@ -6,35 +6,37 @@ import "./assets/iconfont/iconfont.css"
 
 
 import "./App.less";
-import vpButton from './components/vp-button';
-import vpInput from './components/vp-input';
-import vpRadio from './components/vp-radio';
-import vpRadioGroup from './components/vp-radio-group.vue';
-import vpSwitch from './components/vp-switch.vue';
-import vpForm from './components/vp-form.vue';
-import vpFormItem from './components/vp-form-item.vue';
-import vpContainer from './components/vp-container.vue';
-import vpHeader from './components/vp-header.vue';
-import vpFooter from './components/vp-footer.vue';
-import vpMain from './components/vp-main.vue';
-import vpAside from './components/vp-aside.vue';
-import vpCheckbox from './components/vp-checkbox.vue';
-import vpCheckboxGroup from './components/vp-checkbox-group.vue';
+import VpButton from './components/vp-button';
+import VpInput from './components/vp-input';
+import VpRadio from './components/vp-radio';
+import VpRadioGroup from './components/vp-radio-group.vue';
+import VpSwitch from './components/vp-switch.vue';
+import VpForm from './components/vp-form.vue';
+import VpFormItem from './components/vp-form-item.vue';
+import VpContainer from './components/vp-container.vue';
+import VpHeader from './components/vp-header.vue';
+import VpFooter from './components/vp-footer.vue';
+import VpMain from './components/vp-main.vue';
+import VpAside from './components/vp-aside.vue';
+import VpCheckbox from './components/vp-checkbox.vue';
+import VpCheckboxGroup from './components/vp-checkbox-group.vue';
+import VpImage from './components/vp-image.vue';
 
-Vue.component(vpButton.name, vpButton);
-Vue.component(vpInput.name, vpInput);
-Vue.component(vpRadio.name, vpRadio);
-Vue.component(vpRadioGroup.name, vpRadioGroup);
-Vue.component(vpSwitch.name, vpSwitch);
-Vue.component(vpForm.name, vpForm);
-Vue.component(vpFormItem.name, vpFormItem);
-Vue.component(vpContainer.name, vpContainer);
-Vue.component(vpHeader.name, vpHeader);
-Vue.component(vpFooter.name, vpFooter);
-Vue.component(vpMain.name, vpMain);
-Vue.component(vpAside.name, vpAside);
-Vue.component(vpCheckbox.name, vpCheckbox);
-Vue.component(vpCheckboxGroup.name, vpCheckboxGroup);
+Vue.component(VpButton.name, VpButton);
+Vue.component(VpInput.name, VpInput);
+Vue.component(VpRadio.name, VpRadio);
+Vue.component(VpRadioGroup.name, VpRadioGroup);
+Vue.component(VpSwitch.name, VpSwitch);
+Vue.component(VpForm.name, VpForm);
+Vue.component(VpFormItem.name, VpFormItem);
+Vue.component(VpContainer.name, VpContainer);
+Vue.component(VpHeader.name, VpHeader);
+Vue.component(VpFooter.name, VpFooter);
+Vue.component(VpMain.name, VpMain);
+Vue.component(VpAside.name, VpAside);
+Vue.component(VpCheckbox.name, VpCheckbox);
+Vue.component(VpCheckboxGroup.name, VpCheckboxGroup);
+Vue.component(VpImage.name, VpImage);
 
 Vue.prototype.$bus = new Vue();
 

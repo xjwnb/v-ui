@@ -13,6 +13,13 @@
       "unicode_decimal": 58954
     },
     {
+      "icon_id": "834362",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
       "icon_id": "1251164",
       "name": "eye",
       "font_class": "eye",
@@ -39,6 +46,34 @@
       "font_class": "ziyuan1",
       "unicode": "e628",
       "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "17124317",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "17269863",
+      "name": "右转",
+      "font_class": "youzhuan",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "17269865",
+      "name": "左转",
+      "font_class": "zuozhuan",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "17833680",
+      "name": "放大",
+      "font_class": "fangda",
+      "unicode": "e627",
+      "unicode_decimal": 58919
     }
   ]
 }
