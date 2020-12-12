@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2020-12-12 20:15:02
- * @LastEditors: your name
+ * @LastEditTime: 2020-12-12 20:35:19
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
  */
@@ -48,8 +48,13 @@ Vue.component(VpImage.name, VpImage);
 
 Vue.prototype.$bus = new Vue();
 
+// loading
 import vploading from  './components/loading/loading';
 Vue.use(vploading);
+
+// message
+import VpMessage from './components/message/message';
+Vue.use(VpMessage);
 
 Vue.config.productionTip = false
 

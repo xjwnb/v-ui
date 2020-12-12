@@ -151,8 +151,18 @@
       </div>
     </div>
     <div class="img-list2">
-      <vp-image v-for="img in imgList" :key="img.id" :src="img.src" :previewSrc="img.src" ></vp-image>
+      <vp-image
+        v-for="img in imgList"
+        :key="img.id"
+        :src="img.src"
+        :previewSrc="img.src"
+      ></vp-image>
     </div>
+    <!-- message -->
+    <vp-button @click="messageHandle">info message</vp-button>
+    <vp-button @click="messageSuccessHandle">success message</vp-button>
+    <vp-button @click="messageWarnHandle">warn message</vp-button>
+    <vp-button @click="messageErrorHandle">error message</vp-button>
   </div>
 </template>
 
@@ -216,19 +226,19 @@ export default {
           id: 4,
           src:
             "https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg",
-          fit: "fill"
+          fit: "fill",
         },
         {
           id: 5,
           src:
             "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
-          fit: "contain" 
+          fit: "contain",
         },
         {
           id: 6,
           src:
             "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg",
-          fit: "cover"
+          fit: "cover",
         },
       ],
     };
@@ -285,6 +295,29 @@ export default {
     },
     inputFormHandle(value, event) {
       // console.log(value);
+    },
+    // message
+    messageHandle() {
+      this.$message({
+        dangerouslyUseHTMLString: true,
+        message: '<span style="color: green">I am Green</span>',
+      });
+    },
+    messageSuccessHandle() {
+      this.$message({
+        type: "success",
+        message: "小卡车加油！",
+      });
+    },
+    messageWarnHandle() {
+      this.$message({
+        type: "warn",
+      });
+    },
+    messageErrorHandle() {
+      this.$message({
+        type: "error",
+      });
     },
   },
 };

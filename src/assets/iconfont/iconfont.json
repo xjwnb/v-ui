@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "141643",
+      "name": "error",
+      "font_class": "error",
+      "unicode": "e727",
+      "unicode_decimal": 59175
+    },
+    {
       "icon_id": "657332",
       "name": "分期－热度排序",
       "font_class": "redupaixu",
@@ -27,11 +34,32 @@
       "unicode_decimal": 58938
     },
     {
+      "icon_id": "1336074",
+      "name": "Info",
+      "font_class": "Info",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "6932374",
+      "name": "warn",
+      "font_class": "warn",
+      "unicode": "e6d1",
+      "unicode_decimal": 59089
+    },
+    {
       "icon_id": "6994848",
       "name": "eye",
       "font_class": "eye1",
       "unicode": "e613",
       "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "7712738",
+      "name": "success",
+      "font_class": "success",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
     },
     {
       "icon_id": "11981456",
