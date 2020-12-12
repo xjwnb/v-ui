@@ -57,10 +57,12 @@ export default {
     // 点击关闭 message
     closeMsgHandle() {
       this.$el.remove();
+      this.$emit("close", this.$el);
     }
   },
   destroyed() {
     clearTimeout(timer);
+    this.$emit("close", this.$el);
   },
 };
 </script>

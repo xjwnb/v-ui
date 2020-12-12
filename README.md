@@ -163,5 +163,9 @@
   | showClose                | Boolean | true \| false                      | 是否显示关闭按钮               | false               |
   | dangerouslyUseHTMLString | Boolean | true \| false                      | message 属性是否支持 HTML 文本 | false               |
 
+  | 事件名 | 描述                       | 返回值                     |
+  | ------ | -------------------------- | -------------------------- |
+  | close  | message 插件关闭后触发事件 | message DOM元素（this.$el) |
+
   
 
