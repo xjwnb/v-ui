@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-07 19:10:19
+ * @LastEditTime: 2020-12-12 20:15:02
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \v-ui\src\main.js
+ */
 
 import Vue from 'vue'
 import App from './App.vue'
@@ -40,7 +48,7 @@ Vue.component(VpImage.name, VpImage);
 
 Vue.prototype.$bus = new Vue();
 
-import vploading from  './components/loading';
+import vploading from  './components/loading/loading';
 Vue.use(vploading);
 
 Vue.config.productionTip = false
