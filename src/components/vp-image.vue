@@ -257,6 +257,11 @@ export default {
         }
       } */
     },
+    /**
+     * 修改元素动作
+     * @param {String} actionType 修改类型："getSmall"|"getBig"|"leftRotate"|"leftRotate"
+     * @param {Element} imgEle 修改的元素对象
+     */
     imgPreviewControlHandle(actionType, imgEle) {
       switch (actionType) {
         case "getSmall":
