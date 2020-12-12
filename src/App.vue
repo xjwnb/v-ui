@@ -146,6 +146,7 @@
           width="500px"
           height="400px"
           lazy
+          :fit="img.fit"
         ></vp-image>
       </div>
     </div>
@@ -215,16 +216,19 @@ export default {
           id: 4,
           src:
             "https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg",
+          fit: "fill"
         },
         {
           id: 5,
           src:
             "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+          fit: "contain" 
         },
         {
           id: 6,
           src:
             "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg",
+          fit: "cover"
         },
       ],
     };

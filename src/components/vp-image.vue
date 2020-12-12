@@ -3,7 +3,8 @@
     <template v-show="lazy ? (isLoad ? true : false) : true">
       <img
         @click="clickImg"
-        :class="['vp-image-inner', fitStyle]"
+        :class="['vp-image-inner']"
+        :style="{ objectFit: fit }"
         :src="lazy ? '' : src"
         :alt="alt"
         :width="width"
@@ -63,7 +64,8 @@ export default {
   name: "VpImage",
   props: {
     src: {
-      type: [String, Array],
+      type: String,
+      default: ""
     },
     alt: {
       type: String,
@@ -82,7 +84,7 @@ export default {
       default: false,
     },
     fit: {
-      type: String,
+      type: String, // "fill" | "contain" | "cover" | "none" | "scale-down"
       default: "fill",
     },
     previewSrc: {
@@ -149,11 +151,16 @@ export default {
           let src = ele.dataset.src;
           let img = new Image();
           img.src = src;
-          img.onload = function () {
+          img.onload = function (e) {
             ele.src = src;
             ele.setAttribute("data-src", "");
             _this.isLoad = true;
+            console.log(e);
+            _this.$emit("load", e);
           };
+          img.onerror = function (e) {
+            _this.$emit("error", e);
+          }
         }
       }
     },
@@ -319,6 +326,9 @@ export default {
 };
 </script>
 <style scoped>
+.vp-image {
+  display: inline-block;
+}
 .vp-image-loading {
   position: relative;
 }
