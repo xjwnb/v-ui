@@ -18,7 +18,7 @@ export default {
       default: "",
     },
     type: {
-      type: String,
+      type: String, // "info"|"success"|"warn"|"error"
       default: "",
     },
     iconClass: {
@@ -40,11 +40,6 @@ export default {
   data() {
     return {
       timer: null,
-      /*       vpMsgStyle: {
-        padding: "3rem 5rem",
-        backgroundColor: "royalblue",
-        transition: "all 1s",
-      }, */
     };
   },
   computed: {

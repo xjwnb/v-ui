@@ -4,7 +4,7 @@ const vpMessage = {};
 vpMessage.install = Vue => {
   Vue.prototype.$message = function(option = {}) {
     let options = {
-      message: (option && option.message) || "This is message", // message 显示文本
+      message: (option && option.message) || "This is a message", // message 显示文本
       type: (option && option.type) || "info", // message 类型
       center: (option && option.center) || false, // 文本是否居中
       dangerouslyUseHTMLString:
