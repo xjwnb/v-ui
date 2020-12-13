@@ -55,7 +55,7 @@ export default {
 </script>
 <style scoped>
 .vp-menu-item {
-  padding: 0 20px;
+  padding: 0 30px;
 }
 .vp-menu-item:hover {
   background-color: cadetblue;

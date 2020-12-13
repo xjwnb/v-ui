@@ -165,6 +165,49 @@
     <vp-button @click="messageErrorHandle">error message</vp-button>
     <!-- menu -->
     <vp-menu>
+      <vp-menu-item
+        ><span class="iconfont icon-success"></span>我是item - 1</vp-menu-item
+      >
+      <vp-submenu>
+        <template v-slot:title> 我是title - 2———— </template>
+        <vp-menu-item>我是item 2-1</vp-menu-item>
+        <vp-menu-item>我是item 2-2</vp-menu-item>
+        <vp-menu-item>我是item 2-3</vp-menu-item>
+        <vp-submenu>
+          <template v-slot:title> 我是title-2-4</template>
+          <vp-menu-item>我是item 2-4-1</vp-menu-item>
+          <vp-menu-item>我是item 2-4-2</vp-menu-item>
+          <vp-menu-item>我是item 2-4-3</vp-menu-item>
+          <vp-submenu>
+            <template v-slot:title> 我是title 2-5 </template>
+            <vp-menu-item>我是item 2-5-1</vp-menu-item>
+            <vp-menu-item>我是item 2-5-2</vp-menu-item>
+            <vp-menu-item>我是item 2-5-3</vp-menu-item>
+          </vp-submenu>
+        </vp-submenu>
+      </vp-submenu>
+      <vp-menu-item>我是item - 6</vp-menu-item>
+      <vp-submenu>
+        <template v-slot:title> 我是title - 2———— </template>
+        <vp-menu-item>我是item 2-1</vp-menu-item>
+        <vp-menu-item>我是item 2-2</vp-menu-item>
+        <vp-menu-item>我是item 2-3</vp-menu-item>
+        <vp-submenu>
+          <template v-slot:title> 我是title-2-4</template>
+          <vp-menu-item>我是item 2-4-1</vp-menu-item>
+          <vp-menu-item>我是item 2-4-2</vp-menu-item>
+          <vp-menu-item>我是item 2-4-3</vp-menu-item>
+          <vp-submenu>
+            <template v-slot:title> 我是title 2-5 </template>
+            <vp-menu-item>我是item 2-5-1</vp-menu-item>
+            <vp-menu-item>我是item 2-5-2</vp-menu-item>
+            <vp-menu-item>我是item 2-5-3</vp-menu-item>
+          </vp-submenu>
+        </vp-submenu>
+      </vp-submenu>
+    </vp-menu>
+    <!-- menu  vertical -->
+    <vp-menu mode="vertical">
       <vp-menu-item>我是item - 1</vp-menu-item>
       <vp-submenu>
         <template v-slot:title> 我是title - 2———— </template>
@@ -184,17 +227,27 @@
           </vp-submenu>
         </vp-submenu>
       </vp-submenu>
-      <vp-menu-item
-        ><a
-          href="https://www.baidu.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          >我是百度 - 3</a
-        ></vp-menu-item
-      >
       <vp-menu-item>我是item - 4</vp-menu-item>
       <vp-menu-item>我是item - 5</vp-menu-item>
       <vp-menu-item>我是item - 6</vp-menu-item>
+      <vp-submenu>
+        <template v-slot:title> 我是title - 2———— </template>
+        <vp-menu-item>我是item 2-1</vp-menu-item>
+        <vp-menu-item>我是item 2-2</vp-menu-item>
+        <vp-menu-item>我是item 2-3</vp-menu-item>
+        <vp-submenu>
+          <template v-slot:title> 我是title-2-4</template>
+          <vp-menu-item>我是item 2-4-1</vp-menu-item>
+          <vp-menu-item>我是item 2-4-2</vp-menu-item>
+          <vp-menu-item>我是item 2-4-3</vp-menu-item>
+          <vp-submenu>
+            <template v-slot:title> 我是title 2-5 </template>
+            <vp-menu-item>我是item 2-5-1</vp-menu-item>
+            <vp-menu-item>我是item 2-5-2</vp-menu-item>
+            <vp-menu-item>我是item 2-5-3</vp-menu-item>
+          </vp-submenu>
+        </vp-submenu>
+      </vp-submenu>
     </vp-menu>
     <!-- ul -> li -->
     <div>

@@ -27,14 +27,27 @@ export default {
   },
   created() {},
   mounted() {
-    let parentEle = this.$el.parentElement;
-    if (parentEle.className === "vp-menu") {
-      let vpSubmenuDiv = parentEle.getElementsByClassName("vp-submenu-div");
+    let el = this.$el;
+    let parentEle = el.parentElement;
+    if (parentEle.className === "vp-menu-horizontal") {
+      let vpSubmenuDiv = el.getElementsByClassName("vp-submenu-div");
       for(let i = 0,l = vpSubmenuDiv.length; i < l; i++) {
         if (i !== 0) {
           let parentfilterSubmenuDiv = vpSubmenuDiv[i].parentElement;
           parentfilterSubmenuDiv.style.position = "relative";
           vpSubmenuDiv[i].classList.add("vp-submenu-div-position");
+        }
+      }
+    } else if (parentEle.className === "vp-menu-vertical") {
+      let vpSubmenuDiv = el.getElementsByClassName("vp-submenu-div");
+      for(let i = 0, l = vpSubmenuDiv.length; i < l; i++) {
+        let vpSubmenuItems = vpSubmenuDiv[i].getElementsByClassName("vp-menu-item");
+        let vpSubmenuTitles = vpSubmenuDiv[i].getElementsByClassName("vp-submenu-title");
+        for (let itemIndex = 0, itemLength = vpSubmenuItems.length; itemIndex < itemLength; itemIndex ++) {
+          vpSubmenuItems[itemIndex].setAttribute("style",  `padding: 0 ${30+(i+1)*7}px`);
+        }
+        for (let titleIndex = 0, titleLength = vpSubmenuTitles.length; titleIndex < titleLength; titleIndex ++) {
+          vpSubmenuTitles[titleIndex].setAttribute("style",  `padding: 0 ${30+(i+1)*7}px`);
         }
       }
     }
@@ -91,7 +104,7 @@ export default {
   }
 }
 .vp-submenu-ul {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   list-style: none;
   padding: 0;
