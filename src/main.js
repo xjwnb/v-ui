@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2020-12-12 20:35:19
+ * @LastEditTime: 2020-12-13 16:32:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -29,6 +29,9 @@ import VpAside from './components/vp-aside.vue';
 import VpCheckbox from './components/vp-checkbox.vue';
 import VpCheckboxGroup from './components/vp-checkbox-group.vue';
 import VpImage from './components/vp-image.vue';
+import VpMenu from './components/vp-menu.vue';
+import VpMenuItem from './components/vp-menu-item.vue';
+import VpSubmenu from './components/vp-submenu.vue';
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -45,6 +48,9 @@ Vue.component(VpAside.name, VpAside);
 Vue.component(VpCheckbox.name, VpCheckbox);
 Vue.component(VpCheckboxGroup.name, VpCheckboxGroup);
 Vue.component(VpImage.name, VpImage);
+Vue.component(VpMenu.name, VpMenu);
+Vue.component(VpMenuItem.name, VpMenuItem);
+Vue.component(VpSubmenu.name, VpSubmenu);
 
 Vue.prototype.$bus = new Vue();
 
