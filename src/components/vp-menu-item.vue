@@ -31,7 +31,12 @@ export default {
   },
   computed: {
     clickHandle() {
-      return this.disabled ? null : this.vpMenuItemHandle;
+      // return this.disabled ? '' : this.vpMenuItemHandle;
+      if (!this.disabled) {
+        return this.vpMenuItemHandle;
+      } else {
+        return this.disabledHandle;
+      }
     }
   },
   created() {},
@@ -75,6 +80,9 @@ export default {
         }
       }
     },
+    disabledHandle(e) {
+      e.preventDefault();
+    }
   },
 };
 </script>
