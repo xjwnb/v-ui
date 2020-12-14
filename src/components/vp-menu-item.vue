@@ -1,5 +1,5 @@
 <template>
-  <li class="vp-menu-item" @click="vpMenuItemHandle"><slot></slot></li>
+  <li class="vp-menu-item" @click="clickHandle" :class="disabled ? 'vp-menu-item-disabled' : ''"><slot></slot></li>
 </template>
 
 <script>
@@ -19,11 +19,20 @@ export default {
       type: String,
       default: "",
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
       // parentClassName: this.$parent.$el.className,
     };
+  },
+  computed: {
+    clickHandle() {
+      return this.disabled ? null : this.vpMenuItemHandle;
+    }
   },
   created() {},
   mounted() {
@@ -82,6 +91,25 @@ export default {
   color: #ffd04b;
   border-bottom: 3px solid #ffd04b;
 }
+
+
+.vp-menu-item-disabled {
+  color: #ECECED;
+  cursor: not-allowed;
+}
+.vp-menu-item-disabled:hover {
+  background-color: "";
+  cursor: not-allowed;
+
+}
+
+
+
+
+
+
+
+/* 清除 a 标签默认样式 */
 .vp-menu-item a {
   text-decoration: none;
 }

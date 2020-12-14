@@ -232,7 +232,7 @@
       </vp-submenu>
       <vp-menu-item index="3">我是item - 3</vp-menu-item>
       <vp-menu-item index="4">我是item - 4</vp-menu-item>
-      <vp-menu-item index="5">我是item - 5</vp-menu-item>
+      <vp-menu-item index="5" disabled>我是item - 5</vp-menu-item>
     </vp-menu>
     <!-- ul -> li -->
     <div>
