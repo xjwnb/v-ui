@@ -19,7 +19,7 @@ export default {
     },
     contentPosition: {
       type: String,
-      default: "center"
+      default: "center" // "center" | "left" | "right"
     }
   },
   data() {
