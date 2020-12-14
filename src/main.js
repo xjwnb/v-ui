@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2020-12-14 18:57:23
+ * @LastEditTime: 2020-12-14 23:19:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -33,6 +33,7 @@ import VpMenu from './components/vp-menu.vue';
 import VpMenuItem from './components/vp-menu-item.vue';
 import VpSubmenu from './components/vp-submenu.vue';
 import VpTooltip from './components/vp-tooltip.vue';
+import VpDivider from './components/vp-divider.vue';
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -53,6 +54,7 @@ Vue.component(VpMenu.name, VpMenu);
 Vue.component(VpMenuItem.name, VpMenuItem);
 Vue.component(VpSubmenu.name, VpSubmenu);
 Vue.component(VpTooltip.name, VpTooltip);
+Vue.component(VpDivider.name, VpDivider);
 
 Vue.prototype.$bus = new Vue();
 

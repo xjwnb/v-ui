@@ -356,6 +356,13 @@
         <vp-button>VpTooltip-right-------</vp-button>
       </vp-tooltip>
     </div>
+    <!-- divider -->
+    <vp-divider>小卡车加油</vp-divider>
+    <vp-divider content-position="left">小卡车加油</vp-divider>
+    <vp-divider content-position="right">小卡车加油</vp-divider>
+    <vp-divider direction="vertical"></vp-divider>
+    小卡车加油
+
   </div>
 </template>
 
