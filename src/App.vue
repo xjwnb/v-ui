@@ -207,10 +207,12 @@
       </vp-submenu>
     </vp-menu>
     <!-- menu  vertical -->
-    <vp-menu mode="vertical" @select="selectedHandle" 
-      background-color="#00f" 
+    <vp-menu
+      mode="vertical"
+      @select="selectedHandle"
+      background-color="#00f"
       text-color="#0f0"
-      >
+    >
       <vp-menu-item index="1">我是item - 1</vp-menu-item>
       <vp-submenu index="2">
         <template v-slot:title> 我是title - 2———— </template>
@@ -338,6 +340,21 @@
         <li>99</li>
         <li>100</li>
       </ul>
+    </div>
+    <!-- VpTooltip -->
+    <div class="tooltip">
+      <vp-tooltip content="小卡车加油！！！">
+        <vp-button>VpTooltip-default</vp-button>
+      </vp-tooltip>
+      <vp-tooltip placement="bottom" content="小卡车加油！！！">
+        <vp-button>VpTooltip-bottom</vp-button>
+      </vp-tooltip>
+      <vp-tooltip placement="left" content="小卡车加油！！！————">
+        <vp-button>VpTooltip-left-------</vp-button>
+      </vp-tooltip>
+      <vp-tooltip placement="right" content="小卡车加油！！！————">
+        <vp-button>VpTooltip-right-------</vp-button>
+      </vp-tooltip>
     </div>
   </div>
 </template>
@@ -497,7 +514,7 @@ export default {
     },
     selectedHandle(key, keyPath) {
       console.log(key, keyPath);
-    }
+    },
   },
 };
 </script>
@@ -528,5 +545,10 @@ export default {
   background-color: royalblue;
   width: 200px;
   height: 200px;
+}
+.tooltip {
+  display: flex;
+  justify-content: space-around;
+  margin: 100px;
 }
 </style>
