@@ -207,47 +207,32 @@
       </vp-submenu>
     </vp-menu>
     <!-- menu  vertical -->
-    <vp-menu mode="vertical">
-      <vp-menu-item>我是item - 1</vp-menu-item>
-      <vp-submenu>
+    <vp-menu mode="vertical" @select="selectedHandle" 
+      background-color="#00f" 
+      text-color="#0f0"
+      >
+      <vp-menu-item index="1">我是item - 1</vp-menu-item>
+      <vp-submenu index="2">
         <template v-slot:title> 我是title - 2———— </template>
-        <vp-menu-item>我是item 2-1</vp-menu-item>
-        <vp-menu-item>我是item 2-2</vp-menu-item>
-        <vp-menu-item>我是item 2-3</vp-menu-item>
-        <vp-submenu>
+        <vp-menu-item index="2-1">我是item 2-1</vp-menu-item>
+        <vp-menu-item index="2-2">我是item 2-2</vp-menu-item>
+        <vp-menu-item index="2-3">我是item 2-3</vp-menu-item>
+        <vp-submenu index="2-4">
           <template v-slot:title> 我是title-2-4</template>
-          <vp-menu-item>我是item 2-4-1</vp-menu-item>
-          <vp-menu-item>我是item 2-4-2</vp-menu-item>
-          <vp-menu-item>我是item 2-4-3</vp-menu-item>
-          <vp-submenu>
+          <vp-menu-item index="2-4-1">我是item 2-4-1</vp-menu-item>
+          <vp-menu-item index="2-4-2">我是item 2-4-2</vp-menu-item>
+          <vp-menu-item index="2-4-3">我是item 2-4-3</vp-menu-item>
+          <vp-submenu index="2-5">
             <template v-slot:title> 我是title 2-5 </template>
-            <vp-menu-item>我是item 2-5-1</vp-menu-item>
-            <vp-menu-item>我是item 2-5-2</vp-menu-item>
-            <vp-menu-item>我是item 2-5-3</vp-menu-item>
+            <vp-menu-item index="2-5-1">我是item 2-5-1</vp-menu-item>
+            <vp-menu-item index="2-5-2">我是item 2-5-2</vp-menu-item>
+            <vp-menu-item index="2-5-3">我是item 2-5-3</vp-menu-item>
           </vp-submenu>
         </vp-submenu>
       </vp-submenu>
-      <vp-menu-item>我是item - 4</vp-menu-item>
-      <vp-menu-item>我是item - 5</vp-menu-item>
-      <vp-menu-item>我是item - 6</vp-menu-item>
-      <vp-submenu>
-        <template v-slot:title> 我是title - 2———— </template>
-        <vp-menu-item>我是item 2-1</vp-menu-item>
-        <vp-menu-item>我是item 2-2</vp-menu-item>
-        <vp-menu-item>我是item 2-3</vp-menu-item>
-        <vp-submenu>
-          <template v-slot:title> 我是title-2-4</template>
-          <vp-menu-item>我是item 2-4-1</vp-menu-item>
-          <vp-menu-item>我是item 2-4-2</vp-menu-item>
-          <vp-menu-item>我是item 2-4-3</vp-menu-item>
-          <vp-submenu>
-            <template v-slot:title> 我是title 2-5 </template>
-            <vp-menu-item>我是item 2-5-1</vp-menu-item>
-            <vp-menu-item>我是item 2-5-2</vp-menu-item>
-            <vp-menu-item>我是item 2-5-3</vp-menu-item>
-          </vp-submenu>
-        </vp-submenu>
-      </vp-submenu>
+      <vp-menu-item index="3">我是item - 3</vp-menu-item>
+      <vp-menu-item index="4">我是item - 4</vp-menu-item>
+      <vp-menu-item index="5">我是item - 5</vp-menu-item>
     </vp-menu>
     <!-- ul -> li -->
     <div>
@@ -510,6 +495,9 @@ export default {
         type: "error",
       });
     },
+    selectedHandle(key, keyPath) {
+      console.log(key, keyPath);
+    }
   },
 };
 </script>

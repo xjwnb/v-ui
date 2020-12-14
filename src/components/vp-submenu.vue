@@ -20,6 +20,12 @@ export default {
       VpSubmenu: this
     }
   },
+  props: {
+    index: {
+      type: String,
+      default: ""
+    }
+  },
   data() {
     return {
       isShowItem: false,

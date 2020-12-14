@@ -1,9 +1,5 @@
 <template>
-  <!-- <template> -->
-  <!-- <template> -->
   <li class="vp-menu-item" @click="vpMenuItemHandle"><slot></slot></li>
-  <!-- </template> -->
-  <!-- </template> -->
 </template>
 
 <script>
@@ -12,11 +8,17 @@ export default {
   // inject: ['VpMenu', 'VpSubmenu'],
   inject: {
     VpMenu: {
-      default: {}
+      default: {},
     },
     VpSubmenu: {
-      default: {}
-    }
+      default: {},
+    },
+  },
+  props: {
+    index: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
@@ -49,6 +51,20 @@ export default {
         targetParent.classList.add("vp-menu-item-selected");
       }
       e.srcElement.classList.add("vp-menu-item-selected");
+
+      // 获取 index
+      let parentEle = this.$parent;
+      let indexPath = [];
+      while (true) {
+        if (parentEle === this.VpMenu) {
+          indexPath.push(this.index);
+          parentEle._data.selectedItemFunc(this.index, indexPath);
+          break;
+        } else {
+          indexPath.unshift(parentEle.index);
+          parentEle = parentEle.$parent;
+        }
+      }
     },
   },
 };
@@ -63,8 +79,8 @@ export default {
 }
 .vp-menu-item-selected {
   /* background-color: cornflowerblue; */
-  color: #FFD04B;
-  border-bottom: 3px solid #FFD04B;
+  color: #ffd04b;
+  border-bottom: 3px solid #ffd04b;
 }
 .vp-menu-item a {
   text-decoration: none;
