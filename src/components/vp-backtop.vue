@@ -49,7 +49,8 @@ export default {
       };
     },
     // 点击置顶事件
-    backtopHandle() {
+    backtopHandle(e) {
+      this.$emit("click", e, this.target);
       clearInterval(this.timer);
       let scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
@@ -77,8 +78,8 @@ export default {
       if (target.offsetTop < document.documentElement.scrollTop) {
         this.timer = window.setInterval(() => {
           document.documentElement.scrollTop -= this.controllNum;
-          console.log(document.documentElement.scrollTop);
           if (document.documentElement.scrollTop <= target.offsetTop) {
+            _this.$emit("backtop", e, _this.target);
             window.clearInterval(_this.timer);
           }
         }, _this.intervalDelay);
@@ -86,8 +87,8 @@ export default {
         console.log("target.offsetTop < document.documentElement.scrollTop");
         this.timer = window.setInterval(() => {
           document.documentElement.scrollTop += this.controllNum;
-          console.log(document.documentElement.scrollTop);
           if (document.documentElement.scrollTop >= target.offsetTop) {
+            _this.$emit("backtop", e, _this.target);
             window.clearInterval(_this.timer);
           }
         }, _this.intervalDelay);

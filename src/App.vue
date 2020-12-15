@@ -468,7 +468,7 @@
         <li>100</li>
       </ul>
     </div>
-    <vp-backtop></vp-backtop>
+    <vp-backtop @backtop="backtopHandle"></vp-backtop>
     <vp-backtop 
       target=".backtop-div" 
       :right="backtopRight"
@@ -637,6 +637,9 @@ export default {
     selectedHandle(key, keyPath) {
       console.log(key, keyPath);
     },
+    backtopHandle(e) {
+      console.log(e);
+    }
   },
 };
 </script>
