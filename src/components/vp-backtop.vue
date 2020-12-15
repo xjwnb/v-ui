@@ -60,21 +60,11 @@ export default {
       } else {
         if (/^\./.test(this.target)) {
           target = document.getElementsByClassName(this.target.substring(1))[0];
-          console.log(this.target);
-          console.log(target);
         } else if (/^#/.test(this.target)) {
           target = document.getElementById(this.target.substring(1));
         }
       }
-      console.log(target.offsetTop);
       let _this = this;
-      /* this.timer = window.setInterval(() => {
-        document.documentElement.scrollTop -= this.controllNum;
-        console.log(document.documentElement.scrollTop);
-        if (document.documentElement.scrollTop <= target.offsetTop) {
-          window.clearInterval(_this.timer);
-        }
-      }, _this.intervalDelay); */
       if (target.offsetTop < document.documentElement.scrollTop) {
         this.timer = window.setInterval(() => {
           document.documentElement.scrollTop -= this.controllNum;
@@ -84,7 +74,6 @@ export default {
           }
         }, _this.intervalDelay);
       } else {
-        console.log("target.offsetTop < document.documentElement.scrollTop");
         this.timer = window.setInterval(() => {
           document.documentElement.scrollTop += this.controllNum;
           if (document.documentElement.scrollTop >= target.offsetTop) {
@@ -111,8 +100,6 @@ export default {
   cursor: pointer;
   position: fixed;
   z-index: 999;
-  /*   bottom: 100px;
-  right: 50px; */
   padding: 10px 10px;
   border: 1px solid cadetblue;
   border-radius: 50%;
