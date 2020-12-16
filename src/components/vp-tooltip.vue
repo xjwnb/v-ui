@@ -43,11 +43,11 @@ export default {
         )[0];
         tooltipInner.style.left = `${slotEle.offsetWidth + 12}px`;
       } else if (placement === "top") {
-        console.log(this.$el);
+/*         console.log(this.$el);
         console.log(this.$el.offsetHeight);
         console.log(
           this.$el.getElementsByClassName("vp-tooltip-inner")[0].offsetHeight
-        );
+        ); */
       }
       this.isShowTooltip = true;
     });

@@ -469,13 +469,33 @@
       </ul>
     </div>
     <vp-backtop @backtop="backtopHandle"></vp-backtop>
-    <vp-backtop 
-      target=".backtop-div" 
+    <vp-backtop
+      target=".backtop-div"
       :right="backtopRight"
-      :bottom="backtopBottom">
-      Top  
+      :bottom="backtopBottom"
+    >
+      Top
     </vp-backtop>
 
+    <!-- progress -->
+    <vp-progress
+      :color="[
+        { color: '#f56c6c', percentage: 20 },
+        { color: '#e6a23c', percentage: 40 },
+        { color: '#5cb87a', percentage: 60 },
+        { color: '#1989fa', percentage: 80 },
+        { color: '#6f7ad3', percentage: 100 },
+      ]"
+      :percentage="percentage"
+    ></vp-progress>
+    <vp-progress
+      color="#f56c6c"
+      :percentage="percentage"
+      text-inside
+    ></vp-progress>
+    <vp-progress :percentage="per" status="success"></vp-progress>
+    <vp-progress :percentage="per" color="#e6a23c"></vp-progress>
+    <vp-progress :percentage="per"></vp-progress>
   </div>
 </template>
 
@@ -555,7 +575,10 @@ export default {
         },
       ],
       backtopRight: 200,
-      backtopBottom: 200
+      backtopBottom: 200,
+      percent: 0,
+      timer: null,
+      per: 80,
     };
   },
   components: {
@@ -566,6 +589,21 @@ export default {
     /*     vpButton,
     vpInput,
     vpRadio */
+  },
+  computed: {
+    percentage() {
+      clearTimeout(this.timer);
+      this.timer = window.setTimeout(() => {
+        this.percent += 1;
+        if (this.percent >= 100) {
+          clearTimeout(this.timer);
+          this.percent = 100;
+        } else {
+          this.percent += 1;
+        }
+      }, 50);
+      return this.percent;
+    },
   },
   mounted() {
     let loadObj = this.$loading({
@@ -639,7 +677,7 @@ export default {
     },
     backtopHandle(e) {
       console.log(e);
-    }
+    },
   },
 };
 </script>
@@ -677,7 +715,7 @@ export default {
   margin: 100px;
 }
 .backtop-div {
-/*   width: 200px;
+  /*   width: 200px;
   height: 300px; */
   background-color: aquamarine;
 }
