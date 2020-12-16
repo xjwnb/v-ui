@@ -33,7 +33,7 @@ export default {
       default: 0,
     },
     status: {
-      type: String,
+      type: String,       // "success"|"warning"|"exception"
     },
     color: {
       default: "",
