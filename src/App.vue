@@ -496,6 +496,26 @@
     <vp-progress :percentage="per" status="success"></vp-progress>
     <vp-progress :percentage="per" color="#e6a23c"></vp-progress>
     <vp-progress :percentage="per"></vp-progress>
+
+    <!-- table -->
+    <vp-table :data="tableData">
+      <vp-table-column prop="name" label="名称"></vp-table-column>
+      <vp-table-column prop="age" label="年龄"></vp-table-column>
+      <vp-table-column label="爱好">
+        <!-- <template v-slot:default="slotsProps"> -->
+        <template v-slot:data="slotsProps">
+          <div>小卡车加油！！！
+            <p>{{ slotsProps.$index }}</p>
+            <p>{{ slotsProps.data }}</p>
+            <button @click="tableBtnHandle(slotsProps)">按钮</button>
+            <!-- <p>name: {{ slotsProps.data.name }}</p> -->
+            <!-- <p>age: {{ slotsProps.data.age }}</p> -->
+          </div>
+        </template>
+        <!-- </template> -->
+        <!-- <div>哈哈哈</div> -->
+      </vp-table-column>
+    </vp-table>
   </div>
 </template>
 
@@ -579,6 +599,23 @@ export default {
       percent: 0,
       timer: null,
       per: 80,
+      tableData: [
+        {
+          id: 1,
+          name: "小卡车",
+          age: 20,
+        },
+        {
+          id: 2,
+          name: "蜘蛛侠",
+          age: 18,
+        },
+        {
+          id: 3,
+          name: "钢铁侠",
+          age: 30,
+        },
+      ],
     };
   },
   components: {
@@ -678,6 +715,9 @@ export default {
     backtopHandle(e) {
       console.log(e);
     },
+    tableBtnHandle(slotsPropsData, e) {
+      console.log(slotsPropsData);
+    }
   },
 };
 </script>

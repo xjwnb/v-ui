@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2020-12-16 16:28:16
+ * @LastEditTime: 2020-12-17 17:04:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -36,6 +36,8 @@ import VpTooltip from './components/vp-tooltip.vue';
 import VpDivider from './components/vp-divider.vue';
 import VpBacktop from './components/vp-backtop.vue';
 import VpProgress from './components/vp-progress.vue';
+import VpTable from './components/vp-table.vue';
+import VpTableColumn from './components/vp-table-column.vue';
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -59,6 +61,8 @@ Vue.component(VpTooltip.name, VpTooltip);
 Vue.component(VpDivider.name, VpDivider);
 Vue.component(VpBacktop.name, VpBacktop);
 Vue.component(VpProgress.name, VpProgress);
+Vue.component(VpTable.name, VpTable);
+Vue.component(VpTableColumn.name, VpTableColumn);
 
 Vue.prototype.$bus = new Vue();
 
