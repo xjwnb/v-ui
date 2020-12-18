@@ -498,16 +498,14 @@
     <vp-progress :percentage="per"></vp-progress>
 
     <!-- table -->
-    <vp-table :data="tableData">
+    <vp-table :data="tableData" stripe>
       <vp-table-column prop="name" label="名称"></vp-table-column>
       <vp-table-column prop="age" label="年龄"></vp-table-column>
       <vp-table-column label="爱好">
         <!-- <template v-slot:default="slotsProps"> -->
         <template v-slot:data="slotsProps">
-          <div>小卡车加油！！！
-            <p>{{ slotsProps.$index }}</p>
-            <p>{{ slotsProps.data }}</p>
-            <button @click="tableBtnHandle(slotsProps)">按钮</button>
+          <div>
+            <vp-button @click="tableBtnHandle(slotsProps)">小卡车加油！！！</vp-button>
             <!-- <p>name: {{ slotsProps.data.name }}</p> -->
             <!-- <p>age: {{ slotsProps.data.age }}</p> -->
           </div>

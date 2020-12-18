@@ -253,5 +253,21 @@
   | color       | String\|Array | 例如 "#000000" \| [{ color: "#000000", percentage: 20 }] | 颜色规则         | ""     |
   | textInside  | Boolean       | true \| false                                            | 文本是否在内部   | false  |
 
+- 表格 Table
+
+  vp-table
+
+  | 属性名 | 类型    | 属性值        | 描述         | 默认值 |
+  | ------ | ------- | ------------- | ------------ | ------ |
+  | data   | Array   |               | 表格数据数组 |        |
+  | stripe | Boolean | true \| false | 是否为斑马纹 | false  |
+
+  vp-table-column
+
+  | 属性名 | 类型   | 属性值 | 描述               | 默认值 |
+  | ------ | ------ | ------ | ------------------ | ------ |
+  | prop   | String |        | 对应列内容的字段名 | ""     |
+  | label  | String |        | 对应列内容的标签名 | ""     |
+
   
 

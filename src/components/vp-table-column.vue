@@ -72,10 +72,10 @@ export default {
 th {
   text-align: left;
 }
-th .cell {
+/* th .cell {
   padding: 0 20px;
 }
 td .cell {
   padding: 0 20px;
-}
+} */
 </style>
