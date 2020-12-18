@@ -269,5 +269,23 @@
   | prop   | String |        | 对应列内容的字段名 | ""     |
   | label  | String |        | 对应列内容的标签名 | ""     |
 
+  vp-table-column slot 作用域插槽
+
+  ```javascript
+  <vp-table-column label="爱好">
+    <template v-slot:data="slotsProps">
+      <div>
+        <vp-button @click="tableBtnHandle(slotsProps)">小卡车加油！！！</vp-button>
+      </div>
+    </template>
+  </vp-table-column>
+  
+  methods: {
+      tableBtnHandle(slotsPropsData, e) {
+        console.log(slotsPropsData);  // {data: {…}, $index: 0} 对象->data属性(当前行数据),$index属性(当前行索引)
+      }
+  }
+  ```
+
   
 

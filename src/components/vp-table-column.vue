@@ -8,15 +8,10 @@
     </div>
   </th>
   <td v-else>
-  <!-- <td> -->
     <div class="cell" v-if="content">
       {{ content }}
-
-      <!-- <slot></slot> -->
     </div>
     <div class="cell" v-else>
-      <!-- <slot v-bind:data="data">
-      </slot> -->
     </div>
   </td>
 </template>
@@ -54,17 +49,6 @@ export default {
   },
   created() {},
   mounted() {
-    console.log(this.$slots);
-    // console.log(this.$scopedSlots);
-    if (this.$scopedSlots.data) {
-      // this.$scopedSlots.data({data: this.data});
-      // console.log(this.$scopedSlots);
-    }
-    this.$nextTick(() => {
-      // console.log(this.$slots);
-      console.log(this.VpTable.$slots.default.length);
-    });
-    // console.log(this.VpTable.data[this.index]);
   },
 };
 </script>
@@ -72,10 +56,4 @@ export default {
 th {
   text-align: left;
 }
-/* th .cell {
-  padding: 0 20px;
-}
-td .cell {
-  padding: 0 20px;
-} */
 </style>
