@@ -505,7 +505,9 @@
         <!-- <template v-slot:default="slotsProps"> -->
         <template v-slot:data="slotsProps">
           <div>
-            <vp-button @click="tableBtnHandle(slotsProps)">小卡车加油！！！</vp-button>
+            <vp-button @click="tableBtnHandle(slotsProps)"
+              >小卡车加油！！！</vp-button
+            >
             <!-- <p>name: {{ slotsProps.data.name }}</p> -->
             <!-- <p>age: {{ slotsProps.data.age }}</p> -->
           </div>
@@ -514,6 +516,30 @@
         <!-- <div>哈哈哈</div> -->
       </vp-table-column>
     </vp-table>
+
+    <!-- tag -->
+    <vp-tag>小卡车加油！！！</vp-tag>
+    <vp-tag type="success">小卡车加油！！！</vp-tag>
+    <vp-tag type="info">小卡车加油！！！</vp-tag>
+    <vp-tag type="warning">小卡车加油！！！</vp-tag>
+    <vp-tag type="danger">小卡车加油！！！</vp-tag>
+    <vp-tag closable>小卡车加油！！！</vp-tag>
+    <vp-tag type="success" closable>小卡车加油！！！</vp-tag>
+    <vp-tag type="info" closable>小卡车加油！！！</vp-tag>
+    <vp-tag type="warning" closable>小卡车加油！！！</vp-tag>
+    <vp-tag type="danger" closable @close="closeTagHandle"
+      >小卡车加油！！！</vp-tag
+    >
+        <vp-tag effect="dark">小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="success">小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="info">小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="warning">小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="danger">小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" closable>小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="success" closable>小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="info" closable>小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="warning" closable>小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark" type="danger" closable>小卡车加油！！！</vp-tag>
   </div>
 </template>
 
@@ -715,7 +741,10 @@ export default {
     },
     tableBtnHandle(slotsPropsData, e) {
       console.log(slotsPropsData);
-    }
+    },
+    closeTagHandle() {
+      console.log("closeTag");
+    },
   },
 };
 </script>
