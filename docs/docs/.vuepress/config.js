@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Hello VuePress",
-  description: "Just playing around",
+  title: "Vpro-UI",
+  description: "Vpro-UI",
   themeConfig: {
     sidebar: [
       {
