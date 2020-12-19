@@ -24,7 +24,7 @@ export default {
     },
     disableTransitions: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     effect: {
       type: String,
@@ -41,7 +41,7 @@ export default {
   methods: {
     closeHandle() {
       this.$emit("close");
-      if (this.disableTransitions) {
+      if (!this.disableTransitions) {
         this.$el.classList.add("vp-tag-animation-close");
         this.closeTimer = window.setTimeout(() => {
           this.$el.remove();
