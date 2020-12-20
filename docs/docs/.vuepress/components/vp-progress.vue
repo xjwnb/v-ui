@@ -139,4 +139,7 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
+.vp-progress-bar-inner-inside-text {
+  color: #ffffff;
+}
 </style>

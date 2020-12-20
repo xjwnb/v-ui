@@ -67,9 +67,10 @@ export default {
       },
       created() {},
       render(createElement) {
+        let filterSlots = this.vnode.default.filter(item => item.tag !== undefined);
         return createElement(
           "div",
-          this.vnode.default[this.index].child.$scopedSlots.data({
+          filterSlots[this.index].child.$scopedSlots.data({
             data: this.data[this.rowIndex],
             $index: this.rowIndex,
           })
@@ -98,10 +99,21 @@ export default {
         th[i].childNodes[0].childNodes[1].remove();
       }
     }
-    this.$slots.default.forEach((slot, slotIndex) => {
-      this.columnOrder.push(slot.child.prop);
+    this.$slots.default.filter(item => item.tag !== undefined).forEach((slot, slotIndex) => {
+      /* this.columnOrder.push(slot.child.prop);
       if (slot.child.$scopedSlots.data) {
         this.hasSlots.push(slotIndex);
+      } */
+      if (slot.child) {
+        this.columnOrder.push(slot.child.prop);
+      } else {
+        this.columnOrder.push(undefined);
+      }
+
+      if (slot.child) {
+        if (slot.child.$scopedSlots.data) {
+          this.hasSlots.push(slotIndex);
+        }
       }
     });
   },

@@ -498,7 +498,7 @@
     <vp-progress :percentage="per"></vp-progress>
 
     <!-- table -->
-    <vp-table :data="tableData" stripe>
+    <vp-table :data="tableData">
       <vp-table-column prop="name" label="名称"></vp-table-column>
       <vp-table-column prop="age" label="年龄"></vp-table-column>
       <vp-table-column label="爱好">

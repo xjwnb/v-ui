@@ -155,7 +155,6 @@ export default {
             ele.src = src;
             ele.setAttribute("data-src", "");
             _this.isLoad = true;
-            console.log(e);
             _this.$emit("load", e);
           };
           img.onerror = function (e) {
@@ -348,7 +347,7 @@ export default {
 /* 预览 */
 .vp-image-preview-src-list {
   position: fixed;
-  z-index: 3;
+  z-index: 996;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -359,7 +358,7 @@ export default {
 }
 .vp-image-preview-src {
   position: absolute;
-  z-index: 4;
+  z-index: 997;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -385,7 +384,7 @@ export default {
   justify-content: space-around;
   line-height: 50px;
   position: fixed;
-  z-index: 5;
+  z-index: 999;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);

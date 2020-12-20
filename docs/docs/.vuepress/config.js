@@ -1,7 +1,15 @@
+
 module.exports = {
   title: "Vpro-UI",
   description: "Vpro-UI",
   themeConfig: {
+    nav: [
+      {
+        text: "GitHub", 
+        link: "https://github.com/xjwnb/v-ui",
+        target:'_blank'
+      }
+    ],
     sidebar: [
       {
         title: "介绍",
@@ -27,16 +35,20 @@ module.exports = {
             path: "/components/radio"
           },
           {
+            title: "开关 Switch",
+            path: "/components/switch"
+          },
+          {
+            title: "多选框 Checkbox",
+            path: "/components/checkbox"
+          },
+          {
             title: "表单 Form",
             path: "/components/form"
           },
           {
             title: "布局容器 Container",
             path: "/components/container"
-          },
-          {
-            title: "多选框 Checkbox",
-            path: "/components/checkbox"
           },
           {
             title: "加载 Loading",

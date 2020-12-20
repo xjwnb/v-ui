@@ -89,6 +89,7 @@ export default {
 <style scoped>
 .vp-menu-item {
   padding: 0 30px;
+  line-height: 60px;
 }
 .vp-menu-item:hover {
   background-color: cadetblue;

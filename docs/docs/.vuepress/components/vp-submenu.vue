@@ -83,6 +83,7 @@ export default {
 .vp-submenu-title {
   padding: 0 30px;
   position: relative;
+  line-height: 60px;
 }
 .vp-submenu-title span {
   position: absolute;
@@ -96,6 +97,7 @@ export default {
 }
 .vp-submenu-div {
   position: relative;
+  z-index: 100;
 }
 .rotate {
   animation: spanRotate 1s;
@@ -127,6 +129,7 @@ export default {
 }
 .vp-submenu-div-position {
   position: absolute;
+  z-index: 100;
   width: 100%;
   top: 0px;
   left: 100%;

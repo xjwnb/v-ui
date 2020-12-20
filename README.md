@@ -125,6 +125,19 @@
 | label    | String  |               | 多选框标签内容     | ""     |
 | disabled | Boolean | true \| false | 是否禁用           | false  |
 
+### 开关 Switch
+
+vp-switch
+
+| 属性名   | 类型    | 属性值        | 描述     | 默认值 |
+| -------- | ------- | ------------- | -------- | ------ |
+| value    | Boolean | true \| false | 开关值   | false  |
+| disabled | Boolean | true \| false | 是否禁用 | false  |
+
+| 事件名 | 描述       | 返回值 |
+| ------ | ---------- | ------ |
+| change | 修改时触发 | event  |
+
 ###  加载 Loading （插件 plugin）
 
   使用方法 

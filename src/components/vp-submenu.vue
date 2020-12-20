@@ -83,6 +83,7 @@ export default {
 .vp-submenu-title {
   padding: 0 30px;
   position: relative;
+  line-height: 60px;
 }
 .vp-submenu-title span {
   position: absolute;
