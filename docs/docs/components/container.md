@@ -3,7 +3,7 @@
 ## 基础用法
 
 <template>
-  <div class="div-base">
+  <div class="container-base">
     <!-- container -->
     <vp-container>
       <vp-header>Header</vp-header>
@@ -113,12 +113,12 @@
 
 <!-- 样式 -->
 <style>
-.div-base {
+.container-base {
   padding: 20px;
   border: 1px solid #95a5a6;
   border-radius: 5px;
 }
-.div-row {
+.container-row {
   margin: 10px;
 }
 .vp-header {
