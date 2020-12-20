@@ -1,5 +1,6 @@
 
 module.exports = {
+  base: "/Vpro_UI",
   title: "Vpro-UI",
   description: "Vpro-UI",
   themeConfig: {

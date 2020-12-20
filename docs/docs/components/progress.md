@@ -121,7 +121,7 @@
     computed: {
       percentage() {
         clearTimeout(this.timer);
-        this.timer = window.setTimeout(() => {
+        this.timer = setTimeout(() => {
           this.percent += 1;
           if (this.percent >= 100) {
             clearTimeout(this.timer);
