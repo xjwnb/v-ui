@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2020-12-19 14:53:16
+ * @LastEditTime: 2020-12-21 16:42:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -39,6 +39,8 @@ import VpProgress from './components/vp-progress.vue';
 import VpTable from './components/vp-table.vue';
 import VpTableColumn from './components/vp-table-column.vue';
 import VpTag from './components/vp-tag.vue';
+import VpCarousel from './components/vp-carousel.vue';
+import VpCarouselItem from './components/vp-carousel-item.vue';
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -65,6 +67,8 @@ Vue.component(VpProgress.name, VpProgress);
 Vue.component(VpTable.name, VpTable);
 Vue.component(VpTableColumn.name, VpTableColumn);
 Vue.component(VpTag.name, VpTag);
+Vue.component(VpCarousel.name, VpCarousel);
+Vue.component(VpCarouselItem.name, VpCarouselItem);
 
 Vue.prototype.$bus = new Vue();
 

@@ -530,7 +530,7 @@
     <vp-tag type="danger" closable @close="closeTagHandle"
       >小卡车加油！！！</vp-tag
     >
-        <vp-tag effect="dark">小卡车加油！！！</vp-tag>
+    <vp-tag effect="dark">小卡车加油！！！</vp-tag>
     <vp-tag effect="dark" type="success">小卡车加油！！！</vp-tag>
     <vp-tag effect="dark" type="info">小卡车加油！！！</vp-tag>
     <vp-tag effect="dark" type="warning">小卡车加油！！！</vp-tag>
@@ -540,6 +540,15 @@
     <vp-tag effect="dark" type="info" closable>小卡车加油！！！</vp-tag>
     <vp-tag effect="dark" type="warning" closable>小卡车加油！！！</vp-tag>
     <vp-tag effect="dark" type="danger" closable>小卡车加油！！！</vp-tag>
+
+    <!-- carousel -->
+    <div class="carousel">
+      <vp-carousel :height="carouselHeight">
+        <vp-carousel-item v-for="img in imgList" :key="img.id">
+          <vp-image :src="img.src" width="600px" height="500px"></vp-image>
+        </vp-carousel-item>
+      </vp-carousel>
+    </div>
   </div>
 </template>
 
@@ -640,6 +649,7 @@ export default {
           age: 30,
         },
       ],
+      carouselHeight: "500",
     };
   },
   components: {
@@ -785,5 +795,14 @@ export default {
   /*   width: 200px;
   height: 300px; */
   background-color: aquamarine;
+}
+
+/* .vp-carousel-item {
+  background-color: lightblue;
+} */
+.carousel {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 </style>
