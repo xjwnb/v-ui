@@ -221,6 +221,11 @@ export default {
               slots[i].elm.style.transform = `translate(${
                 newTransformArr[0] + 100
               }%)`;
+              /* (function (i) {
+                setTimeout(() => {
+                  slots[i].elm.style.opacity = 1;
+                }, 50);
+              })(i); */
             }
           }
         }
@@ -268,6 +273,11 @@ export default {
           slots[i].elm.style.transform = `translate(${
             newTransformArr[0] + 100
           }%)`;
+          /* (function (i) {
+            setTimeout(() => {
+              slots[i].elm.style.opacity = 1;
+            }, 50);
+          })(i); */
         }
       }
     },
