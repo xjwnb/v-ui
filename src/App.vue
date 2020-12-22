@@ -801,6 +801,7 @@ export default {
   background-color: lightblue;
 } */
 .carousel {
+  width: 600px;
   display: flex;
   justify-content: center;
   text-align: center;
