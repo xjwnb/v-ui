@@ -163,6 +163,9 @@ export default {
         let transform = slots[i].elm.style.transform;
         let reg = /(-)?[0-9]+/g;
         let transformNum = Number(transform.match(reg)[0]);
+        // for (let i = 0, l = slotsLength; i < l; i++) {
+        // slots[i].elm.style.opacity = 1;
+        // }
         if (transformNum === 0) {
           oldCurrentIndex = i;
           break;
@@ -196,7 +199,7 @@ export default {
             }%)`;
           } */
           for (let i = 0, l = slotsLength; i < l; i++) {
-            slots[i].elm.style.opacity = 1;
+            // slots[i].elm.style.opacity = 1;
             let transform = slots[i].elm.style.transform;
             let reg = /(-)?[0-9]+/g;
             let transformNum = Number(transform.match(reg)[0]);
@@ -214,7 +217,7 @@ export default {
               let newTransformArr = transformArr.sort(function (a, b) {
                 return b - a;
               });
-              slots[i].elm.style.opacity = 0;
+              // slots[i].elm.style.opacity = 0;
               slots[i].elm.style.transform = `translate(${
                 newTransformArr[0] + 100
               }%)`;
@@ -243,7 +246,7 @@ export default {
         this.currentIndex = 0;
       } */
       for (let i = 0, l = slotsLength; i < l; i++) {
-        slots[i].elm.style.opacity = 1;
+        // slots[i].elm.style.opacity = 1;
         let transform = slots[i].elm.style.transform;
         let reg = /(-)?[0-9]+/g;
         let transformNum = Number(transform.match(reg)[0]);
@@ -261,7 +264,7 @@ export default {
           let newTransformArr = transformArr.sort(function (a, b) {
             return b - a;
           });
-          slots[i].elm.style.opacity = 0;
+          // slots[i].elm.style.opacity = 0;
           slots[i].elm.style.transform = `translate(${
             newTransformArr[0] + 100
           }%)`;
