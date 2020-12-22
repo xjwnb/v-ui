@@ -17,6 +17,10 @@
         </li>
       </ul>
     </div>
+    <div class="vp-carousel-arrow-aside" v-if="isShowAsideBtn">
+      <button class="vp-carousel-arrow-aside-left" @click="leftBtn"><</button>
+      <button class="vp-carousel-arrow-aside-right" @click="rightBtn">></button>
+    </div>
     <div class="vp-carousel-container">
       <slot></slot>
     </div>
@@ -59,6 +63,7 @@ export default {
       timeoutTimer: null,
       // intervalTime: null,
       currentIndex: 0,
+      isShowAsideBtn: false,
     };
   },
   created() {},
@@ -66,6 +71,15 @@ export default {
     let width = this.$el.clientWidth;
     let slots = this.$slots.default;
     let slotsLength = slots.length;
+    let __this = this;
+    this.$el.addEventListener("mouseover", function () {
+      __this.isShowAsideBtn = true;
+    });
+    this.$el.addEventListener("mouseleave", function () {
+      __this.isShowAsideBtn = false;
+    });
+
+    // 图片默认位置
     for (let i = 0, l = slotsLength; i < l; i++) {
       slots[i].elm.style.transform = `translate(${i * 100}%)`;
     }
@@ -130,10 +144,8 @@ export default {
     }, this.interval);
 
     let btns = this.$el.getElementsByClassName("vp-carousel-arrow-button");
-    console.log(btns);
     let _this = this;
     btns.forEach((btn, index) => {
-      console.log(btn);
       btn.addEventListener("mouseover", function () {
         _this.currentIndex = index;
         clearInterval(_this.timer);
@@ -181,7 +193,6 @@ export default {
           let transform = slots[ii].elm.style.transform;
           let reg = /(-)?[0-9]+/g;
           let transformNum = Number(transform.match(reg)[0]);
-          console.log(transformNum);
           /* if (transformNum <= -200) {
             let transformArr = [];
             for (let i = 0, l = slotsLength; i < l; i++) {
@@ -281,6 +292,44 @@ export default {
         }
       }
     },
+    leftBtn() {
+      let slots = this.$slots.default;
+      let slotsLength = slots.length;
+      this.currentIndex -= 1;
+      if (this.currentIndex < 0) {
+        this.currentIndex = slotsLength - 1;
+        clearInterval(this.timer);
+        this.changefirst(this.currentIndex);
+        this.timer = setInterval(() => {
+          this.intervalChangeFunc(slots, slotsLength);
+        }, this.interval);
+      } else {
+        clearInterval(this.timer);
+        this.changefirst(this.currentIndex);
+        this.timer = setInterval(() => {
+          this.intervalChangeFunc(slots, slotsLength);
+        }, this.interval);
+      }
+    },
+    rightBtn() {
+      let slots = this.$slots.default;
+      let slotsLength = slots.length;
+      this.currentIndex += 1;
+      if (this.currentIndex > slotsLength - 1) {
+        this.currentIndex = 0;
+        clearInterval(this.timer);
+        this.changefirst(this.currentIndex);
+        this.timer = setInterval(() => {
+          this.intervalChangeFunc(slots, slotsLength);
+        }, this.interval);
+      } else {
+        clearInterval(this.timer);
+        this.changefirst(this.currentIndex);
+        this.timer = setInterval(() => {
+          this.intervalChangeFunc(slots, slotsLength);
+        }, this.interval);
+      }
+    }
   },
 };
 </script>
@@ -318,7 +367,9 @@ export default {
   padding: 10px 0;
 }
 
-.vp-carousel-arrow-button {
+.vp-carousel-arrow-button,
+.vp-carousel-arrow-aside-left,
+.vp-carousel-arrow-aside-right {
   margin: 0;
   padding: 0;
   outline: none;
@@ -327,7 +378,9 @@ export default {
   line-height: inherit;
   width: max-content;
 }
-.vp-carousel-arrow-button:after {
+.vp-carousel-arrow-button::after,
+.vp-carousel-arrow-aside-left::after,
+.vp-carousel-arrow-aside-right::after {
   border: none;
 }
 .vp-carousel-arrow-button {
@@ -341,5 +394,26 @@ export default {
 }
 .vp-carousel-button-isActive {
   background-color: aqua;
+}
+.vp-carousel-arrow-aside-left,
+.vp-carousel-arrow-aside-right {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 50px;
+  height: 100px;
+  border: none;
+}
+.vp-carousel-arrow-aside {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+.vp-carousel-arrow-aside-left,
+.vp-carousel-arrow-aside-right {
+  font-size: 50px;
+  color: #ffffff;
 }
 </style>
