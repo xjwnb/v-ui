@@ -311,5 +311,14 @@ vp-switch
 | disableTransitions | Boolean | true \| false                                     | 是否取消关闭动画 | false     |
 | effect             | String  | "light" \| "dark"                                 | 主题             | "light"   |
 
+### 走马灯 Carousel
 
+vp-carousel (需要和 vp-carousel-item 一起使用)
+
+| 属性名         | 类型    | 属性值        | 描述             | 默认值 |
+| -------------- | ------- | ------------- | ---------------- | ------ |
+| height         | String  | "600"         | 走马灯高度       | "300"  |
+| interval       | Number  |               | 切换延迟毫秒     | 3000   |
+| hasTransition  | Boolean | true \| false | 是否执行过渡动画 | true   |
+| transitionTime | Number  |               | 过渡动画毫秒     | 0.5    |
 

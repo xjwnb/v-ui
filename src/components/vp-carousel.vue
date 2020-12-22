@@ -38,7 +38,7 @@ export default {
   props: {
     height: {
       type: String,
-      default: "",
+      default: "300",
     },
     interval: {
       type: Number,
