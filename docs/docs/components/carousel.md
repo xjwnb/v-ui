@@ -1,3 +1,4 @@
+
 # Carousel 走马灯
 
 ## 基础用法
@@ -6,8 +7,8 @@
   <div class="carousel-base">
     <div class="carousel">
       <vp-carousel :height="carouselHeight">
-        <vp-carousel-item v-for="img in imgList" :key="img.id">
-          <vp-image :src="img.src" width="600px" height="500px"></vp-image>
+        <vp-carousel-item v-for="item in 6" :key="item">
+          {{ item }}
         </vp-carousel-item>
       </vp-carousel>
     </div>
@@ -17,8 +18,8 @@
 ```html
 <div class="carousel">
   <vp-carousel :height="carouselHeight">
-    <vp-carousel-item v-for="img in imgList" :key="img.id">
-      <vp-image :src="img.src" width="600px" height="500px"></vp-image>
+    <vp-carousel-item v-for="item in 6" :key="item">
+      {{ item }}
     </vp-carousel-item>
   </vp-carousel>
 </div>
@@ -28,23 +29,6 @@
     data() {
       return {
         carouselHeight: "500",
-        imgList: [
-          {
-            id: 1,
-            src:
-              "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-          },
-          {
-            id: 2,
-            src:
-              "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
-          },
-          {
-            id: 3,
-            src:
-              "https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg",
-          },
-        ],
       };
     },
   };
@@ -57,23 +41,6 @@
     data() {
       return {
         carouselHeight: "500",
-        imgList: [
-          {
-            id: 1,
-            src:
-              "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-          },
-          {
-            id: 2,
-            src:
-              "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
-          },
-          {
-            id: 3,
-            src:
-              "https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg",
-          },
-        ],
       };
     },
   };
@@ -93,6 +60,11 @@
   display: flex;
   justify-content: center;
   text-align: center;
+}
+.vp-carousel-item {
+  background-color: #34495e;
+  color: #ffffff;
+  line-height: 500px;
 }
 </style>
 
