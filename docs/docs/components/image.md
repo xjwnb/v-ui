@@ -33,13 +33,25 @@
 <template>
   <div class="div-base">
     <div class="div-row">
-      <vp-image v-for="img in imgList1" :key="img.id" :src="img.src" width="500px" height="400px" :fit="img.fit" ></vp-image>
+      <vp-image v-for="img in imgList1" 
+                :key="img.id" 
+                :src="img.src" 
+                width="500px" 
+                height="400px" 
+                :fit="img.fit" >
+      </vp-image>
     </div>
   </div>
 </template>
 
 ```html
-<vp-image v-for="img in imgList1" :key="img.id" :src="img.src" width="500px" height="400px" :fit="img.fit" ></vp-image>
+<vp-image v-for="img in imgList1" 
+          :key="img.id" 
+          :src="img.src" 
+          width="500px" 
+          height="400px" 
+          :fit="img.fit" >
+</vp-image>
 
 <script>
   export default {
@@ -85,13 +97,27 @@
 <template>
   <div class="div-base">
     <div class="div-row">
-      <vp-image v-for="img in imgList1" :key="img.id" :src="img.src" width="500px" height="400px" lazy @load="loadHandle" ></vp-image>
+      <vp-image v-for="img in imgList1" 
+                :key="img.id" 
+                :src="img.src" 
+                width="500px" 
+                height="400px" 
+                lazy 
+                @load="loadHandle" >
+      </vp-image>
     </div>
   </div>
 </template>
 
 ```html
-<vp-image v-for="img in imgList1" :key="img.id" :src="img.src" width="500px" height="400px" lazy @load="loadHandle" ></vp-image>
+<vp-image v-for="img in imgList1" 
+          :key="img.id" 
+          :src="img.src" 
+          width="500px" 
+          height="400px" 
+          lazy 
+          @load="loadHandle" >
+</vp-image>
 
 <script>
   export default {

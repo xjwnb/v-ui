@@ -31,6 +31,37 @@
     </template>
   </vp-table-column>
 </vp-table>
+
+<script>
+  export default {
+    data() {
+      return {
+        tableData: [
+          {
+            id: 1,
+            name: "小卡车",
+            age: 20,
+          },
+          {
+            id: 2,
+            name: "蜘蛛侠",
+            age: 18,
+          },
+          {
+            id: 3,
+            name: "钢铁侠",
+            age: 30,
+          },
+        ],
+      };
+    },
+    methods: {
+      tableBtnHandle(slotsPropsData, e) {
+        console.log(slotsPropsData);
+      },
+    }
+  };
+</script>
 ```
 
 
