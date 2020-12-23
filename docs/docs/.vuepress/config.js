@@ -91,6 +91,10 @@ module.exports = {
             title: "标签 Tag",
             path: "/components/tag"
           },
+          {
+            title: "走马灯 Carousel",
+            path: "/components/carousel"
+          },
         ]
       }
     ]
