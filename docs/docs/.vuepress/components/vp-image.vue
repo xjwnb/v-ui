@@ -65,7 +65,7 @@ export default {
   props: {
     src: {
       type: String,
-      default: ""
+      default: "",
     },
     alt: {
       type: String,
@@ -159,7 +159,7 @@ export default {
           };
           img.onerror = function (e) {
             _this.$emit("error", e);
-          }
+          };
         }
       }
     },
@@ -279,8 +279,16 @@ export default {
           }
           break;
         case "getBig":
-          let getBigImgWidth = imgEle.width;
-          let getBigImgHeight = imgEle.height;
+          let reg1 = /[0-9]+(\.)?[0-9]+/;
+          let getBigImgWidth;
+          let getBigImgHeight;
+          if (!imgEle.style.width) {
+            getBigImgWidth = imgEle.width;
+            getBigImgHeight = imgEle.height;
+          } else {
+            getBigImgWidth = imgEle.style.width.match(reg1)[0];
+            getBigImgHeight = imgEle.style.height.match(reg1)[0];
+          }
           if (getBigImgWidth < 2000) {
             imgEle.style.width = `${getBigImgWidth * 1.2}px`;
             imgEle.style.height = `${getBigImgHeight * 1.2}px`;
