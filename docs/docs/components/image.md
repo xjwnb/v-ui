@@ -169,7 +169,7 @@
 </template>
 
 ```html
-<vp-image :src="imgSrc1"></vp-image>
+<vp-image :src="imgSrc1" :previewSrc="imgSrc1" ></vp-image>
 
 <script>
   export default {
