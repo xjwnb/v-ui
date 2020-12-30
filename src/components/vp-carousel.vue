@@ -1,5 +1,8 @@
 <template>
-  <div class="vp-carousel" :style="{ height: height + 'px' }">
+  <div
+    :class="[card ? 'vp-carousel-card' : 'vp-carousel']"
+    :style="{ height: height + 'px' }"
+  >
     <div class="vp-carousel-arrow">
       <ul class="vp-carousel-arrow-ul">
         <li
@@ -56,6 +59,10 @@ export default {
       type: Number,
       default: 0.5,
     },
+    card: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -66,8 +73,16 @@ export default {
       isShowAsideBtn: false,
     };
   },
+  watch: {
+    currentIndex() {
+      this.cardChangeStyle();
+    },
+  },
   created() {},
   mounted() {
+    // card 样式
+    this.cardChangeStyle();
+
     let width = this.$el.clientWidth;
     let slots = this.$slots.default;
     let slotsLength = slots.length;
@@ -220,18 +235,47 @@ export default {
         let transformLastSlotNum = Number(lastSlot.match(regExp)[0]);
         if (transformNum <= -200) {
           let transformArr = [];
-          for (let i = 0, l = slotsLength; i < l; i++) {
-            let transform = slots[i].elm.style.transform;
-            let reg = /(-)?[0-9]+/g;
-            transformArr.push(Number(transform.match(reg)[0]));
-          }
-          // 降序
-          let newTransformArr = transformArr.sort(function (a, b) {
-            return b - a;
-          });
-          slots[i].elm.style.transform = `translate(${
-            newTransformArr[0] + 100
-          }%)`;
+            for (let i = 0, l = slotsLength; i < l; i++) {
+              let transform = slots[i].elm.style.transform;
+              let reg = /(-)?[0-9]+/g;
+              transformArr.push(Number(transform.match(reg)[0]));
+            }
+            // 降序
+            let newTransformArr = transformArr.sort(function (a, b) {
+              return b - a;
+            });
+            slots[i].elm.style.transform = `translate(${
+              newTransformArr[0] + 100
+            }%)`;
+          /* if (this.card) {
+            let transformArr = [];
+            for (let i = 0, l = slotsLength; i < l; i++) {
+              let transform = slots[i].elm.clientWidth;
+              let reg = /(-)?[0-9]+/g;
+              transformArr.push(Number(transform.match(reg)[0]));
+            }
+            // 降序
+            let newTransformArr = transformArr.sort(function (a, b) {
+              return b - a;
+            });
+            slots[i].elm.style.transform = `translate(${
+              newTransformArr[0] + 100
+            }%)`;
+          } else {
+            let transformArr = [];
+            for (let i = 0, l = slotsLength; i < l; i++) {
+              let transform = slots[i].elm.style.transform;
+              let reg = /(-)?[0-9]+/g;
+              transformArr.push(Number(transform.match(reg)[0]));
+            }
+            // 降序
+            let newTransformArr = transformArr.sort(function (a, b) {
+              return b - a;
+            });
+            slots[i].elm.style.transform = `translate(${
+              newTransformArr[0] + 100
+            }%)`;
+          } */
         }
       }
     },
@@ -273,6 +317,52 @@ export default {
         }, this.interval);
       }
     },
+    // card 模式修改样式
+    cardChangeStyle() {
+      if (this.card) {
+        let slots = this.$slots.default;
+        for (let i = 0, l = slots.length; i < l; i++) {
+          if (i !== this.currentIndex) {
+            /* slots[i].elm.style.width = '25%';
+          slots[i].elm.style.height = '60%'; */
+            // document.body.getElementsByTagName
+            console.log(slots[i].elm.getElementsByTagName("img"));
+
+            slots[i].elm.style.zIndex = "1";
+            // slots[i].elm.getElementsByTagName("img")[0].style.bottom = "0";
+            slots[i].elm.firstChild.style.position = "absolute";
+            slots[i].elm.firstChild.style.bottom = "0";
+            slots[i].elm.firstChild.style.width = "50%";
+            slots[i].elm.firstChild.style.height = "50%";
+            if (i < this.currentIndex) {
+              slots[i].elm.firstChild.style.right = "0";
+            } else {
+              slots[i].elm.firstChild.style.left = "0";
+            }
+            // slots[i].elm.getElementsByTagName("img")[0].style.width = "50%";
+            // slots[i].elm.getElementsByTagName("img")[0].style.height = "50%";
+            if (slots[i].elm.getElementsByTagName("img")[0]) {
+              slots[i].elm.getElementsByTagName("img")[0].style.width = "100%";
+              slots[i].elm.getElementsByTagName("img")[0].style.height = "100%";
+            }
+          } else {
+            slots[i].elm.style.zIndex = "2";
+            // slots[i].elm.getElementsByTagName("img")[0].style.bottom = "0";
+            slots[i].elm.firstChild.style.position = "absolute";
+            slots[i].elm.firstChild.style.bottom = "0";
+            slots[i].elm.firstChild.style.width = "100%";
+            slots[i].elm.firstChild.style.height = "100%";
+            /* slots[i].elm.getElementsByTagName("img")[0].style.width = "100%";
+            slots[i].elm.getElementsByTagName("img")[0].style.height = "100%"; */
+            if (slots[i].elm.getElementsByTagName("img")[0]) {
+              /* slots[i].elm.getElementsByTagName("img")[0].style.width = "100%";
+              slots[i].elm.getElementsByTagName("img")[0].style.height = "100%"; */
+            }
+          }
+        }
+        console.log(slots);
+      }
+    },
   },
 };
 </script>
@@ -291,7 +381,7 @@ export default {
   position: absolute;
   display: flex;
   height: auto;
-  z-index: 2;
+  z-index: 5;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -358,5 +448,11 @@ export default {
 .vp-carousel-arrow-aside-right {
   font-size: 50px;
   color: #ffffff;
+}
+
+/* card */
+.vp-carousel-card {
+  width: 100%;
+  position: relative;
 }
 </style>

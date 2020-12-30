@@ -549,6 +549,7 @@
         </vp-carousel-item>
       </vp-carousel>
     </div>
+  
   </div>
 </template>
 

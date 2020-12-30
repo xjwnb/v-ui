@@ -1,6 +1,6 @@
 
 <template>
-  <div class="vp-carousel-item" :style="{ height: VpCarousel.height + 'px' }">
+  <div :class="[VpCarousel.card ? 'vp-carousel-card-item' :'vp-carousel-item']" :style="{ height: VpCarousel.height + 'px' }">
     <slot></slot>
   </div>
 </template>
@@ -28,5 +28,16 @@ export default {
   left: 0;
   z-index: 1;
   /* transition: all 1s; */
+}
+
+.vp-carousel-card-item {
+  position: absolute;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 25%;
+  /* transform: translate(25%); */
+  z-index: 1;
 }
 </style>
