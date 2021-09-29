@@ -1,6 +1,18 @@
 
 <template>
   <div id="app">
+    <!-- 选择器 -->
+    <div style="height: 300px">
+      <vp-select v-model="selectValue">
+        <vp-option
+          v-for="option in selectOption"
+          :key="option.value"
+          :label="option.label"
+          :value="option.value"
+        ></vp-option>
+      </vp-select>
+    </div>
+
     <!-- 按钮 -->
     <vp-button type="default">default</vp-button>
     <vp-button type="primary">primary</vp-button>
@@ -549,7 +561,6 @@
         </vp-carousel-item>
       </vp-carousel>
     </div>
-  
   </div>
 </template>
 
@@ -589,42 +600,35 @@ export default {
       },
       checkboxGroup: ["LOL", "使命召唤"],
       checkbox: false,
-      img:
-        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+      img: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
       imgList: [
         {
           id: 1,
-          src:
-            "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+          src: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
         },
         {
           id: 2,
-          src:
-            "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
+          src: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
         },
         {
           id: 3,
-          src:
-            "https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg",
+          src: "https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg",
         },
       ],
       imgList1: [
         {
           id: 4,
-          src:
-            "https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg",
+          src: "https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg",
           fit: "fill",
         },
         {
           id: 5,
-          src:
-            "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+          src: "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
           fit: "contain",
         },
         {
           id: 6,
-          src:
-            "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg",
+          src: "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg",
           fit: "cover",
         },
       ],
@@ -651,7 +655,51 @@ export default {
         },
       ],
       carouselHeight: "500",
+
+      // 选择器
+      selectOption: [
+        {
+          value: "1",
+          label: "小卡车1",
+        },
+        {
+          value: "2",
+          label: "小卡车2",
+        },
+        {
+          value: "3",
+          label: "小卡车3",
+        },
+        {
+          value: "4",
+          label: "小卡车4",
+        },
+        {
+          value: "5",
+          label: "小卡车5",
+        },
+        {
+          value: "6",
+          label: "小卡车6",
+        },
+        {
+          value: "7",
+          label: "小卡车7",
+        },
+        {
+          value: "8",
+          label: "小卡车8",
+        },
+      ],
+      selectValue: "",
     };
+  },
+  watch: {
+    selectValue: {
+      handler(val) {
+        console.log("app.vue", val);
+      }
+    }
   },
   components: {
     /*     VpRadioGroup,

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2020-12-21 16:42:42
+ * @LastEditTime: 2021-09-29 08:39:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -14,9 +14,9 @@ import "./assets/iconfont/iconfont.css"
 
 
 import "./App.less";
-import VpButton from './components/vp-button';
-import VpInput from './components/vp-input';
-import VpRadio from './components/vp-radio';
+import VpButton from './components/button/vp-button.vue';
+import VpInput from './components/input/vp-input.vue';
+import VpRadio from './components/vp-radio.vue';
 import VpRadioGroup from './components/vp-radio-group.vue';
 import VpSwitch from './components/vp-switch.vue';
 import VpForm from './components/vp-form.vue';
@@ -28,7 +28,7 @@ import VpMain from './components/vp-main.vue';
 import VpAside from './components/vp-aside.vue';
 import VpCheckbox from './components/vp-checkbox.vue';
 import VpCheckboxGroup from './components/vp-checkbox-group.vue';
-import VpImage from './components/vp-image.vue';
+import VpImage from './components/image/vp-image.vue';
 import VpMenu from './components/vp-menu.vue';
 import VpMenuItem from './components/vp-menu-item.vue';
 import VpSubmenu from './components/vp-submenu.vue';
@@ -41,6 +41,8 @@ import VpTableColumn from './components/vp-table-column.vue';
 import VpTag from './components/vp-tag.vue';
 import VpCarousel from './components/vp-carousel.vue';
 import VpCarouselItem from './components/vp-carousel-item.vue';
+import VpSelect from "./components/select/vp-select.vue";
+import VpOption from "./components/select/vp-option.vue";
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -69,6 +71,9 @@ Vue.component(VpTableColumn.name, VpTableColumn);
 Vue.component(VpTag.name, VpTag);
 Vue.component(VpCarousel.name, VpCarousel);
 Vue.component(VpCarouselItem.name, VpCarouselItem);
+Vue.component(VpSelect.name, VpSelect);
+Vue.component(VpOption.name, VpOption);
+
 
 Vue.prototype.$bus = new Vue();
 

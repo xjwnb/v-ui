@@ -234,7 +234,8 @@ export default {
     box-sizing: border-box;
     width: 100%;
     height: 35px;
-    border-color: rgb(94, 170, 214);
+    // border-color: rgb(94, 170, 214);
+    border: 1px solid rgb(94, 170, 214);
     outline: none;
     color: rgb(148, 146, 144);
     border-radius: 5px;
