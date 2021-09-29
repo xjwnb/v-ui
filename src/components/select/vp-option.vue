@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-27 15:19:53
- * @LastEditTime: 2021-09-29 11:30:17
+ * @LastEditTime: 2021-09-29 17:25:30
  * @LastEditors: Please set LastEditors
  * @Description: vp-option 
  * @FilePath: \v-ui\src\components\select\vp-option.vue
@@ -43,11 +43,9 @@ export default {
   watch: {
     "$parent.selectVal": {
       handler(val) {
-        // console.log(val);
         this.isActive = val === this.value ? true : false;
       },
       immediate: true,
-      // deep: true,
     },
   },
   data() {
@@ -56,19 +54,12 @@ export default {
     };
   },
   created() {},
-  mounted() {
-    this.$nextTick(() => {
-      // console.log(this.$parent);
-    });
-  },
+  mounted() {},
   methods: {
     /**
      * 点击选项
      */
     handleOptionClick() {
-      // this.$emit("selectOption", this.value);
-      // console.log(this);
-      //
       let selectOption = this.$parent.selectOption;
       selectOption &&
         selectOption({
@@ -87,10 +78,6 @@ export default {
   line-height: 34px;
   font-size: 14px;
   transition: background 0.3s;
-
-  // .vp-option_label {
-
-  // }
 
   &:hover {
     background: #f5f7fa;

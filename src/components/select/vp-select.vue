@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-27 14:58:17
- * @LastEditTime: 2021-09-29 13:45:08
+ * @LastEditTime: 2021-09-29 17:09:22
  * @LastEditors: Please set LastEditors
  * @Description: vp-select 选择器
  * @FilePath: \v-ui\src\components\select\vp-select.vue
@@ -25,17 +25,18 @@
     </span>
 
     <transition name="slide-fade">
-      <div
-        :class="['vp-option-container', optionContainerClass]"
-        v-show="active"
-      >
-        <slot @selectOption="selectOption">
-          <div class="vp-option_empty" v-if="!hasOptions">
-            <span class="vp-option_empty_text">{{ noDataText }}</span>
-          </div>
-        </slot>
+      <div :class="['vp-option-container']" v-show="active">
+        <div :class="['vp-option-container_inner', optionContainerClass]">
+          <slot @selectOption="selectOption">
+            <div class="vp-option_empty" v-if="!hasOptions">
+              <span class="vp-option_empty_text">{{ noDataText }}</span>
+            </div>
+          </slot>
+        </div>
       </div>
-      <div class="vp-option_san"></div>
+    </transition>
+    <transition name="slide-fade">
+      <div class="vp-option_san" v-show="active"></div>
     </transition>
   </div>
 </template>
@@ -81,6 +82,23 @@ export default {
       immediate: true,
       deep: true,
     },
+
+    value: {
+      handler(val) {
+        this.selectVal = val;
+      },
+      immediate: true,
+    },
+
+    selectVal: {
+      handler(val) {
+        this.$emit("input", val);
+        this.currentLabel = this.$slots.default.find(
+          (item) => item.componentOptions.propsData.value === val
+        ).componentOptions.propsData.label;
+      },
+      immediate: true,
+    },
   },
   computed: {
     // 点击状态
@@ -93,14 +111,6 @@ export default {
       return this.$slots.default.length > 6 && this.hasOptions
         ? "vp-option-container_long"
         : "";
-    },
-  },
-  watch: {
-    selectVal: {
-      handler(val) {
-        this.$emit("input", val);
-      },
-      immediate: true,
     },
   },
   created() {},
@@ -133,7 +143,7 @@ export default {
     selectOption(payload) {
       console.log(payload);
       this.selectVal = payload.value;
-      this.currentLabel = payload.label;
+      // this.currentLabel = payload.label;
     },
   },
 };
@@ -188,16 +198,19 @@ export default {
     box-sizing: border-box;
     // min-width: 240px;
     width: 100%;
-    max-height: 224px;
-    overflow-x: hidden;
     // padding: 10px 20px;
-    top: 125%;
+    top: 135%;
     z-index: 9999;
     // border: 1px solid #dcdfe6;
     border: 1px solid #e4e7ed;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     background-color: #fff;
     padding: 10px 0;
+
+    .vp-option-container_inner {
+      max-height: 204px;
+      overflow-x: hidden;
+    }
   }
 
   .vp-option-container_long {
@@ -210,12 +223,38 @@ export default {
   .slide-fade-leave-active {
     transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
   }
-  .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-    // transform: translateX(10px);
+  .slide-fade-enter,
+  .slide-fade-leave-to {
     opacity: 0;
-    // height: 0;
-    // padding: 0 0;
+  }
+
+  .vp-option_san {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 9px;
+    z-index: 10000;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #e4e7ed;
+    font-size: 0;
+    line-height: 0;
+    top: 37px;
+    left: 20px;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 7px;
+      z-index: 1;
+      border-style: dashed dashed solid;
+      border-color: transparent transparent #ffffff;
+      font-size: 0;
+      line-height: 0;
+      top: -5px;
+      left: -7px;
+    }
   }
 }
 
@@ -235,33 +274,16 @@ export default {
 }
 
 ::-webkit-scrollbar {
-  width: 6px; /*对垂直流动条有效*/
-  height: 6px; /*对水平流动条有效*/
+  width: 6px;
+  height: 6px;
 }
 
-/*定义滚动条的轨道颜色、内阴影及圆角*/
-::-webkit-scrollbar-track {
-  // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  // background-color: rgb(255, 255, 255);
-  // border-radius: 3px;
-}
-
-/*定义滑块颜色、内阴影及圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 7px;
-  /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
-  // background-color: #76ebe5;
-  background-color: #DDDEE0;
+  background-color: #dddee0;
 }
 
-/*定义两端按钮的样式*/
-/* ::-webkit-scrollbar-button {
-  background-color: cyan;
-} */
-
-/*定义右下角汇合处的样式*/
 ::-webkit-scrollbar-corner {
-  // background: rgb(137, 206, 191);
   background: transparent;
 }
 </style>

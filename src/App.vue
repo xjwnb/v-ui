@@ -691,14 +691,15 @@ export default {
           label: "小卡车8",
         },
       ],
-      selectValue: "",
+      selectValue: "6",
     };
   },
   watch: {
     selectValue: {
       handler(val) {
         console.log("app.vue", val);
-      }
+      },
+      immediate: true,
     }
   },
   components: {
