@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-27 15:19:53
- * @LastEditTime: 2021-09-29 17:25:30
+ * @LastEditTime: 2021-09-29 23:09:24
  * @LastEditors: Please set LastEditors
  * @Description: vp-option 
  * @FilePath: \v-ui\src\components\select\vp-option.vue
@@ -9,7 +9,7 @@
 
 <template>
   <div
-    :class="['vp-option', isActive ? 'vp-option_active' : '']"
+    :class="['vp-option', activeClass, disabledClass]"
     @click="handleOptionClick"
   >
     <span class="vp-option_label">
@@ -39,6 +39,11 @@ export default {
       type: String,
       default: "",
     },
+    // 是否禁用
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   watch: {
     "$parent.selectVal": {
@@ -46,6 +51,15 @@ export default {
         this.isActive = val === this.value ? true : false;
       },
       immediate: true,
+    },
+  },
+  computed: {
+    //
+    activeClass() {
+      return this.isActive ? "vp-option_active" : "";
+    },
+    disabledClass() {
+      return this.disabled ? "vp-option_disabled" : "";
     },
   },
   data() {
@@ -60,12 +74,17 @@ export default {
      * 点击选项
      */
     handleOptionClick() {
+      if (this.disabled) {
+        this.$parent.active = true;
+        return;
+      }
       let selectOption = this.$parent.selectOption;
       selectOption &&
         selectOption({
           value: this.value,
           label: this.label,
         });
+      this.$parent.active = false;
     },
   },
 };
@@ -88,5 +107,10 @@ export default {
   background: #f5f7fa;
   color: #409eff;
   font-weight: 700;
+}
+
+.vp-option_disabled {
+  color: #c0c4cc;
+  cursor: not-allowed;
 }
 </style>

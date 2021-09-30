@@ -9,6 +9,17 @@
           :key="option.value"
           :label="option.label"
           :value="option.value"
+          :disabled="option.disabled"
+        ></vp-option>
+      </vp-select>
+
+      <vp-select v-model="selectValue" disabled>
+        <vp-option
+          v-for="option in selectOption"
+          :key="option.value"
+          :label="option.label"
+          :value="option.value"
+          :disabled="option.disabled"
         ></vp-option>
       </vp-select>
     </div>
@@ -673,6 +684,7 @@ export default {
         {
           value: "4",
           label: "小卡车4",
+          disabled: true,
         },
         {
           value: "5",

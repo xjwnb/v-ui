@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-27 14:58:17
- * @LastEditTime: 2021-09-29 17:09:22
+ * @LastEditTime: 2021-09-29 23:27:35
  * @LastEditors: Please set LastEditors
  * @Description: vp-select 选择器
  * @FilePath: \v-ui\src\components\select\vp-select.vue
 -->
 
 <template>
-  <div class="vp-select">
+  <div :class="['vp-select', disabledClass]" :style="disabledStyle">
     <input
       type="text"
       readonly="readonly"
@@ -17,6 +17,8 @@
       @blur="handleSelectBlur"
       ref="inputSelect"
       :value="currentLabel"
+      :disabled="disabled"
+      :style="disabledStyle"
     />
     <span
       :class="['vp-suffix', 'iconfont', 'icon-xiangxia', iconStyleChange]"
@@ -59,6 +61,11 @@ export default {
     noDataText: {
       type: String,
       default: "无数据",
+    },
+    // 是否禁用
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -112,6 +119,16 @@ export default {
         ? "vp-option-container_long"
         : "";
     },
+
+    // 禁用 class
+    disabledClass() {
+      return this.disabled ? "vp-select_disabled" : "";
+    },
+
+    // 是否禁用 style 
+    disabledStyle() {
+      return this.disabled ? "cursor: not-allowed" : "";
+    }
   },
   created() {},
   mounted() {
@@ -126,6 +143,10 @@ export default {
      * 点击事件
      */
     handleSelectClick() {
+      if (this.disabled) {
+        this.active = false;
+        return;
+      }
       this.$refs.inputSelect.focus();
       this.active = !this.active;
     },
@@ -256,6 +277,10 @@ export default {
       left: -7px;
     }
   }
+}
+
+.vp-select_disabled {
+  background-color: #F5F7FA;
 }
 
 .vp-option_empty {
