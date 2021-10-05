@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-27 15:19:53
- * @LastEditTime: 2021-09-29 23:09:24
+ * @LastEditTime: 2021-09-30 17:07:52
  * @LastEditors: Please set LastEditors
  * @Description: vp-option 
  * @FilePath: \v-ui\src\components\select\vp-option.vue
@@ -52,6 +52,12 @@ export default {
       },
       immediate: true,
     },
+
+    // "$parent.filterLabel": {
+    //   handler(val) {
+
+    //   }
+    // }
   },
   computed: {
     //
@@ -65,6 +71,7 @@ export default {
   data() {
     return {
       isActive: false,
+      copyOptions: null,
     };
   },
   created() {},
@@ -84,7 +91,7 @@ export default {
           value: this.value,
           label: this.label,
         });
-      this.$parent.active = false;
+      // this.$parent.active = false;
     },
   },
 };

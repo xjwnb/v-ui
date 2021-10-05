@@ -22,6 +22,26 @@
           :disabled="option.disabled"
         ></vp-option>
       </vp-select>
+
+      <vp-select v-model="selectValue" clearable>
+        <vp-option
+          v-for="option in selectOption"
+          :key="option.value"
+          :label="option.label"
+          :value="option.value"
+          :disabled="option.disabled"
+        ></vp-option>
+      </vp-select>
+
+      <vp-select v-model="selectValue" filterable>
+        <vp-option
+          v-for="option in selectOption"
+          :key="option.value"
+          :label="option.label"
+          :value="option.value"
+          :disabled="option.disabled"
+        ></vp-option>
+      </vp-select>
     </div>
 
     <!-- 按钮 -->

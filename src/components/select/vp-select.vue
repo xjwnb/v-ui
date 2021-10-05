@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-27 14:58:17
- * @LastEditTime: 2021-09-29 23:27:35
+ * @LastEditTime: 2021-10-06 02:41:53
  * @LastEditors: Please set LastEditors
  * @Description: vp-select 选择器
  * @FilePath: \v-ui\src\components\select\vp-select.vue
@@ -11,20 +11,34 @@
   <div :class="['vp-select', disabledClass]" :style="disabledStyle">
     <input
       type="text"
-      readonly="readonly"
+      :readonly="canRead"
       :placeholder="placeholder"
-      @click="handleSelectClick"
       @blur="handleSelectBlur"
+      @focus="handleSelectFocus"
       ref="inputSelect"
       :value="currentLabel"
       :disabled="disabled"
       :style="disabledStyle"
+      :class="inputClass"
+      @input="handleInput"
+      @click="handleSelectClick"
     />
+    <!-- <div :class="['vp-suffix_container', clearClass]"> -->
     <span
       :class="['vp-suffix', 'iconfont', 'icon-xiangxia', iconStyleChange]"
+      @mouseover="handleMouseover"
+      v-if="!isClear"
       @click="handleSelectClick"
     >
     </span>
+
+    <span
+      :class="['vp-suffix_clearable', 'iconfont', 'icon-clear_circle_outlined']"
+      @mouseleave="handleMouseleave"
+      @click="handleClear"
+      v-else
+    ></span>
+    <!-- </div> -->
 
     <transition name="slide-fade">
       <div :class="['vp-option-container']" v-show="active">
@@ -67,6 +81,20 @@ export default {
       type: Boolean,
       default: false,
     },
+    // 是否可清除
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
+    // 可搜索
+    filterable: {
+      type: Boolean,
+      default: false,
+    },
+    // 搜索方法
+    filterMethod: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -74,6 +102,13 @@ export default {
       active: false,
       hasOptions: false,
       currentLabel: "",
+      isClear: false,
+      timer: null,
+      delay: 1000,
+      filterFun: null,
+      filterLabel: "",
+      copySlots: null,
+      optionArr: null,
     };
   },
   watch: {
@@ -101,10 +136,34 @@ export default {
       handler(val) {
         this.$emit("input", val);
         this.currentLabel = this.$slots.default.find(
-          (item) => item.componentOptions.propsData.value === val
-        ).componentOptions.propsData.label;
+          (item) => item?.componentOptions.propsData.value === val
+        )?.componentOptions.propsData.label;
       },
       immediate: true,
+    },
+
+    filterLabel: {
+      handler(val) {
+        this.$nextTick(() => {
+          // let optionArr = this.$el.querySelectorAll(".vp-option");
+          let optionArr =
+            this.optionArr || this.$el.querySelectorAll(".vp-option");
+          if (val) {
+            let reg = new RegExp(`${val}`, "g");
+            for (let option of optionArr) {
+              reg.lastIndex = 0;
+              if (!reg.test(option.innerText)) {
+                option.style.display = "none";
+              }
+            }
+          } else {
+            for (let option of optionArr) {
+              console.log(option.innerText);
+              option.style.display = "block";
+            }
+          }
+        });
+      },
     },
   },
   computed: {
@@ -125,17 +184,38 @@ export default {
       return this.disabled ? "vp-select_disabled" : "";
     },
 
-    // 是否禁用 style 
+    // 是否禁用 style
     disabledStyle() {
       return this.disabled ? "cursor: not-allowed" : "";
-    }
+    },
+
+    inputClass() {
+      return this.active ? "input_disactive" : "";
+    },
+
+    /**
+     * 是否可读
+     */
+    canRead() {
+      return this.filterable ? false : true;
+    },
   },
-  created() {},
+  created() {
+    this.selectVal = this.value;
+
+    // 防抖返回函数
+    if (this.filterable) {
+      this.filterFun = this.debounce(this.handleFilter);
+      // this.copySlots =
+    }
+
+    // this.$nextTick(() => {
+    //   this.copySlots = JSON.parse(JSON.stringify(this.$slots.default));
+    // })
+  },
   mounted() {
     this.$nextTick(() => {
-      this.selectVal = this.value;
-      // let flag = this.$slots.default.every(item => item.componentOptions.tag === "vp-option");
-      // console.log(flag);
+      this.optionArr = this.$el.querySelectorAll(".vp-option");
     });
   },
   methods: {
@@ -147,15 +227,32 @@ export default {
         this.active = false;
         return;
       }
-      this.$refs.inputSelect.focus();
-      this.active = !this.active;
+      // this.active = this.active ? false : true;
+      this.active && this.$refs.inputSelect.focus();
+      if (!this.active) {
+        this.active = false;
+      }
+      // this.$refs.inputSelect.focus();
+      // this.active = !this.active;
+      // this.active = true;
     },
 
     /**
      * 失去焦点事件
      */
     handleSelectBlur() {
-      this.active = false;
+      this.active = !this.active;
+      console.log("失去焦点");
+    },
+
+    /**
+     * 获取焦点事件
+     */
+    handleSelectFocus() {
+      console.log("获取焦点");
+      this.active = !this.active;
+      // this.active = true;
+      // this.active
     },
 
     /**
@@ -164,7 +261,63 @@ export default {
     selectOption(payload) {
       console.log(payload);
       this.selectVal = payload.value;
-      // this.currentLabel = payload.label;
+    },
+
+    /**
+     * suffix 移动事件
+     */
+    handleMouseover() {
+      this.isClear =
+        this.clearable && !this.disabled && this.currentLabel ? true : false;
+    },
+
+    /**
+     * suffix_clearable 鼠标离开事件
+     */
+    handleMouseleave() {
+      this.isClear = false;
+    },
+
+    /**
+     * suffix_clearable 点击事件
+     */
+    handleClear() {
+      this.selectVal = "";
+    },
+
+    /**
+     * input输入框 input 事件
+     */
+    handleInput(e) {
+      let val = e.target.value;
+      this.currentLabel = val;
+      this.filterFun && this.filterFun(val);
+    },
+
+    /**
+     * 防抖
+     */
+    debounce(fn) {
+      let _this = this;
+      _this.timer = null;
+      return function () {
+        if (_this.timer) {
+          clearTimeout(_this.timer);
+        }
+        _this.timer = setTimeout(() => {
+          fn.apply(this, arguments);
+        }, _this.delay);
+      };
+    },
+
+    //
+    handleFilter(val) {
+      if (this.filterMethod) {
+        this.filterMethod(val);
+        return;
+      } else {
+        this.filterLabel = val;
+      }
     },
   },
 };
@@ -177,30 +330,34 @@ export default {
   position: relative;
   cursor: pointer;
 
+  span {
+    color: #c2cadb;
+  }
+
   input {
     background: none;
     outline: none;
-    // border: none;
     width: 100%;
-    // min-width: 2px;
     height: 40px;
     box-sizing: border-box;
     border-width: 1px;
     border: 1px solid #dcdfe6;
     padding: 0 30px 0 15px;
-    // border-color: #DCDFE6 #DCDFE6;
-    // border-top-color: #DCDFE6;
     border-radius: 4px;
     cursor: pointer;
+    transition: border 0.5s;
+  }
+
+  .input_disactive {
+    border: 1px solid #409eff;
   }
 
   input:focus {
-    // border: none;
     outline: none;
+    border: 1px solid #409eff;
   }
 
   .vp-suffix {
-    // padding: 0 10px;
     position: absolute;
     right: 0;
     height: 100%;
@@ -208,21 +365,42 @@ export default {
     text-align: center;
     line-height: 40px;
     transition: transform 0.5s;
+    z-index: 2;
   }
 
   .vp-suffix_active {
     transform: rotate(180deg);
   }
 
+  .vp-suffix_clearable {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    text-align: center;
+    line-height: 40px;
+    transition: transform 0.5s;
+    z-index: 2;
+  }
+
+  .vp-suffix_clearable_active {
+    &:hover .vp-suffix_clearable {
+      display: block;
+      color: green;
+    }
+    &:hover .vp-suffix {
+      display: none;
+      color: blue;
+    }
+  }
+  // }
+
   .vp-option-container {
     position: absolute;
     box-sizing: border-box;
-    // min-width: 240px;
     width: 100%;
-    // padding: 10px 20px;
     top: 135%;
     z-index: 9999;
-    // border: 1px solid #dcdfe6;
     border: 1px solid #e4e7ed;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -280,7 +458,7 @@ export default {
 }
 
 .vp-select_disabled {
-  background-color: #F5F7FA;
+  background-color: #f5f7fa;
 }
 
 .vp-option_empty {
