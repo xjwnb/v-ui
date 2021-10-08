@@ -732,7 +732,7 @@ export default {
         console.log("app.vue", val);
       },
       immediate: true,
-    }
+    },
   },
   components: {
     /*     VpRadioGroup,

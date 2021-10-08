@@ -1,4 +1,3 @@
-
 module.exports = {
   base: "/Vpro_UI",
   title: "Vpro-UI",
@@ -6,9 +5,9 @@ module.exports = {
   themeConfig: {
     nav: [
       {
-        text: "GitHub", 
+        text: "GitHub",
         link: "https://github.com/xjwnb/v-ui",
-        target:'_blank'
+        target: "_blank"
       }
     ],
     sidebar: [
@@ -16,7 +15,7 @@ module.exports = {
         title: "介绍",
         path: "/index/",
         collapsable: false,
-        sidebarDepth: 1, 
+        sidebarDepth: 1
       },
       {
         title: "组件",
@@ -95,8 +94,12 @@ module.exports = {
             title: "走马灯 Carousel",
             path: "/components/carousel"
           },
+          {
+            title: "选择器 Select",
+            path: "/components/select"
+          }
         ]
       }
     ]
-  },
+  }
 };

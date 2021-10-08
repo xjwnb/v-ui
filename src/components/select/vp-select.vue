@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-27 14:58:17
- * @LastEditTime: 2021-10-06 02:41:53
+ * @LastEditTime: 2021-10-08 10:36:15
  * @LastEditors: Please set LastEditors
  * @Description: vp-select 选择器
  * @FilePath: \v-ui\src\components\select\vp-select.vue
@@ -117,9 +117,9 @@ export default {
      */
     "$slots.default": {
       handler(val, oldVal) {
-        this.hasOptions = val.every(
-          (item) => item.componentOptions.tag === "vp-option"
-        );
+        this.hasOptions = val.every((item) => {
+          return item.componentInstance?.options._componentTag === "vp-option";
+        });
       },
       immediate: true,
       deep: true,
@@ -136,8 +136,8 @@ export default {
       handler(val) {
         this.$emit("input", val);
         this.currentLabel = this.$slots.default.find(
-          (item) => item?.componentOptions.propsData.value === val
-        )?.componentOptions.propsData.label;
+          (item) => item?.componentOptions?.propsData.value === val
+        )?.componentOptions?.propsData.label;
       },
       immediate: true,
     },
