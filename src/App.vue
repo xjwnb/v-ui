@@ -1,6 +1,8 @@
 
 <template>
   <div id="app">
+    <!-- 分页 -->
+    <vp-pagination :total="100" :current-page.sync="currentPage1" />
     <!-- 选择器 -->
     <div style="height: 300px">
       <vp-select v-model="selectValue">
@@ -724,6 +726,8 @@ export default {
         },
       ],
       selectValue: "6",
+      // 分页
+      currentPage1: 1,
     };
   },
   watch: {

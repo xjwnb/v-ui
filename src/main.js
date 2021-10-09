@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2021-10-08 09:17:04
+ * @LastEditTime: 2021-10-08 15:24:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -43,6 +43,7 @@ import VpCarousel from './components/vp-carousel.vue';
 import VpCarouselItem from './components/vp-carousel-item.vue';
 import VpSelect from "./components/select/vp-select.vue";
 import VpOption from "./components/select/vp-option.vue";
+import VpPagination from "./components/vp-pagination.vue";
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -73,6 +74,7 @@ Vue.component(VpCarousel.name, VpCarousel);
 Vue.component(VpCarouselItem.name, VpCarouselItem);
 Vue.component(VpSelect.name, VpSelect);
 Vue.component(VpOption.name, VpOption);
+Vue.component(VpPagination.name, VpPagination);
 
 
 Vue.prototype.$bus = new Vue();
