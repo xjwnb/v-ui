@@ -2,8 +2,11 @@
   <div class="vp-input">
     <input
       v-if="type !== 'textarea'"
-      class="vp-input-inner"
-      :class="disabled ? 'input-disabled' : ''"
+      :class="[
+        'vp-input-inner',
+        hasFocus ? 'vp-input-inner_focus' : '',
+        disabled ? 'input-disabled' : '',
+      ]"
       :type="isShowPWD ? 'text' : type"
       :placeholder="placeholder"
       :value="value"
@@ -54,7 +57,7 @@ export default {
       default: "",
     },
     value: {
-      type: String,
+      type: String | Number,
       default: "",
     },
     disabled: {
@@ -126,7 +129,13 @@ export default {
       inputRule: [],
       blurRule: [],
       ruleMessage: "",
+      hasFocus: false,
     };
+  },
+  watch: {
+    value(newVal) {
+      this.$emit("input", newVal);
+    },
   },
   created() {
     if (this.vpForm.rules && this.vpFormItem.prop) {
@@ -167,6 +176,7 @@ export default {
     },
     // input blur 事件
     blurHandle(e) {
+      this.hasFocus = false;
       this.$emit("blur", e);
       this.$nextTick(() => {
         let blurRule = this.blurRule;
@@ -199,6 +209,7 @@ export default {
     },
     // focus 事件
     focusHandle(e) {
+      this.hasFocus = true;
       this.$emit("focus", e);
     },
     // 切换密码显示
@@ -234,17 +245,29 @@ export default {
     box-sizing: border-box;
     width: 100%;
     height: 35px;
-    border-color: rgb(94, 170, 214);
+    // border-color: rgb(94, 170, 214);
+    // border: 1px solid rgb(94, 170, 214);
+    border: 1px solid #dcdfe6;
     outline: none;
     color: rgb(148, 146, 144);
     border-radius: 5px;
     border-width: 1px;
     padding: 5px 10px;
+    transition: border 0.2s;
+
+    &:hover {
+      border: 1px solid #c0c4cc;
+    }
   }
 
   .vp-input-textarea {
     outline: none;
-    border-color: rgb(94, 170, 214);
+    // border-color: rgb(94, 170, 214);
+    border: 1px solid #dcdfe6;
+
+    &:hover {
+      border: 1px solid #c0c4cc;
+    }
   }
 }
 
@@ -253,5 +276,9 @@ export default {
   background-color: #f5f7fa;
   border-color: #e4e7ed;
   color: #c0c4cc;
+}
+
+.vp-input-inner_focus {
+  border: 1px solid #409eff !important;
 }
 </style>
