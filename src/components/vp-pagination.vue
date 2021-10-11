@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-08 15:01:18
- * @LastEditTime: 2021-10-09 12:01:42
+ * @LastEditTime: 2021-10-11 11:20:06
  * @LastEditors: Please set LastEditors
  * @Description: 分页
  * @FilePath: \v-ui\src\components\vp-pagination.vue
@@ -106,7 +106,11 @@
       <div class="vp-pagination_jumper_container">
         <span class="vp-pagination_jumper_txt"> 前往 </span>
         <div class="vp-pagination_input">
-          <vp-input v-model="page" @input="handleInput" />
+          <vp-input
+            v-model="page"
+            @input="handleInput"
+            @blur="handleInputBlur"
+          />
         </div>
         <span class="vp-pagination_jumper_txt"> 页 </span>
       </div>
@@ -156,23 +160,21 @@ export default {
     },
   },
   components: {
-    VpInput
+    VpInput,
   },
   data() {
     return {
       hasLeft: false,
       hasRight: false,
-      page: "1",
+      page: this.currentPage,
+      filterPage: 1,
     };
   },
   watch: {
     currentPage(newVal) {
       this.$emit("current-change", newVal);
+      this.page = newVal;
     },
-    // 输入框
-    // page(newVal) {
-
-    // } 
   },
   computed: {
     // 最后一页的页码数
@@ -237,7 +239,7 @@ export default {
     isHidden() {
       return !(this.lastPageNum === 1 && this.hideOnSinglePage);
     },
-    // 是否 jumper 
+    // 是否 jumper
     hasJumper() {
       return /jumper/.test(this.layout);
     },
@@ -325,24 +327,28 @@ export default {
      * 输入框 - input
      */
     handleInput(val) {
-      console.log(val);
       let newVal = String(val);
       newVal = newVal.replace(/\s/g, "");
       newVal = newVal.replace(/[a-zA-Z]/g, "");
       newVal = newVal.replace(/^0/, "");
-      console.log(newVal);
       newVal = Number(newVal);
-      this.page = newVal || "1";
-      return newVal;
-    }
+      this.page = newVal;
+      val = newVal;
+    },
+
+    /**
+     * input blur 事件
+     */
+    handleInputBlur() {
+      let page = this.lastPageNum >= this.page ? this.page : this.currentPage;
+      this.$emit("update:currentPage", page);
+    },
   },
 };
 </script>
 
 <style lang="less" scoped>
 .vp-pagination {
-  // display: flex;
-  // justify-content: space-between;
   .vp-pagination_pre {
     display: inline-block;
     transform: rotate(90deg);
@@ -355,7 +361,6 @@ export default {
 
   .icon-xiangxia {
     font-size: 14px;
-    // font-weight: 700;
   }
 
   .vp-pagination_button {
@@ -404,7 +409,6 @@ export default {
           text-align: center;
         }
       }
-
     }
   }
 }
