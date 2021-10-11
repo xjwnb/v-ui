@@ -2,8 +2,26 @@
 <template>
   <div id="app">
     <!-- 分页 -->
-    <vp-pagination :total="100" :current-page.sync="currentPage1" />
+    <h1>pagination</h1>
+    <vp-pagination
+      :total="100"
+      :current-page.sync="currentPage1"
+      @pre-click="handlePreClick"
+      @next-click="handleNextClick"
+      @current-change="handleCurrentChange"
+      :layout="'jumper'"
+    />
+    <vp-switch v-model="switchValue" @change="changeHandle" />
+    <vp-pagination
+      :total="6"
+      :current-page.sync="currentPage1"
+      :hide-on-single-page="switchValue"
+      :prev-text="'前一页'"
+      :next-text="'后一页'"
+    />
+
     <!-- 选择器 -->
+    <h1>select</h1>
     <div style="height: 300px">
       <vp-select v-model="selectValue">
         <vp-option
@@ -47,6 +65,7 @@
     </div>
 
     <!-- 按钮 -->
+    <h1>button</h1>
     <vp-button type="default">default</vp-button>
     <vp-button type="primary">primary</vp-button>
     <vp-button type="success">success</vp-button>
@@ -62,7 +81,9 @@
       ><span class="iconfont icon-redupaixu"></span
     ></vp-button>
     <vp-button type="primary" disabled>primary - disabled 按钮 </vp-button>
+
     <!-- input -->
+    <h1>input</h1>
     <vp-input
       type="text"
       placeholder="请输入信息"
@@ -80,21 +101,29 @@
       @input="textareaInputHandle"
     />
     <vp-input @blur="blur" @focus="focus" />
+
     <!-- radio -->
+    <h1>radio</h1>
     <vp-radio v-model="radio1" label="loll">LOL</vp-radio>
     <vp-radio v-model="radio1" label="L" disabled>L</vp-radio>
     <vp-radio v-model="radio1" label="A" @change="changeHandle">A</vp-radio>
     <vp-radio v-model="radio1" label="B" border>B</vp-radio>
+
     <!-- radio-group -->
+    <h1>radio group</h1>
     <vp-radio-group v-model="radio1">
       <vp-radio label="loll">LOL</vp-radio>
       <vp-radio label="L" disabled>L</vp-radio>
       <vp-radio label="A" @change="changeHandle">A</vp-radio>
       <vp-radio label="B" border>B</vp-radio>
     </vp-radio-group>
+
     <!-- switch -->
+    <h1>switch</h1>
     <vp-switch v-model="switchValue" @change="changeHandle" disabled />
     <vp-switch v-model="switchValue" @change="changeHandle" />
+
+    <!-- form -->
     <!-- form -->
     <vp-form :model="form" :rules="rules" ref="form">
       <vp-form-item label="用户名：" prop="name">
@@ -120,7 +149,9 @@
         <vp-button @submit="submitForm">提交</vp-button>
       </vp-form-item>
     </vp-form>
+
     <!-- container -->
+    <h1>container</h1>
     <vp-container>
       <vp-header>Header</vp-header>
       <vp-container>
@@ -160,7 +191,9 @@
         <vp-footer>Footer</vp-footer>
       </vp-container>
     </vp-container>
+
     <!-- checkbox - group -->
+    <h1>checkbox</h1>
     <vp-checkbox-group v-model="checkboxGroup">
       <vp-checkbox label="LOL"></vp-checkbox>
       <vp-checkbox label="使命召唤"></vp-checkbox>
@@ -172,7 +205,9 @@
       testMessage
       <div class="tt"></div>
     </div>
+
     <!-- image -->
+    <h1>image</h1>
     <vp-image :src="img"></vp-image>
     <vp-image>
       <template v-slot:error>
@@ -203,12 +238,16 @@
         :previewSrc="img.src"
       ></vp-image>
     </div>
+
     <!-- message -->
+    <h1>message</h1>
     <vp-button @click="messageHandle">info message</vp-button>
     <vp-button @click="messageSuccessHandle">success message</vp-button>
     <vp-button @click="messageWarnHandle">warn message</vp-button>
     <vp-button @click="messageErrorHandle">error message</vp-button>
+
     <!-- menu -->
+    <h1>menu</h1>
     <vp-menu>
       <vp-menu-item
         ><span class="iconfont icon-success"></span>我是item - 1</vp-menu-item
@@ -386,7 +425,9 @@
         <li>100</li>
       </ul>
     </div>
+
     <!-- VpTooltip -->
+    <h1>tooltip</h1>
     <div class="tooltip">
       <vp-tooltip content="小卡车加油！！！">
         <vp-button>VpTooltip-default</vp-button>
@@ -401,7 +442,9 @@
         <vp-button>VpTooltip-right-------</vp-button>
       </vp-tooltip>
     </div>
+
     <!-- divider -->
+    <h1>divider</h1>
     <vp-divider>小卡车加油</vp-divider>
     <vp-divider content-position="left">小卡车加油</vp-divider>
     <vp-divider content-position="right">小卡车加油</vp-divider>
@@ -409,6 +452,7 @@
     小卡车加油
 
     <!-- backtop -->
+    <h1>backtop</h1>
     <div class="backtop-div">
       <ul>
         <li>1</li>
@@ -523,6 +567,7 @@
     </vp-backtop>
 
     <!-- progress -->
+    <h1>progress</h1>
     <vp-progress
       :color="[
         { color: '#f56c6c', percentage: 20 },
@@ -543,6 +588,7 @@
     <vp-progress :percentage="per"></vp-progress>
 
     <!-- table -->
+    <h1>table</h1>
     <vp-table :data="tableData">
       <vp-table-column prop="name" label="名称"></vp-table-column>
       <vp-table-column prop="age" label="年龄"></vp-table-column>
@@ -563,6 +609,7 @@
     </vp-table>
 
     <!-- tag -->
+    <h1>tag</h1>
     <vp-tag>小卡车加油！！！</vp-tag>
     <vp-tag type="success">小卡车加油！！！</vp-tag>
     <vp-tag type="info">小卡车加油！！！</vp-tag>
@@ -587,6 +634,7 @@
     <vp-tag effect="dark" type="danger" closable>小卡车加油！！！</vp-tag>
 
     <!-- carousel -->
+    <h1>carousel</h1>
     <div class="carousel">
       <vp-carousel :height="carouselHeight">
         <vp-carousel-item v-for="img in imgList" :key="img.id">
@@ -599,6 +647,7 @@
 
 <script>
 import VpAside from "./components/vp-aside.vue";
+import VpPagination from "./components/vp-pagination.vue";
 import VpRadioGroup from "./components/vp-radio-group.vue";
 import VpRadio from "./components/vp-radio.vue";
 import VpSwitch from "./components/vp-switch.vue";
@@ -739,6 +788,7 @@ export default {
     },
   },
   components: {
+    VpPagination,
     /*     VpRadioGroup,
     VpSwitch,
     VpAside,
@@ -841,6 +891,16 @@ export default {
     closeTagHandle() {
       console.log("closeTag");
     },
+    // 分页
+    handlePreClick(currentPage) {
+      console.log(currentPage);
+    },
+    handleNextClick(currentPage) {
+      console.log(currentPage);
+    },
+    handleCurrentChange(currentPage) {
+      console.log(currentPage);
+    }
   },
 };
 </script>

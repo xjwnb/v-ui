@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-08 15:01:18
- * @LastEditTime: 2021-10-08 17:32:53
+ * @LastEditTime: 2021-10-09 12:01:42
  * @LastEditors: Please set LastEditors
  * @Description: 分页
  * @FilePath: \v-ui\src\components\vp-pagination.vue
@@ -9,10 +9,18 @@
 
 
 <template>
-  <div class="vp-pagination">
+  <div class="vp-pagination" v-if="isHidden">
     <!-- 前 -->
-    <div class="vp-pagination_button vp-pagination_pre" @click="handleClickPre">
-      <span class="iconfont icon-xiangxia"></span>
+    <div
+      :class="['vp-pagination_button', !prevText ? 'vp-pagination_pre' : '']"
+      @click="handleClickPre"
+    >
+      <template v-if="!prevText">
+        <span class="iconfont icon-xiangxia"></span>
+      </template>
+      <template v-else>
+        <span>{{ prevText }}</span>
+      </template>
     </div>
 
     <!-- 内容 -->
@@ -41,7 +49,13 @@
         >
           1
         </div>
-        <div v-if="hasLeft" class="vp-pagination_button">...</div>
+        <div
+          v-if="hasLeft"
+          class="vp-pagination_button"
+          @click="handleClickPreBtn"
+        >
+          ...
+        </div>
         <!-- 中间 -->
         <div
           :class="[
@@ -54,7 +68,13 @@
         >
           {{ page }}
         </div>
-        <div v-if="hasRight" class="vp-pagination_button">...</div>
+        <div
+          v-if="hasRight"
+          class="vp-pagination_button"
+          @click="handleClickNextBtn"
+        >
+          ...
+        </div>
         <!-- 最后一个 -->
         <div
           :class="[
@@ -70,15 +90,32 @@
 
     <!-- 后 -->
     <div
-      class="vp-pagination_button vp-pagination_next"
+      :class="['vp-pagination_button', !nextText ? 'vp-pagination_next' : '']"
       @click="handleClickNext"
     >
-      <span class="iconfont icon-xiangxia"></span>
+      <template v-if="!nextText">
+        <span class="iconfont icon-xiangxia"></span>
+      </template>
+      <template v-else>
+        <span>{{ nextText }}</span>
+      </template>
     </div>
+
+    <!-- jumper -->
+    <template v-if="hasJumper">
+      <div class="vp-pagination_jumper_container">
+        <span class="vp-pagination_jumper_txt"> 前往 </span>
+        <div class="vp-pagination_input">
+          <vp-input v-model="page" @input="handleInput" />
+        </div>
+        <span class="vp-pagination_jumper_txt"> 页 </span>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import VpInput from "./input/vp-input.vue";
 export default {
   name: "vpPagination",
   props: {
@@ -97,12 +134,45 @@ export default {
       type: Number,
       default: 10,
     },
+    // 单页是否被隐藏
+    hideOnSinglePage: {
+      type: Boolean,
+      default: false,
+    },
+    // 布局
+    layout: {
+      type: String,
+      default: "", // jumper
+    },
+    // 上一页文字
+    prevText: {
+      type: String,
+      default: "",
+    },
+    // 下一页文字
+    nextText: {
+      type: String,
+      default: "",
+    },
+  },
+  components: {
+    VpInput
   },
   data() {
     return {
       hasLeft: false,
       hasRight: false,
+      page: "1",
     };
+  },
+  watch: {
+    currentPage(newVal) {
+      this.$emit("current-change", newVal);
+    },
+    // 输入框
+    // page(newVal) {
+
+    // } 
   },
   computed: {
     // 最后一页的页码数
@@ -162,8 +232,19 @@ export default {
       }
       return result;
     },
+
+    // 分页器隐藏
+    isHidden() {
+      return !(this.lastPageNum === 1 && this.hideOnSinglePage);
+    },
+    // 是否 jumper 
+    hasJumper() {
+      return /jumper/.test(this.layout);
+    },
   },
-  created() {},
+  created() {
+    this.handleInit();
+  },
   mounted() {},
   methods: {
     // 点击页码
@@ -175,6 +256,10 @@ export default {
       if (this.currentPage !== 1) {
         this.$emit("update:currentPage", this.currentPage - 1);
       }
+      let currentPage = this.currentPage === 1 && 1;
+      currentPage = this.currentPage !== 1 && this.currentPage - 1;
+      currentPage = currentPage || 1;
+      this.$emit("pre-click", currentPage);
     },
 
     // 点击下一页
@@ -182,7 +267,74 @@ export default {
       if (this.currentPage !== this.lastPageNum) {
         this.$emit("update:currentPage", this.currentPage + 1);
       }
+      let currentPage =
+        this.currentPage === this.lastPageNum && this.lastPageNum;
+      currentPage =
+        this.currentPage !== this.lastPageNum && this.currentPage + 1;
+      currentPage = currentPage || this.lastPageNum;
+      this.$emit("next-click", currentPage);
     },
+
+    // 初始化是否显示 left right
+    handleInit() {
+      switch (this.currentPage) {
+        case 1:
+          if (this.lastPageNum > 7) {
+            this.hasRight = true;
+          }
+          break;
+        case this.lastPageNum:
+          if (this.lastPageNum > 7) {
+            this.hasLeft = true;
+          }
+          break;
+        default:
+          if (this.currentPage - 3 > 1) {
+            this.hasLeft = true;
+          } else {
+            this.hasLeft = false;
+          }
+          if (this.currentPage + 3 < this.lastPageNum) {
+            this.hasRight = true;
+          } else {
+            this.hasRight = false;
+          }
+          break;
+      }
+    },
+
+    /**
+     * 点击左边 ... 按钮
+     */
+    handleClickPreBtn() {
+      if (this.currentPage !== 1) {
+        this.$emit("update:currentPage", this.currentPage - 1);
+      }
+    },
+
+    /**
+     * 点击右边 ... 按钮
+     */
+    handleClickNextBtn() {
+      if (this.currentPage !== this.lastPageNum) {
+        this.$emit("update:currentPage", this.currentPage + 1);
+      }
+    },
+
+    /**
+     * 输入框 - input
+     */
+    handleInput(val) {
+      console.log(val);
+      let newVal = String(val);
+      newVal = newVal.replace(/\s/g, "");
+      newVal = newVal.replace(/[a-zA-Z]/g, "");
+      newVal = newVal.replace(/^0/, "");
+      console.log(newVal);
+      newVal = Number(newVal);
+      this.page = newVal || "1";
+      return newVal;
+    }
   },
 };
 </script>
@@ -230,6 +382,30 @@ export default {
 
   .vp-pagination_button_active {
     color: #409eff;
+  }
+
+  .vp-pagination_jumper_container {
+    display: inline-block;
+    margin-left: 10px;
+
+    .vp-pagination_jumper_txt {
+      color: #606266;
+    }
+
+    .vp-pagination_input {
+      width: 45px;
+      display: inline-block;
+
+      .vp-input {
+        /deep/.vp-input-inner {
+          height: 30px;
+        }
+        /deep/input {
+          text-align: center;
+        }
+      }
+
+    }
   }
 }
 </style>
