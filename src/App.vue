@@ -1,7 +1,21 @@
 
 <template>
   <div id="app">
-    <!-- 分页 -->
+    <!-- timeline -->
+    <h1>timeline</h1>
+    <vp-timeline>
+      <vp-timeline-item
+        v-for="time in activities"
+        :key="time.timestamp"
+        :timestamp="time.timestamp"
+        :color="time.color"
+        >{{ time.content }}
+      </vp-timeline-item
+      >
+    </vp-timeline>
+
+    <!-- pagination -->
+    <br />
     <h1>pagination</h1>
     <vp-pagination
       :total="100"
@@ -20,7 +34,8 @@
       :next-text="'后一页'"
     />
 
-    <!-- 选择器 -->
+    <!-- select -->
+    <br />
     <h1>select</h1>
     <div style="height: 300px">
       <vp-select v-model="selectValue">
@@ -64,7 +79,8 @@
       </vp-select>
     </div>
 
-    <!-- 按钮 -->
+    <!-- button -->
+    <br />
     <h1>button</h1>
     <vp-button type="default">default</vp-button>
     <vp-button type="primary">primary</vp-button>
@@ -83,6 +99,7 @@
     <vp-button type="primary" disabled>primary - disabled 按钮 </vp-button>
 
     <!-- input -->
+    <br />
     <h1>input</h1>
     <vp-input
       type="text"
@@ -103,6 +120,7 @@
     <vp-input @blur="blur" @focus="focus" />
 
     <!-- radio -->
+    <br />
     <h1>radio</h1>
     <vp-radio v-model="radio1" label="loll">LOL</vp-radio>
     <vp-radio v-model="radio1" label="L" disabled>L</vp-radio>
@@ -119,12 +137,14 @@
     </vp-radio-group>
 
     <!-- switch -->
+    <br />
     <h1>switch</h1>
     <vp-switch v-model="switchValue" @change="changeHandle" disabled />
     <vp-switch v-model="switchValue" @change="changeHandle" />
 
     <!-- form -->
     <!-- form -->
+    <br />
     <vp-form :model="form" :rules="rules" ref="form">
       <vp-form-item label="用户名：" prop="name">
         <vp-input
@@ -151,6 +171,7 @@
     </vp-form>
 
     <!-- container -->
+    <br />
     <h1>container</h1>
     <vp-container>
       <vp-header>Header</vp-header>
@@ -193,6 +214,7 @@
     </vp-container>
 
     <!-- checkbox - group -->
+    <br />
     <h1>checkbox</h1>
     <vp-checkbox-group v-model="checkboxGroup">
       <vp-checkbox label="LOL"></vp-checkbox>
@@ -207,6 +229,7 @@
     </div>
 
     <!-- image -->
+    <br />
     <h1>image</h1>
     <vp-image :src="img"></vp-image>
     <vp-image>
@@ -240,6 +263,7 @@
     </div>
 
     <!-- message -->
+    <br />
     <h1>message</h1>
     <vp-button @click="messageHandle">info message</vp-button>
     <vp-button @click="messageSuccessHandle">success message</vp-button>
@@ -247,6 +271,7 @@
     <vp-button @click="messageErrorHandle">error message</vp-button>
 
     <!-- menu -->
+    <br />
     <h1>menu</h1>
     <vp-menu>
       <vp-menu-item
@@ -427,6 +452,7 @@
     </div>
 
     <!-- VpTooltip -->
+    <br />
     <h1>tooltip</h1>
     <div class="tooltip">
       <vp-tooltip content="小卡车加油！！！">
@@ -444,6 +470,7 @@
     </div>
 
     <!-- divider -->
+    <br />
     <h1>divider</h1>
     <vp-divider>小卡车加油</vp-divider>
     <vp-divider content-position="left">小卡车加油</vp-divider>
@@ -452,6 +479,7 @@
     小卡车加油
 
     <!-- backtop -->
+    <br />
     <h1>backtop</h1>
     <div class="backtop-div">
       <ul>
@@ -567,6 +595,7 @@
     </vp-backtop>
 
     <!-- progress -->
+    <br />
     <h1>progress</h1>
     <vp-progress
       :color="[
@@ -588,6 +617,7 @@
     <vp-progress :percentage="per"></vp-progress>
 
     <!-- table -->
+    <br />
     <h1>table</h1>
     <vp-table :data="tableData">
       <vp-table-column prop="name" label="名称"></vp-table-column>
@@ -609,6 +639,7 @@
     </vp-table>
 
     <!-- tag -->
+    <br />
     <h1>tag</h1>
     <vp-tag>小卡车加油！！！</vp-tag>
     <vp-tag type="success">小卡车加油！！！</vp-tag>
@@ -634,6 +665,7 @@
     <vp-tag effect="dark" type="danger" closable>小卡车加油！！！</vp-tag>
 
     <!-- carousel -->
+    <br />
     <h1>carousel</h1>
     <div class="carousel">
       <vp-carousel :height="carouselHeight">
@@ -646,6 +678,7 @@
 </template>
 
 <script>
+import VpTimelineItem from "./components/timeline/vp-timeline-item.vue";
 import VpAside from "./components/vp-aside.vue";
 import VpPagination from "./components/vp-pagination.vue";
 import VpRadioGroup from "./components/vp-radio-group.vue";
@@ -777,6 +810,23 @@ export default {
       selectValue: "6",
       // 分页
       currentPage1: 1,
+
+      // 时间线
+      activities: [
+        {
+          content: "活动按期开始",
+          timestamp: "2018-04-15",
+        },
+        {
+          content: "通过审核",
+          timestamp: "2018-04-13",
+          color: "#3B86E8",
+        },
+        {
+          content: "创建成功",
+          timestamp: "2018-04-11",
+        },
+      ],
     };
   },
   watch: {
@@ -789,6 +839,7 @@ export default {
   },
   components: {
     VpPagination,
+    VpTimelineItem,
     /*     VpRadioGroup,
     VpSwitch,
     VpAside,
@@ -900,7 +951,7 @@ export default {
     },
     handleCurrentChange(currentPage) {
       console.log(currentPage);
-    }
+    },
   },
 };
 </script>
