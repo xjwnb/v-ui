@@ -101,6 +101,10 @@ module.exports = {
           {
             title: "分页器 Pagination",
             path: "/components/pagination"
+          },
+          {
+            title: "时间线 Timeline",
+            path: "/components/timeline"
           }
         ]
       }
