@@ -97,6 +97,10 @@ module.exports = {
           {
             title: "选择器 Select",
             path: "/components/select"
+          },
+          {
+            title: "分页器 Pagination",
+            path: "/components/pagination"
           }
         ]
       }
