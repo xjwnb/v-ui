@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2021-10-13 11:33:17
+ * @LastEditTime: 2021-10-22 16:38:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -46,6 +46,8 @@ import VpOption from "./components/select/vp-option.vue";
 import VpPagination from "./components/vp-pagination.vue";
 import VpTimeline from "./components/timeline/vp-timeline.vue";
 import VpTimelineItem from "./components/timeline/vp-timeline-item.vue";
+import VpTabs from "./components/tabs/vp-tabs.vue";
+import VpTabPane from "./components/tabs/vp-tab-pane.vue";
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -79,6 +81,8 @@ Vue.component(VpOption.name, VpOption);
 Vue.component(VpPagination.name, VpPagination);
 Vue.component(VpTimeline.name, VpTimeline);
 Vue.component(VpTimelineItem.name, VpTimelineItem);
+Vue.component(VpTabs.name, VpTabs);
+Vue.component(VpTabPane.name, VpTabPane);
 
 
 Vue.prototype.$bus = new Vue();

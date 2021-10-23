@@ -1,6 +1,14 @@
 
 <template>
   <div id="app">
+    <!-- tab -->
+    <h1>tabs</h1>
+    <vp-tabs>
+      <vp-tab-pane label="小卡车" name="n1">小卡车</vp-tab-pane>
+      <vp-tab-pane label="蜘蛛侠" name="n2">蜘蛛侠</vp-tab-pane>
+      <vp-tab-pane label="猪猪侠" name="n3">猪猪侠</vp-tab-pane>
+    </vp-tabs>
+
     <!-- timeline -->
     <h1>timeline</h1>
     <vp-timeline>
