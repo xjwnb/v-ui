@@ -4,7 +4,9 @@
 
 <template>
   <div class="switch-base">
-    <vp-switch v-model="switchValue" @change="changeHandle" />
+    <ClientOnly>
+      <vp-switch v-model="switchValue" @change="changeHandle" />
+    </ClientOnly>
   </div>
 </template>
 
@@ -79,6 +81,7 @@
 | -------- | ------- | ------------- | -------- | ------ |
 | value    | Boolean | true \| false | 开关值   | false  |
 | disabled | Boolean | true \| false | 是否禁用 | false  |
+
 
 | 事件名 | 描述       | 返回值 |
 | ------ | ---------- | ------ |

@@ -105,6 +105,10 @@ module.exports = {
           {
             title: "时间线 Timeline",
             path: "/components/timeline"
+          },
+          {
+            title: "标签页 Tabs",
+            path: "/components/tabs"
           }
         ]
       }

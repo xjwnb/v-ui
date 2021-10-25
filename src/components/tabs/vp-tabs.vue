@@ -1,12 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2021-10-22 16:27:38
- * @LastEditTime: 2021-10-23 17:05:12
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \v-ui\src\components\tabs\vp-tabs.vue
--->
-
 <template>
   <div class="vp-tabs">
     <div class="vp-tabs_item_container">
@@ -80,10 +71,9 @@ export default {
       return item.name === this.value;
     });
     this.currentIndex = currentIndex;
-
     setTimeout(() => {
       let itemlist = this.$el.querySelectorAll(".vp-tabs_item");
-      this.clientWidth = itemlist[this.currentIndex].clientWidth;
+      this.clientWidth = itemlist[this.currentIndex]?.clientWidth;
       let itemNodeList = this.$el.children[0].children;
       let scrollleft = 0;
       for (let i = 0; i < itemNodeList.length - 1; i++) {
@@ -114,7 +104,6 @@ export default {
     display: flex;
     position: relative;
     z-index: 1;
-
     .vp-tabs__active-bar {
       position: absolute;
       bottom: 0;
@@ -122,20 +111,22 @@ export default {
       height: 4px;
       background-color: #409eff;
       z-index: 100;
-      transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      // transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       list-style: none;
       // transform: translateX();
     }
-
     .vp-tabs_item {
       padding: 10px 20px;
       cursor: pointer;
-    }
 
+      &:hover {
+        color: #409eff;
+      }
+    }
     .vp-tabs_item_active {
       color: #409eff;
     }
-
     ::after {
       content: "";
       position: absolute;

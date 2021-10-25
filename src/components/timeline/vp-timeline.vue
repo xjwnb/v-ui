@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-13 11:24:23
- * @LastEditTime: 2021-10-13 14:32:27
+ * @LastEditTime: 2021-10-25 08:19:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\components\timeline\vp-timeline.vue
@@ -35,7 +35,6 @@ export default {
      */
     handleRightSlot() {
       let children = Array.from(this.$slots.default);
-      console.log(children);
       let rightSlot = children.every((item) =>
         /vpTimelineItem$/g.test(item.tag)
       );
@@ -53,7 +52,6 @@ export default {
       let children = Array.from(this.$slots.default);
       let lastEle = children[children.length - 1].elm.childNodes[0];
       lastEle.style.display = "none";
-      console.dir(lastEle);
     },
 
   },

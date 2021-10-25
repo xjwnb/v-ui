@@ -3,7 +3,7 @@
   <div id="app">
     <!-- tab -->
     <h1>tabs</h1>
-    <vp-tabs v-model="tabsActiveName">
+    <vp-tabs v-model="tabsActiveName" @tab-click="handleTabClick">
       <vp-tab-pane label="小卡车" name="n1">小卡车</vp-tab-pane>
       <vp-tab-pane label="蜘蛛侠" name="n2">蜘蛛侠</vp-tab-pane>
       <vp-tab-pane label="猪猪侠" name="n3">猪猪侠</vp-tab-pane>
@@ -963,6 +963,11 @@ export default {
     handleCurrentChange(currentPage) {
       console.log(currentPage);
     },
+
+    // 标签页
+    handleTabClick(vm, e) {
+      console.log(vm, e);
+    }
   },
 };
 </script>
