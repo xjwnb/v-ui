@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-25 09:16:08
- * @LastEditTime: 2021-10-25 21:44:39
+ * @LastEditTime: 2021-10-26 04:35:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\components\datePicker\vp-date-picker.vue
@@ -13,7 +13,7 @@
       v-model="date"
       :placeholder="placeholder"
       @focus="handleInputFocus"
-      @blur="handleInputBlur"
+      @blur="handleInputBlur($event)"
     >
       <template v-slot:suffix>
         <span class="iconfont icon-rili"></span>
@@ -175,13 +175,17 @@ export default {
       selectMonth: "",
       selectDay: "",
       selectDayIndex: "",
+      // 当前点击是否在弹出层内部
+      isClickContainer: false,
     };
   },
   created() {
     this.initNowDate();
     this.getFullMonthDateList();
   },
-  mounted() {},
+  mounted() {
+    this.handleMouseClick();
+  },
   methods: {
     /**
      * 初始化日期时间
@@ -246,8 +250,9 @@ export default {
     /**
      * input blur
      */
-    handleInputBlur() {
-      this.active = false;
+    handleInputBlur(e, event) {
+      // console.log(e, event);
+      // this.active = false;
     },
 
     /**
@@ -296,10 +301,13 @@ export default {
         this.currentTime.currentDate = day;
         this.currentTime.currentYear = this.selectYear;
       }
+      // 触发修改 v-model
       this.$emit(
         "input",
         new Date(this.selectYear, this.selectMonth, this.selectDay)
       );
+      // 隐藏弹出层
+      this.active = false;
     },
 
     /**
@@ -342,6 +350,42 @@ export default {
           ? 1
           : this.currentTime.currentMonth + 1;
     },
+
+    /**
+     * 鼠标当前点击位置
+     */
+    handleMouseClick() {
+      document.addEventListener("mouseup", (e) => {
+        let flag = this.findParent(e.target, this.$el.querySelector(".vp-date-picker-container"))
+        if (flag) {
+          this.active = true;
+          this.isClickContainer = true;
+        } else if (e.target !== this.$el.querySelector(".vp-input-inner")) {
+          this.active = false;
+          this.isClickContainer = false;
+        } else if(e.target === this.$el.querySelector(".vp-input-inner")) {
+          // this.isClickContainer = true;
+          this.active = true;
+          this.isClickContainer = false;
+        } /* else {
+          this.isClickContainer = true;
+        } */
+      }, true);
+    },
+
+
+    /**
+     * 递归当前元素的父元素是否为弹出层
+     */
+    findParent(target, parent) {
+      if (!target) {
+        return false;
+      }
+      if (target === parent || target?.parentElement === parent) {
+        return true;
+      }
+      return this.findParent(target.parentElement, parent);
+    }
   },
 };
 </script>
@@ -349,6 +393,7 @@ export default {
 <style lang="less" scoped>
 .vp-date-picker {
   position: relative;
+  display: inline-block;
 
   .vp-input {
     width: 220px;
@@ -396,6 +441,7 @@ export default {
 
         span {
           font-size: 24px;
+          cursor: pointer;
         }
       }
     }
