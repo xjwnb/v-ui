@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-25 09:16:08
- * @LastEditTime: 2021-10-25 21:32:08
+ * @LastEditTime: 2021-10-25 21:44:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\components\datePicker\vp-date-picker.vue
@@ -131,7 +131,6 @@ export default {
     // value
     value: {
       handler(newVal) {
-        console.log(newVal);
         let date = new Date(newVal);
         this.date = `${date.getFullYear()}-${
           date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth()
@@ -144,9 +143,6 @@ export default {
       handler(newVal) {
         this.getFullMonthDateList();
         // 当前选中索引
-        console.log("上个月最后一个索引", this.preLastIndex);
-        console.log("选中的日期", this.selectDay);
-        console.log("下个月第一个索引", this.suffixFirstIndex);
         for (let i = this.preLastIndex + 1; i < this.suffixFirstIndex; i++) {
           if (this.dayList[i] === this.selectDay) {
             this.selectDayIndex = i;
@@ -235,30 +231,17 @@ export default {
         0
       ).getDate();
       this.preLastIndex = preDay - 1;
-      console.log(this.preLastIndex);
       for (let i = 0; i < preDay; i++) {
         dayList.unshift(preMonthLastDate - i);
       }
       let suffixLength = 42 - dayList.length;
       this.suffixFirstIndex = 42 - (42 - dayList.length);
-      console.log(this.suffixFirstIndex);
       // 补充下一月剩余日期
       for (let i = 1; i <= suffixLength; i++) {
         dayList.push(i);
       }
-      console.log(dayList);
       this.dayList = dayList;
     },
-
-    // consoleNum() {
-    //   for (var i = 0; i < 5; i++) {
-    //     (function (i) {
-    //       setTimeout(() => {
-    //         console.log(i);
-    //       }, 1000 * i);
-    //     })(i);
-    //   }
-    // },
 
     /**
      * input blur
@@ -278,7 +261,6 @@ export default {
      * 点击选中日期
      */
     handleSelectDate(day, index) {
-      console.log(day, index, this.preLastIndex, this.suffixFirstIndex);
       if (this.preLastIndex < index && index < this.suffixFirstIndex) {
         this.selectDayIndex = index;
         this.selectDay = day;
@@ -318,8 +300,6 @@ export default {
         "input",
         new Date(this.selectYear, this.selectMonth, this.selectDay)
       );
-      // console.log(this.selectYear, this.selectMonth, this.selectDay);
-      // console.log(this.currentTime);
     },
 
     /**
@@ -341,14 +321,6 @@ export default {
      */
     handlePreMonth() {
       let currentMonth = this.currentTime.currentMonth;
-      /* this.currentTime.currentYear =
-        this.currentTime.currentMonth - 1 < 1
-          ? this.currentTime.currentYear - 1
-          : this.currentTime.currentYear;
-      this.currentTime.currentMonth =
-        this.currentTime.currentMonth - 1 < 1
-          ? 12
-          : this.currentTime.currentMonth - 1; */
       if (currentMonth === 1) {
         this.currentTime.currentMonth = 12;
         this.currentTime.currentYear = this.currentTime.currentYear - 1;
