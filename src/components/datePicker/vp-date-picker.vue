@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-25 09:16:08
- * @LastEditTime: 2021-10-25 17:34:39
+ * @LastEditTime: 2021-10-25 21:32:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\components\datePicker\vp-date-picker.vue
@@ -24,7 +24,30 @@
     <transition name="slide-fade">
       <div :class="['vp-date-picker-container']" v-show="active">
         <!-- 当前日期 -->
-        {{ currentTime.currentYear }} 年 {{ currentTime.currentMonth }} 月
+        <div class="vp-date-picker_control">
+          <!-- 左 -->
+          <div class="date_left">
+            <div class="date_pre_year" @click="handlePreYear">
+              <span class="iconfont icon-jiantou_yemian_xiangzuo_o"></span>
+            </div>
+            <div class="date_pre_month" @click="handlePreMonth">
+              <span class="iconfont icon-jiantou_liebiaoxiangzuo_o"></span>
+            </div>
+          </div>
+          <!-- 内容 -->
+          <div class="date_text">
+            {{ currentTime.currentYear }} 年 {{ currentTime.currentMonth }} 月
+          </div>
+          <!-- 右 -->
+          <div class="date_right">
+            <div class="date_suffix_month" @click="handleSuffixMonth">
+              <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
+            </div>
+            <div class="date_suffix_year" @click="handleSuffixYear">
+              <span class="iconfont icon-jiantou_yemian_xiangyou_o"></span>
+            </div>
+          </div>
+        </div>
         <!-- 日期 -->
         <table class="vp-date-table">
           <thead>
@@ -105,13 +128,15 @@ export default {
     },
   },
   watch: {
-    // value 
+    // value
     value: {
       handler(newVal) {
         console.log(newVal);
         let date = new Date(newVal);
-        this.date = `${date.getFullYear()}-${date.getMonth() - 1}-${date.getDate()}`
-      }
+        this.date = `${date.getFullYear()}-${
+          date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth()
+        }-${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`;
+      },
     },
 
     // 当前日期变化
@@ -261,24 +286,89 @@ export default {
         this.selectMonth = this.currentTime.currentMonth;
       } else if (index <= this.preLastIndex) {
         let currentMonth = this.currentTime.currentMonth;
-      
-        this.selectYear = currentMonth === 1 ? this.currentTime.currentYear - 1 : this.currentTime.currentYear;
-        this.selectMonth = currentMonth === 1 ? 12 : this.currentTime.currentMonth - 1;
+
+        this.selectYear =
+          currentMonth === 1
+            ? this.currentTime.currentYear - 1
+            : this.currentTime.currentYear;
+        this.selectMonth =
+          currentMonth === 1 ? 12 : this.currentTime.currentMonth - 1;
         this.selectDay = day;
         this.currentTime.currentMonth = this.selectMonth;
         this.currentTime.currentDate = day;
         this.currentTime.currentYear = this.selectYear;
       } else if (index >= this.suffixFirstIndex) {
-        this.selectYear = this.currentTime.currentMonth + 1 > 12 ? this.currentTime.currentYear + 1 : this.currentTime.currentYear;
-        this.selectMonth = this.currentTime.currentMonth + 1 > 12 ? 1 : this.currentTime.currentMonth + 1;
-        this.currentTime.currentMonth = this.currentTime.currentMonth + 1 > 12 ? 1 : this.currentTime.currentMonth + 1;
+        this.selectYear =
+          this.currentTime.currentMonth + 1 > 12
+            ? this.currentTime.currentYear + 1
+            : this.currentTime.currentYear;
+        this.selectMonth =
+          this.currentTime.currentMonth + 1 > 12
+            ? 1
+            : this.currentTime.currentMonth + 1;
+        this.currentTime.currentMonth =
+          this.currentTime.currentMonth + 1 > 12
+            ? 1
+            : this.currentTime.currentMonth + 1;
         this.selectDay = day;
         this.currentTime.currentDate = day;
         this.currentTime.currentYear = this.selectYear;
       }
-      this.$emit("input", new Date(this.selectYear, this.selectMonth, this.selectDay));
+      this.$emit(
+        "input",
+        new Date(this.selectYear, this.selectMonth, this.selectDay)
+      );
       // console.log(this.selectYear, this.selectMonth, this.selectDay);
       // console.log(this.currentTime);
+    },
+
+    /**
+     * 上一年 pre_year
+     */
+    handlePreYear() {
+      this.currentTime.currentYear = this.currentTime.currentYear - 1;
+    },
+
+    /**
+     * 下一年 suffix_year
+     */
+    handleSuffixYear() {
+      this.currentTime.currentYear = this.currentTime.currentYear + 1;
+    },
+
+    /**
+     * 上一月 pre_month
+     */
+    handlePreMonth() {
+      let currentMonth = this.currentTime.currentMonth;
+      /* this.currentTime.currentYear =
+        this.currentTime.currentMonth - 1 < 1
+          ? this.currentTime.currentYear - 1
+          : this.currentTime.currentYear;
+      this.currentTime.currentMonth =
+        this.currentTime.currentMonth - 1 < 1
+          ? 12
+          : this.currentTime.currentMonth - 1; */
+      if (currentMonth === 1) {
+        this.currentTime.currentMonth = 12;
+        this.currentTime.currentYear = this.currentTime.currentYear - 1;
+      } else {
+        this.currentTime.currentMonth = currentMonth - 1;
+      }
+    },
+
+    /**
+     * 下一月 suffix_year
+     */
+    handleSuffixMonth() {
+      this.currentTime.currentYear =
+        this.currentTime.currentMonth + 1 > 12
+          ? this.currentTime.currentYear + 1
+          : this.currentTime.currentYear;
+      this.currentTime.currentMonth =
+        this.currentTime.currentMonth + 1 > 12
+          ? 1
+          : this.currentTime.currentMonth + 1;
     },
   },
 };
@@ -320,6 +410,23 @@ export default {
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     background-color: #fff;
     padding: 20px;
+
+    .vp-date-picker_control {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .date_left,
+      .date_right {
+        display: flex;
+        align-items: center;
+
+        span {
+          font-size: 24px;
+        }
+      }
+    }
 
     .vp-option-container_inner {
       max-height: 204px;
