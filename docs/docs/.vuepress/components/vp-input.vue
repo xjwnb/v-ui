@@ -1,11 +1,20 @@
 <template>
   <div class="vp-input">
+    <!-- prefix -->
+    <div class="vp-input_prefix" v-if="$scopedSlots.prefix">
+      <slot name="prefix"></slot>
+    </div>
     <input
       v-if="type !== 'textarea'"
       :class="[
         'vp-input-inner',
         hasFocus ? 'vp-input-inner_focus' : '',
         disabled ? 'input-disabled' : '',
+        $scopedSlots.prefix ? 'vp-input_inner_prefix' : '',
+        $scopedSlots.suffix ? 'vp-input_inner_suffix' : '',
+        $scopedSlots.suffix && clearable
+          ? 'vp-input_inner_suffix_defaultIcon'
+          : '',
       ]"
       :type="isShowPWD ? 'text' : type"
       :placeholder="placeholder"
@@ -30,15 +39,24 @@
       @blur="blurHandle"
       @focus="focusHandle"
     ></textarea>
+    <!-- suffix -->
+    <div class="vp-input_suffix" v-if="$scopedSlots.suffix">
+      <slot name="suffix"></slot>
+    </div>
+
     <span
       v-if="type === 'password' && value"
-      class="iconfont"
-      :class="isShowPWD ? 'icon-eye' : 'icon-eye1'"
+      class="iconfont default-icon"
+      :class="[
+        isShowPWD ? 'icon-eye' : 'icon-eye1',
+        $scopedSlots.suffix ? 'default_icon_suffix' : '',
+      ]"
       @click="showPWDHandle"
     ></span>
     <span
       v-if="clearable && value"
-      class="iconfont icon-clear_circle_outlined"
+      class="iconfont icon-clear_circle_outlined default-icon"
+      :class="[$scopedSlots.suffix ? 'default_icon_suffix' : '']"
       @click="clearHandle"
     ></span>
   </div>
@@ -232,10 +250,12 @@ export default {
 // 默认样式
 .vp-input {
   width: 100%;
-  display: inline-block;
+  // display: inline-block;
   position: relative;
+  display: flex;
+  align-items: center;
 
-  span {
+  .default-icon {
     cursor: pointer;
     position: absolute;
     top: 9px;
@@ -254,10 +274,44 @@ export default {
     border-width: 1px;
     padding: 5px 10px;
     transition: border 0.2s;
+    cursor: pointer;
 
     &:hover {
       border: 1px solid #c0c4cc;
     }
+  }
+
+  .vp-input_inner_prefix {
+    padding-left: 35px;
+  }
+
+  .vp-input_inner_suffix {
+    padding-right: 35px;
+  }
+
+  .default_icon_suffix {
+    right: 40px;
+  }
+
+  .vp-input_suffix {
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    padding: 0px 10px;
+    right: 0;
+  }
+
+  .vp-input_prefix {
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    // padding: 10px 20px;
+    padding: 0px 10px;
+    left: 0;
+  }
+
+  .vp-input_inner_suffix_defaultIcon {
+    padding-right: 60px;
   }
 
   .vp-input-textarea {

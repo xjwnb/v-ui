@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 19:10:19
- * @LastEditTime: 2021-10-22 16:38:31
+ * @LastEditTime: 2021-10-25 09:21:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\main.js
@@ -48,6 +48,7 @@ import VpTimeline from "./components/timeline/vp-timeline.vue";
 import VpTimelineItem from "./components/timeline/vp-timeline-item.vue";
 import VpTabs from "./components/tabs/vp-tabs.vue";
 import VpTabPane from "./components/tabs/vp-tab-pane.vue";
+import VpDatePicker from "./components/datePicker/vp-date-picker.vue";
 
 Vue.component(VpButton.name, VpButton);
 Vue.component(VpInput.name, VpInput);
@@ -83,6 +84,7 @@ Vue.component(VpTimeline.name, VpTimeline);
 Vue.component(VpTimelineItem.name, VpTimelineItem);
 Vue.component(VpTabs.name, VpTabs);
 Vue.component(VpTabPane.name, VpTabPane);
+Vue.component(VpDatePicker.name, VpDatePicker);
 
 
 Vue.prototype.$bus = new Vue();

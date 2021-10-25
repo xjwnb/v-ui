@@ -1,6 +1,10 @@
 
 <template>
   <div id="app">
+    <!-- date-picker 日期选择器 -->
+    <h1>datePicker</h1>
+    <vp-date-picker v-model="datePicker" placeholder="请选择日期" />
+
     <!-- tab -->
     <h1>tabs</h1>
     <vp-tabs v-model="tabsActiveName" @tab-click="handleTabClick">
@@ -109,7 +113,7 @@
     <!-- input -->
     <br />
     <h1>input</h1>
-    <vp-input
+    <!-- <vp-input
       type="text"
       placeholder="请输入信息"
       v-model="username"
@@ -125,7 +129,29 @@
       @focus="focus"
       @input="textareaInputHandle"
     />
-    <vp-input @blur="blur" @focus="focus" />
+    <vp-input @blur="blur" @focus="focus" /> -->
+    <vp-input
+      type="text"
+      placeholder="请输入信息"
+      v-model="username"
+      @input="inputHandle"
+    >
+      <template v-slot:prefix>
+        <span class="iconfont icon-rili"></span>
+      </template>
+    </vp-input>
+
+    <vp-input
+      type="text"
+      placeholder="请输入信息"
+      v-model="username"
+      @input="inputHandle"
+      clearable
+    >
+      <template v-slot:suffix>
+        <span class="iconfont icon-rili"></span>
+      </template>
+    </vp-input>
 
     <!-- radio -->
     <br />
@@ -838,6 +864,9 @@ export default {
 
       // tabs 标签页
       tabsActiveName: "n2",
+
+      // 日历
+      datePicker: "",
     };
   },
   watch: {
