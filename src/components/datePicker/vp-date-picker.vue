@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-25 09:16:08
- * @LastEditTime: 2021-10-26 04:35:20
+ * @LastEditTime: 2021-10-26 10:30:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \v-ui\src\components\datePicker\vp-date-picker.vue
@@ -72,29 +72,44 @@
 
                     currentTime.currentYear === nowYear &&
                     currentTime.currentMonth === nowMonth &&
-                    dayList[(row - 1) * 7 + td - 1] === nowDay
+                    dayList[(row - 1) * 7 + td - 1].day === nowDay &&
+                    (row - 1) * 7 + td - 1 === currentDateIndex
                       ? 'currentTime__tb'
                       : '',
                   ]"
                   @click="
                     handleSelectDate(
-                      dayList[(row - 1) * 7 + td - 1],
-                      (row - 1) * 7 + td - 1
+                      dayList[(row - 1) * 7 + td - 1].day,
+                      (row - 1) * 7 + td - 1,
+                      $event
                     )
                   "
                 >
-                  <div>
+                  <!-- :class="[ ? 'disabled_day' : '']" -->
+                  <div
+                    :class="[
+                      pickerOption &&
+                      pickerOption.disabledDate(
+                        dayList[(row - 1) * 7 + td - 1].date
+                      )
+                        ? 'disabled_day'
+                        : '',
+                    ]"
+                  >
+                    <!-- &&
+                        (row - 1) * 7 + td - 1 === selectDayIndex -->
                     <span
                       :class="[
                         'date_table_span',
                         currentTime.currentYear === selectYear &&
                         currentTime.currentMonth === selectMonth &&
-                        dayList[(row - 1) * 7 + td - 1] === selectDay &&
-                        (row - 1) * 7 + td - 1 === selectDayIndex
+                        dayList[(row - 1) * 7 + td - 1].day === selectDay &&
+                        (row - 1) * 7 + td - 1 > preLastIndex &&
+                        (row - 1) * 7 + td - 1 < suffixFirstIndex
                           ? 'select_time_tab'
                           : '',
                       ]"
-                      >{{ dayList[(row - 1) * 7 + td - 1] }}</span
+                      >{{ dayList[(row - 1) * 7 + td - 1].day }}</span
                     >
                   </div>
                 </td>
@@ -126,6 +141,16 @@ export default {
     value: {
       type: Date | String,
     },
+    // picker-option
+    pickerOption: {
+      type: Object,
+      default: () => {},
+    },
+    // align
+    align: {
+      type: String,
+      default: "left",
+    },
   },
   watch: {
     // value
@@ -152,6 +177,17 @@ export default {
       },
       deep: true,
     },
+
+    // picker-option
+    pickerOption: {
+      handler(newVal) {
+        if (!newVal) return;
+        // disabledDate
+        console.log(newVal);
+      },
+      immediate: true,
+      deep: true,
+    },
   },
   data() {
     return {
@@ -164,6 +200,8 @@ export default {
         currentMonth: "",
         currentDate: "",
       },
+      // 现在时间 day 索引
+      currentDateIndex: "",
       rowLength: 6,
       preLastIndex: 0,
       suffixFirstIndex: 0,
@@ -177,9 +215,14 @@ export default {
       selectDayIndex: "",
       // 当前点击是否在弹出层内部
       isClickContainer: false,
+      // 选项
+      option: {
+        disabledDateFun: null,
+      },
     };
   },
   created() {
+    this.initPickerOption();
     this.initNowDate();
     this.getFullMonthDateList();
   },
@@ -187,6 +230,20 @@ export default {
     this.handleMouseClick();
   },
   methods: {
+    /**
+     * 初始化 pickerOption
+     */
+    initPickerOption() {
+      // if (!this.pickerOption) return;
+      // console.log(this.pickerOption);
+      // let disabled;
+      // if (this.pickerOption?.disabledDate) {
+      //   // disabled = this.pickerOption.disabledDate(new Date());
+      //   this.option.disabledDateFun = this.pickerOption.disabledDate;
+      // }
+      // console.log(disabled);
+    },
+
     /**
      * 初始化日期时间
      */
@@ -224,7 +281,15 @@ export default {
         0
       ).getDate();
       for (let i = 1; i <= lastDay; i++) {
-        dayList.push(i);
+        // dayList.push(i);
+        dayList.push({
+          day: i,
+          date: new Date(
+            this.currentTime.currentYear,
+            this.currentTime.currentMonth - 1,
+            i
+          ),
+        });
       }
       // 在本月第一天之前还有多少天
       let preDay = firstDay !== 0 ? firstDay : 0;
@@ -236,14 +301,46 @@ export default {
       ).getDate();
       this.preLastIndex = preDay - 1;
       for (let i = 0; i < preDay; i++) {
-        dayList.unshift(preMonthLastDate - i);
+        // dayList.unshift(preMonthLastDate - i);
+
+        dayList.unshift({
+          day: preMonthLastDate - i,
+          date: new Date(
+            this.currentTime.currentMonth === 1
+              ? this.currentTime.currentYear - 1
+              : this.currentTime.currentYear,
+            this.currentTime.currentMonth === 1
+              ? 11
+              : this.currentTime.currentMonth - 1 - 1,
+            preMonthLastDate - i
+          ),
+        });
       }
       let suffixLength = 42 - dayList.length;
       this.suffixFirstIndex = 42 - (42 - dayList.length);
       // 补充下一月剩余日期
       for (let i = 1; i <= suffixLength; i++) {
-        dayList.push(i);
+        // dayList.push(i);
+        dayList.push({
+          day: i,
+          date: new Date(
+            this.currentTime.currentMonth === 12
+              ? this.currentTime.currentYear + 1
+              : this.currentTime.currentYear,
+            this.currentTime.currentMonth === 12
+              ? 0
+              : this.currentTime.currentMonth + 1 - 1,
+            i
+          ),
+        });
       }
+      this.currentDateIndex = dayList.findIndex(
+        (item, index) =>
+          index > this.preLastIndex &&
+          index < this.suffixFirstIndex &&
+          item.day === new Date().getDate()
+      );
+      // console.log(this.currentDateIndex);
       this.dayList = dayList;
     },
 
@@ -265,7 +362,21 @@ export default {
     /**
      * 点击选中日期
      */
-    handleSelectDate(day, index) {
+    handleSelectDate(day, index, event) {
+      // 设置不可点击
+      if (
+        event.target.parentElement.className === "disabled_day" ||
+        event.target?.lastElementChild?.className === "disabled_day"
+      ) {
+        return;
+      }
+      // if (this.pickerOption && this.pickerOption.disabledDate) {
+      //   let flag = this.pickerOption.disabledDate(this.dayList[index].time)
+      //   if (flag) {
+      //     return;
+      //   }
+      // }
+
       if (this.preLastIndex < index && index < this.suffixFirstIndex) {
         this.selectDayIndex = index;
         this.selectDay = day;
@@ -355,24 +466,30 @@ export default {
      * 鼠标当前点击位置
      */
     handleMouseClick() {
-      document.addEventListener("mouseup", (e) => {
-        let flag = this.findParent(e.target, this.$el.querySelector(".vp-date-picker-container"))
-        if (flag) {
-          this.active = true;
-          this.isClickContainer = true;
-        } else if (e.target !== this.$el.querySelector(".vp-input-inner")) {
-          this.active = false;
-          this.isClickContainer = false;
-        } else if(e.target === this.$el.querySelector(".vp-input-inner")) {
-          // this.isClickContainer = true;
-          this.active = true;
-          this.isClickContainer = false;
-        } /* else {
+      document.addEventListener(
+        "mouseup",
+        (e) => {
+          let flag = this.findParent(
+            e.target,
+            this.$el.querySelector(".vp-date-picker-container")
+          );
+          if (flag) {
+            this.active = true;
+            this.isClickContainer = true;
+          } else if (e.target !== this.$el.querySelector(".vp-input-inner")) {
+            this.active = false;
+            this.isClickContainer = false;
+          } else if (e.target === this.$el.querySelector(".vp-input-inner")) {
+            // this.isClickContainer = true;
+            this.active = true;
+            this.isClickContainer = false;
+          } /* else {
           this.isClickContainer = true;
         } */
-      }, true);
+        },
+        true
+      );
     },
-
 
     /**
      * 递归当前元素的父元素是否为弹出层
@@ -385,7 +502,7 @@ export default {
         return true;
       }
       return this.findParent(target.parentElement, parent);
-    }
+    },
   },
 };
 </script>
@@ -442,6 +559,10 @@ export default {
         span {
           font-size: 24px;
           cursor: pointer;
+
+          &:hover {
+            color: #409eff;
+          }
         }
       }
     }
@@ -483,6 +604,17 @@ export default {
 
         &:hover {
           color: #409eff;
+        }
+      }
+
+      .disabled_day {
+        background-color: #f5f7fa;
+        color: #c0c4cc;
+        cursor: not-allowed;
+        // pointer-events: none;
+
+        &:hover {
+          color: #c0c4cc;
         }
       }
 

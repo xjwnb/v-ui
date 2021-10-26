@@ -4,6 +4,7 @@
     <!-- date-picker 日期选择器 -->
     <h1>datePicker</h1>
     <vp-date-picker v-model="datePicker" placeholder="请选择日期" />
+    <vp-date-picker v-model="datePicker" placeholder="请选择日期" :picker-option="pickerOption" />
 
     <!-- tab -->
     <h1>tabs</h1>
@@ -867,6 +868,13 @@ export default {
 
       // 日历
       datePicker: "",
+      pickerOption: {
+        disabledDate(time) {
+          // return true;
+          // console.log(time.getTime() > Date.now());
+          return time.getTime() > Date.now();
+        }
+      }
     };
   },
   watch: {
