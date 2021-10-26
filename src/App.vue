@@ -4,7 +4,14 @@
     <!-- date-picker 日期选择器 -->
     <h1>datePicker</h1>
     <vp-date-picker v-model="datePicker" placeholder="请选择日期" />
-    <vp-date-picker v-model="datePicker" placeholder="请选择日期" :picker-option="pickerOption" />
+    <vp-date-picker
+      v-model="datePicker"
+      placeholder="请选择日期"
+      :picker-option="pickerOption"
+      @blur="handleDatePickerBlur"
+      @focus="handleDatePickerFocus"
+      @change="handleDatePickerChange"
+    />
 
     <!-- tab -->
     <h1>tabs</h1>
@@ -23,8 +30,7 @@
         :timestamp="time.timestamp"
         :color="time.color"
         >{{ time.content }}
-      </vp-timeline-item
-      >
+      </vp-timeline-item>
     </vp-timeline>
 
     <!-- pagination -->
@@ -873,8 +879,8 @@ export default {
           // return true;
           // console.log(time.getTime() > Date.now());
           return time.getTime() > Date.now();
-        }
-      }
+        },
+      },
     };
   },
   watch: {
@@ -1004,7 +1010,18 @@ export default {
     // 标签页
     handleTabClick(vm, e) {
       console.log(vm, e);
-    }
+    },
+
+    // 日期选择器
+    handleDatePickerBlur(vm) {
+      console.log(vm);
+    },
+    handleDatePickerFocus(vm) {
+      console.log(vm);
+    },
+    handleDatePickerChange(vm) {
+      console.log(vm);
+    },
   },
 };
 </script>

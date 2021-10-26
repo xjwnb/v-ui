@@ -7,17 +7,6 @@
   url('iconfont.svg?t=1607854078384#iconfont') format('svg'); /* iOS 4.1- */
 }
 
-@font-face {
-  font-family: "iconfont"; /* Project id  */
-  src: url('iconfont_1.ttf?t=1635126913464') format('truetype');
-}
-
-@font-face {
-  font-family: "iconfont"; /* Project id  */
-  src: url('iconfont_2.ttf?t=1635165007281') format('truetype');
-}
-
-
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 16px;
@@ -84,25 +73,5 @@
 
 .icon-fangda:before {
   content: "\e627";
-}
-
-.icon-rili:before {
-  content: "\e638";
-}
-
-.icon-jiantou_liebiaoxiangyou_o:before {
-  content: "\eb8a";
-}
-
-.icon-jiantou_liebiaoxiangzuo_o:before {
-  content: "\eb8e";
-}
-
-.icon-jiantou_yemian_xiangyou_o:before {
-  content: "\eb93";
-}
-
-.icon-jiantou_yemian_xiangzuo_o:before {
-  content: "\eb94";
 }
 

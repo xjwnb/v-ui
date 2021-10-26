@@ -109,7 +109,11 @@ module.exports = {
           {
             title: "标签页 Tabs",
             path: "/components/tabs"
-          }
+          },
+          {
+            title: "日期选择器 DatePicker",
+            path: "/components/datePicker"
+          },
         ]
       }
     ]
